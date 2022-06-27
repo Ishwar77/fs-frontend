@@ -1,0 +1,93 @@
+<div fxLayout="column" fxFlexFill>
+  <div fxLayout="column">
+
+    <div fxLayout="row" fxLayout.xs="column" fxLayout.sm="column" style="padding: 15px;">
+
+      <div fxLayout="column" style="width: 100%;">
+        <div fxLayout="column" fxLayoutAlign="center center" style="background-color: rgba(1, 137, 189, 0.15);
+        padding: 10px;color: rgb(1, 137, 189);font-size: 1.4rem;font-weight: 500;">BMI Level</div>
+        <div fxLayout="column">
+          <div class="user-profile" fxLayout="row" fxLayoutAlign="start center" fxLayoutAlign.xs="start center"
+            fxLayoutAlign.sm="start center">
+            <div class="name-heads" ngStyle.xs="min-width:0 !important" ngStyle.sm="min-width:0 !important">
+              Height
+            </div>
+            <div class="name-detailss">
+              <mat-form-field class="example-full-width" color="accent">
+                <input type="text" matInput placeholder="In Feet Eg:6.2" [(ngModel)]="data.height">
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
+        <div fxLayout="column">
+          <div class="user-profile" fxLayout="row" fxLayoutAlign="start center" fxLayoutAlign.xs="start center"
+            fxLayoutAlign.sm="start center">
+            <div class="name-heads" ngStyle.xs="min-width:0 !important" ngStyle.sm="min-width:0 !important">
+              Weight
+            </div>
+            <div class="name-detailss">
+              <mat-form-field class="example-full-width" color="accent">
+                <input type="text" matInput [(ngModel)]="data.weight" placeholder="In Kgs Eg:70">
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
+        <div fxLayout="column" *ngIf="data.bmi">
+          <div class="user-profile" fxLayout="row" fxLayoutAlign="start center" fxLayoutAlign.xs="start center"
+            fxLayoutAlign.sm="start center">
+            <div class="name-heads" ngStyle.xs="min-width:0 !important" ngStyle.sm="min-width:0 !important">
+              BMI(Kg/m2)
+            </div>
+            <div class="name-detailss">
+              <label for="" class="bmiclass" fxLayoutAlign="center center">{{data.bmi}}</label>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div fxLayout="column" style="width: 100%;">
+        <div fxLayout="column" fxLayoutAlign="center center" style="background-color: rgba(1, 137, 189, 0.15);
+        padding: 10px;
+        color: rgb(1, 137, 189);
+        font-size: 1.4rem;
+        font-weight: 500;">BMI Categories</div>
+        <div fxLayout="column" style="border: 1px solid #f4f4f4;">
+          <div fxLayout="column">
+            <div fxLayout="row" fxLayoutAlign="space-between" style="padding: 10px;">
+              <div>UNDERWEIGHT(Less Than )</div>
+              <div> 18.5</div>
+            </div>
+            <div fxLayout="row" fxLayoutAlign="space-between" style="padding: 10px;">
+              <div>NORMAL WEIGHT</div>
+              <div> 18.5 to 24.9</div>
+            </div>
+            <div fxLayout="row" fxLayoutAlign="space-between" style="padding: 10px;">
+              <div>OVER WEIGHT</div>
+              <div> 25 to 29.9</div>
+            </div>
+
+            <div fxLayout="row" fxLayoutAlign="space-between" style="padding: 10px;">
+              <div>OBESITY</div>
+              <div> 30 or Greater</div>
+            </div>
+
+          </div>
+        </div>
+        <div *ngIf="data.bmi" fxLayout="column" style="padding: 10px;">
+          <div style="font-weight: 600;"> Your BMI status is
+            <span *ngIf="data.bmi<30" style="color:green"> {{bmistatus}} </span>
+            <span *ngIf="data.bmi>29" style="color:red"> {{bmistatus}} </span>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+    <div fxLayout="column">
+      <div class="user-profile-info" fxLayout="row" fxLayoutGap="20px" fxLayoutAlign="center center">
+        <button mat-raised-button color="accent" (click)="addfitdetails()">
+          SAVE</button>
+      </div>
+    </div>
+  </div>
+</div>

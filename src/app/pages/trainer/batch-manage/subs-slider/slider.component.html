@@ -1,0 +1,182 @@
+<div class="slider-panel-item" ngStyle.xs="width:350px" ngStyle.sm="width:350px" *ngIf="model['viewMode'] === 1">
+    <div class="header-items">
+        <div class="header">
+            {{(  getPanelTitle()) | trim : 25 }}
+        </div>
+        <div class="actions">
+            <button *ngIf="model['viewMode'] !== 1" mat-raised-button style="background-color: #db5024;"
+                (click)="deleteevent()">
+                <span><i class="fa fa-trash"></i> </span>
+            </button>
+            <button mat-raised-button (click)="saveAction()" style="margin: 10px;">
+                <span class="material-icons">{{ getPanelTitle(false)}} </span>
+            </button>
+            <button mat-raised-button fxHide.md fxHide.lg (click)="closesilder()">
+                <span class="material-icons">cancel</span>
+            </button>
+        </div>
+    </div>
+    <div class="slider-content">
+        <form>
+            <div class="inline-form" fxLayout="column">
+                <div class="select-option">
+                    <mat-form-field appearance="outline" color="accent">
+                        <mat-label>Select Subscription</mat-label>
+                        <mat-select required>
+                            <mat-option *ngFor="let item of items" [value]="item.subscription_id"
+                                (click)="selectedsubscription(item)" [disabled]="model['viewMode'] === 3">
+                                {{item.days}} Days Pack
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <div class="inline-form">
+                    <mat-form-field appearance="outline" color="accent">
+                        <mat-label>Start Time</mat-label>
+                        <input type="time" matInput name="stime" placeholder="Days" [(ngModel)]="model['starttime']"
+                            tabindex="1" required [ngModelOptions]="{standalone: true}"
+                            [disabled]="model['viewMode'] === 3">
+                    </mat-form-field>
+                </div>
+
+                <div class="inline-form">
+                    <mat-form-field appearance="outline" color="accent">
+                        <mat-label>End Time</mat-label>
+                        <input type="time" matInput name="etime" placeholder="Amount" [(ngModel)]="model['endtime']"
+                            tabindex="1" required [ngModelOptions]="{standalone: true}"
+                            [disabled]="model['viewMode'] === 3">
+                    </mat-form-field>
+                </div>
+                <div class="inline-form">
+                    <mat-form-field appearance="outline" color="accent">
+                        <mat-label>Duration</mat-label>
+                        <mat-select required>
+                            <mat-option *ngFor="let menu of menus" [value]="menu" (click)="frequencylist(menu)"
+                                [disabled]="model['viewMode'] === 3">
+                                {{menu.frequency}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <div class="inline-form" *ngIf="id === 3">
+                    <mat-form-field appearance="outline" color="accent">
+                        <mat-label>Days</mat-label>
+                        <mat-select [formControl]="days" multiple required>
+                            <mat-option *ngFor="let day of daysList" [value]="day">
+                                {{day}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <div class="inline-form" *ngIf="model['viewMode'] !== 3">
+                    <mat-label style="font-size: 12px;">Do you want to Have limit for the Sessions?</mat-label>
+                    <mat-slide-toggle (change)="slide($event)">{{limittext}}</mat-slide-toggle>
+                </div>
+
+                <div class="inline-form" *ngIf="limitvalue === 1">
+                    <mat-form-field appearance="outline" color="accent">
+                        <mat-label>Batch Size</mat-label>
+                        <input type="number" min="0" max="50" name="batch" matInput autocomplete="off"
+                            [(ngModel)]="model['batchsize']" placeholder="No of Batches" required>
+                    </mat-form-field>
+                    <mat-form-field appearance="outline" color="accent">
+                        <mat-label>Available Seats</mat-label>
+                        <input type="number" min="0" name="seats" matInput autocomplete="off" placeholder="No of Seats"
+                            [(ngModel)]="model['batchsize']" readonly required>
+                    </mat-form-field>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+<div class="slider-panel-item" ngStyle.xs="width:350px" ngStyle.sm="width:350px" *ngIf="model['viewMode'] !== 1">
+    <div class="header-items">
+        <div class="header">
+            {{(  getPanelTitle()) | trim : 25 }}
+        </div>
+        <div class="actions">
+            <button *ngIf="model['viewMode'] !== 1" mat-raised-button style="background-color: #db5024;"
+                (click)="deleteevent()">
+                <span><i class="fa fa-trash"></i> </span>
+            </button>
+            <button mat-raised-button (click)="saveAction()" style="margin: 10px;">
+                <span>{{ getPanelTitle(false)}} </span>
+            </button>
+            <button mat-raised-button fxHide.md fxHide.lg (click)="closesilder()">
+                <span class="material-icons">cancel</span>
+            </button>
+        </div>
+    </div>
+    <div class="slider-content">
+        <form>
+            <div class="inline-form" fxLayout="column">
+                <!-- <div class="select-option">
+                <span>SUBSCRIPTION : {{model['subscription']}} Days Pack</span>
+                </div> -->
+                <div class="inline-form">
+                    <mat-form-field appearance="outline" color="accent">
+                        <mat-label>Subscription(Days Pack)</mat-label>
+                        <input matInput name="subst" [(ngModel)]="model['subscription']" tabindex="1" required
+                            [ngModelOptions]="{standalone: true}" readonly>
+                    </mat-form-field>
+                </div>
+                <div class="inline-form">
+                    <mat-form-field appearance="outline" color="accent">
+                        <mat-label>Start Time</mat-label>
+                        <input matInput name="stime" placeholder="Days" [(ngModel)]="model['starttime']" tabindex="1"
+                            required [ngModelOptions]="{standalone: true}" [disabled]="model['viewMode'] === 3">
+                    </mat-form-field>
+                </div>
+
+                <div class="inline-form">
+                    <mat-form-field appearance="outline" color="accent">
+                        <mat-label>End Time</mat-label>
+                        <input matInput name="etime" placeholder="Amount" [(ngModel)]="model['endtime']" tabindex="1"
+                            required [ngModelOptions]="{standalone: true}" [disabled]="model['viewMode'] === 3">
+                    </mat-form-field>
+                </div>
+
+                <div class="inline-form" *ngIf="model['haslimit'] !== 0">
+                    <mat-form-field appearance="outline" color="accent">
+                        <mat-label>Batch Size</mat-label>
+                        <input type="number" min="0" max="50" name="batch" matInput autocomplete="off"
+                            [(ngModel)]="model['batchsize']" placeholder="No of Batches"
+                            [disabled]="model['viewMode'] === 3" required>
+                    </mat-form-field>
+                </div>
+                <div class="inline-form" *ngIf="model['haslimit'] !== 0">
+                    <mat-form-field appearance="outline" color="accent">
+                        <mat-label>Available Seats</mat-label>
+                        <input type="number" min="0" name="seats" matInput autocomplete="off" placeholder="No of Seats"
+                            [(ngModel)]="model['available']" [disabled]="model['viewMode'] === 3" required>
+                    </mat-form-field>
+                </div>
+
+                <div class="inline-form">
+                    <mat-form-field appearance="outline" color="accent">
+                        <mat-label *ngIf="!this.id">{{model['frequency']}}</mat-label>
+                        <mat-select required>
+                            <mat-option *ngFor="let menu of menus" [value]="menu" (click)="frequencylist(menu)"
+                                [disabled]="model['viewMode'] === 3">
+                                {{menu.frequency}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+
+                <div class="inline-form" *ngIf="id === 3">
+                    <mat-form-field appearance="outline" color="accent">
+                        <mat-label>Days</mat-label>
+                        <mat-select [formControl]="days" multiple required>
+                            <mat-option *ngFor="let day of daysList" [value]="day">
+                                {{day}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

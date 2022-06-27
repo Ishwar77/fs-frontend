@@ -1,0 +1,30 @@
+<div *ngIf="pageManager.status === 1; else showInfoContainer">
+  <app-loading-component [imageSize]="2"> </app-loading-component>
+</div>
+<ng-template #showInfoContainer>
+  <div *ngIf="pageManager.action === 2; else showEventInfo">
+    <app-no-content></app-no-content>
+  </div>
+  <ng-template #showEventInfo>
+    <div fxLayout="column" class="container-summary">
+      <div fxLayout="row" fxLayout.xs="column" fxLayout.sm="column">
+        <div fxLayout="column" style="padding: 25px;" fxLayoutGap="15px" fxFlex="100%" class="main-batch-summary">
+          <div fxLayout="column" fxLayoutAlign="start start">
+            <div class="main-heading-batch">Batch Summary</div>
+          </div>
+          <div fxLayout="column">
+            <app-meeting-summary [batchdetails]="batchdetails" [totalusers]="userList.length"></app-meeting-summary>
+          </div>
+          <div fxLayout="column">
+            <app-user-performance-report [model]="batchdetails"></app-user-performance-report>
+          </div>
+        </div>
+        <div fxLayout="column" fxFlex="30%" fxFlex.sm="100%" fxFlex.xs="100%"
+          style="background-color: #f4f4f4;;color: #000;">
+          <app-userlist-session [userslist]="userList" (saveClicked)="save($event)" (sessionclicked)="sessionclicked()">
+          </app-userlist-session>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+</ng-template>

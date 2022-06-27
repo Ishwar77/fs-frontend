@@ -1,0 +1,103 @@
+<div fxLayout="column">
+  <div fxLayout="row" fxLayoutGap="20px" fxLayoutAlign="space-between center" class="event-summary-container">
+    <div fxLayout="column" fxLayoutAlign="center" (click)="back.next()">
+      <span class="material-icons" style="cursor: pointer;">keyboard_backspace</span>
+    </div>
+  </div>
+</div>
+<div *ngIf="pageManager.status === 1; else showInfoContainer">
+  <app-loading-component [imageSize]="2"> </app-loading-component>
+</div>
+<ng-template #showInfoContainer>
+  <div *ngIf="pageManager.action === 2; else showEventInfo">
+    <h1>No Redeem request at the moment</h1>
+  </div>
+  <ng-template #showEventInfo>
+    <div>
+      <div fxLayout="column" fxLayoutGap="20px" fxLayoutGap.sm="0px" fxLayoutGap.xs="0px" ngStyle.xs="padding:0px"
+        ngStyle.sm="padding:0px" style="padding:10px;height: calc(100vh - 25px);overflow: auto;"
+        fxLayoutAlign="start center">
+        <div fxHide.xs fxHide.sm *ngIf="menus && menus.length  !== 0;else showother" fxLayout="column"
+          style="width : 100%;padding-right: 10px;padding-left: 10px;">
+          <div fxLayout="column">
+            <div fxLayoutAlign="center center" fxLayout="column">
+              <table mat-table style="border-radius: 5px;" [dataSource]="dataSource" matSort>
+
+                <ng-container matColumnDef="id">
+                  <th mat-header-cell ngStyle.xs="font-size:10px" *matHeaderCellDef style="color: #4474a6;"> SI
+                  </th>
+                  <td class="data-center" mat-cell ngStyle.xs="font-size:10px" *matCellDef="let element;let i = index">
+                    {{i+1}}
+                  </td>
+                </ng-container>
+
+                <ng-container matColumnDef="name">
+                  <th mat-header-cell ngStyle.xs="font-size:10px" *matHeaderCellDef style="color: #4474a6;">
+                    Full Name
+                  </th>
+                  <td mat-cell ngStyle.xs="font-size:10px" *matCellDef="let element">
+                    {{element && element.User ? element.User.diaplay_name : ''}}
+                  </td>
+                </ng-container>
+
+                <ng-container matColumnDef="eventname">
+                  <th mat-header-cell ngStyle.xs="font-size:8px" *matHeaderCellDef style="color: #4474a6;">
+                    Event Name
+                  </th>
+                  <td class="data-center" style="cursor: pointer;" mat-cell ngStyle.xs="font-size:10px"
+                    *matCellDef="let element"
+                    routerLink="/event/{{element && element.Event ? element.Event.uuid : ''}}">
+                    {{element && element.Event ? element.Event.event_name : ''}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="points">
+                  <th mat-header-cell ngStyle.xs="font-size:8px" *matHeaderCellDef style="color: #4474a6;">
+                    Points
+                  </th>
+                  <td class="data-center" mat-cell ngStyle.xs="font-size:10px" *matCellDef="let element">
+                    {{element ? element.points : '-'}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="status">
+                  <th mat-header-cell ngStyle.xs="font-size:10px" *matHeaderCellDef style="color: #4474a6;">
+                    Status
+                  </th>
+                  <td class="data-center" mat-cell ngStyle.xs="font-size:10px" *matCellDef="let element">
+                    {{element ? element.status : '-'}}
+                  </td>
+                </ng-container>
+
+                <ng-container matColumnDef="action">
+                  <th mat-header-cell ngStyle.xs="font-size:10px" *matHeaderCellDef style="color: #4474a6;">
+                    Action
+                  </th>
+                  <td class="data-center" mat-cell ngStyle.xs="font-size:10px" *matCellDef="let element">
+                    <div fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="center center">
+                      <div fxLayout="column">
+                        <button mat-raised-button color="accent" (click)="acceptRedeem(element ? element : '')">
+                          <i class="fa fa-check-circle" aria-hidden="true"></i>
+                        </button>
+                      </div>
+                      <div fxLayout="column">
+                        <button mat-raised-button color="warn" (click)="rejectreedem(element ? element : '')">
+                          <i class="fa fa-times-circle" aria-hidden="true"></i>
+                        </button>
+                      </div>
+                    </div>
+                  </td>
+                </ng-container>
+
+                <tr mat-header-row style="border-radius: 5px;" *matHeaderRowDef="displayedColumns">
+                </tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+              </table>
+            </div>
+          </div>
+        </div>
+        <ng-template #showother>
+          <h1>There are no rewards at the moment</h1>
+        </ng-template>
+      </div>
+    </div>
+  </ng-template>
+</ng-template>

@@ -1,0 +1,25 @@
+<div fxLayout="row wrap" fxLayoutGap="10px">
+  <div fxLayout="column" fxLayoutGap="10px" class="fit-social-card">
+    <div fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="start center">
+      <div fxLayout="column">
+        <span class="material-icons" style="font-size: 18px;color: #0189bd;">
+          access_time
+        </span>
+      </div>
+      <div fxLayout="column" matTooltip="Timings" [matTooltipPosition]="'above'">
+        <span>{{modeldata.start_time_new}} -
+          {{modeldata.end_time_new}}</span>
+      </div>
+    </div>
+    <div fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="start center">
+      <div fxLayout="column">
+        <span class="material-icons" style="font-size: 18px;color: #0189bd;">
+          event_note
+        </span>
+      </div>
+      <div fxLayout="column" matTooltip="Event Name" [matTooltipPosition]="'above'">
+        <span>{{modeldata.event_name}}</span>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,29 @@
+<div>
+  <div *ngIf="!showview" fxLayout="row wrap" fxLayout.xs="column" fxLayout.sm="column" fxLayoutGap="20px"
+    style="margin: 20px;">
+    <div class="info-card" ngStyle.xs="width:100%" ngStyle.sm="width:100%" (click)="showview = !showview">
+      <img height="100px" width="100px"
+        src="https://icon-library.com/images/reset-password-icon/reset-password-icon-29.jpg">
+      <h5>Change Password</h5>
+      <p>Quick Password Change</p>
+    </div>
+    <div class="info-card" ngStyle.xs="width:100%" ngStyle.sm="width:100%">
+      <img height="100px" width="100px" src="https://www.pngmart.com/files/7/Coupon-Download-PNG-Image.png">
+      <h5>Coupon Settings</h5>
+      <p>This Feature Coming Soon</p>
+    </div>
+    <div class="info-card" ngStyle.xs="width:100%" ngStyle.sm="width:100%">
+      <img height="100px" width="100px" src="https://img.icons8.com/bubbles/2x/email.png">
+      <h5>Email Setting</h5>
+      <p>This Feature Coming Soon</p>
+    </div>
+    <div class="info-card" ngStyle.xs="width:100%" ngStyle.sm="width:100%">
+      <img height="100px" width="100px" src="https://cdn.pixabay.com/photo/2014/05/21/13/51/social-349568_1280.png">
+      <h5>Social Media Links</h5>
+      <p>This Feature Coming Soon</p>
+    </div>
+  </div>
+  <div>
+    <app-change-password *ngIf="showview" (back)="showview = !showview"></app-change-password>
+  </div>
+</div>

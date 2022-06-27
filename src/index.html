@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>The Fit Socials</title>
+  <base href="/">
+  <meta name="title" content="The Fit Socials">
+  <meta name="description" content="Your fitness friend, helping you stay fit, from the place where you are. ">
+  <meta name="keywords" content="Fitness, Yoga, Boxing, Zumba, Gym Trainer, World Class, TheFitnessSocials">
+  <meta name="robots" content="index, follow">
+  <meta name="google-site-verification" content="lfRc3vfngMwgInF2P1VgMCohuJ-1D3lC_oOVvrdU-DI" />
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta name="language" content="English">
+  <meta name="revisit-after" content="1 days">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script>
+    var placeHolderImg = 'https://via.placeholder.com/150';
+    var HEROKU_API_URI = 'https://fit-social-backend.herokuapp.com/api/v1';
+    var AWS_API_URI = 'https://api.service.maiora.co/api/v1';
+    var LOCAL_API_URI = 'http://127.0.0.1:3000/api/v1';
+    var AWS_UNSECURED_API_URI = 'https://fit-socials-stagging.herokuapp.com/api/v1';
+    var API_URI_PROD = 'https://vast-caverns-73352.herokuapp.com/api/v1';
+    var API_PRODUCTION = 'https://the-fit-socials.herokuapp.com/api/v1'
+
+    // const API_URI = LOCAL_API_URI;
+    // const API_URI = HEROKU_API_URI;
+    //const API_URI = AWS_API_URI;
+    // const API_URI = API_URI_PROD;
+    const API_URI = API_PRODUCTION;
+    // const API_URI = AWS_UNSECURED_API_URI;
+
+    window['API_URI'] = API_URI;
+    window['PLACE_HOLDER_IMAGE_URL'] = placeHolderImg;
+  </script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-174166289-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('cong', 'UA-174166289-1');
+  </script>
+</head>
+
+<body class="mat-typography">
+  <app-root></app-root>
+  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+</body>
+
+</html>

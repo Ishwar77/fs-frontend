@@ -1,0 +1,76 @@
+<div class="app-trainer-onboarding-component" fxLayout="column" fxLayoutAlign=" none" *ngIf="pageManager">
+  <div class="onboarding-header" fxFlex="50px" fxLayout="row">
+    <div fxFlex class="title">
+      Client Onboarding
+    </div>
+  </div>
+  <div class="onboarding-content" fxFlex fxLayout="column" fxLayoutAlign=" none">
+    <div fxLayout="row" fxLayoutAlign=" none" class="tool-bar">
+
+      <div fxFlex="75px" class="onboard-actions">
+        <button mat-button (click)="downloadSample()" [matTooltip]="'Download Sample File'">
+          <span class="material-icons">
+            cloud_download
+          </span>
+        </button>
+      </div>
+
+      <div fxFlex="75px" class="onboard-actions">
+        <button mat-button (click)="triggerFileUploader()" [matTooltip]="'Upload Client Data File'">
+          <span class="material-icons">
+            cloud_upload
+          </span>
+        </button>
+      </div>
+
+      <div fxFlex="75px" class="onboard-actions">
+        <button mat-button (click)="refresh()" [matTooltip]="'Reset'">
+          <span class="material-icons">
+            refresh
+          </span>
+        </button>
+      </div>
+
+      <div fxFlex="75px"></div>
+
+      <div fxFlex class="onboarding-message pageMsg" ngStyle.xs="font-size: 9px;" [class.msgSuccess]="pageManager.action === 1"
+        [class.msgError]="pageManager.action === 2">
+        {{ pageManager.message }}
+      </div>
+    </div>
+    <div fxFlex class="results">
+      <app-loading-component *ngIf="pageManager.status === 1" [imageSize]="2"> </app-loading-component>
+
+      <div *ngIf="pageManager.status === 2">
+
+        <app-no-content *ngIf="pageManager.action === 2"></app-no-content>
+
+        <div *ngIf="pageManager.action === 1" fxLayout="row" fxLayoutAlign=" none" >
+           <div fxFlex class="clients-card-data success">
+            <!-- This list will include all created user profiles, will need to add a Subscription to them -->
+            <div  class="no-data" *ngIf="!pass || !pass.length"> No Data </div>
+            <div class="client-card-data" *ngFor="let user of pass">
+              <div class="title"> {{ user.diaplay_name }} </div>
+              <div class="divider"> </div>
+              <div class="sub-title"> {{ user.email_id }} </div>
+            </div>
+
+           </div> 
+           <div fxFlex class="clients-card-data failed">
+            <div class="no-data" *ngIf="!fail || !fail.length"> No Data </div>
+
+            <div class="client-card-data " *ngFor="let user of fail">
+              <div class="title"> {{ user.diaplay_name }} </div>
+              <div class="divider"> </div>
+              <div class="sub-title"> {{ user.email_id }} </div>
+            </div>
+          </div> 
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</div>
+<input type="file" style="display: none;" #fileInput (change)="fileSelectionChange($event)"
+ccept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"  />

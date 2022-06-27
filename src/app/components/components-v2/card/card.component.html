@@ -1,0 +1,53 @@
+<div *ngIf="modelData" fxLayout="column" fxLayoutGap="10px" class="fit-social-card">
+  <div fxLayout="column" class="fit-social-card-first" (click)="cardClicked(modelData)">
+    <div fxLayout="column" fxLayoutGap="10px" class="fit-social-card-imagename">
+      <div fxLayout="row" fxLayoutAlign="space-between start">
+        <div fxLayout="column">
+          <div fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="start center">
+            <div fxLayout="column">
+              <img src="{{modelData.cover_image || 'https://via.placeholder.com/150'}}" class="fit-social-image">
+            </div>
+            <div fxLayout="column" fxLayoutGap="2px">
+              <div style="font-weight: 500;font-size:15px;" fxLayout="column" matTooltip="Event name"
+                [matTooltipPosition]="'above'">
+                {{modelData.event_name}}
+              </div>
+              <div style="font-size: 0.75rem;color: #0189bd;" fxLayout="column" matTooltip="Event Type"
+                [matTooltipPosition]="'above'">
+                {{modelData.EventMaster.event_master_name}}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div fxLayout="column" class="fit-social-card-descriptions">
+      <span [innerHTML]="(modelData.description | trim : 110) || 'Description not available'"></span>
+    </div>
+    <div fxLayout="column" style="font-size:14px;color:#718096;padding-bottom: 5px;">
+      <span style="color:#b63939;">Expiry : {{modelData.end_date | date: 'mediumDate' }}</span>
+    </div>
+  </div>
+  <div fxLayout="column" class="fit-social-card-footer">
+    <div fxLayout="row" fxLayoutAlign="space-between start">
+      <div fxLayout="column" *ngIf="modelData.isActive === 1">
+        <span matTooltip="Summary" [matTooltipPosition]="'above'" style="color: #4474a6;cursor:pointer"
+          (click)="summaryclick(modelData)">
+          Summary
+        </span>
+      </div>
+      <div fxLayout="column">
+        <div fxLayout="row" fxLayoutGap="5px">
+          <div fxLayout="column">
+            <span *ngIf="modelData.isActive === 1" matTooltip="Active Event" [matTooltipPosition]="'above'"><i
+                class="material-icons" style="color: #4474a6;cursor:pointer">beenhere</i>
+            </span>
+            <span *ngIf="modelData.isActive === 0" matTooltip="Pending Event" [matTooltipPosition]="'above'"><i
+                class="material-icons" style="color: #b63939;cursor:pointer">pending</i>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

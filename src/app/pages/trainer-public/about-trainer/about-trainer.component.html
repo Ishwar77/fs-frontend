@@ -1,0 +1,87 @@
+<div class="profile-section" style="padding: 20px;" ngStyle.xs="padding: 0px;" ngStyle.sm="padding: 0px;">
+    <div fxLayout="column">
+        <div fxLayout="row" fxLayout.xs="column" fxLayout.sm="column">
+            <div *ngIf="modeldata" fxLayout="column" ngStyle.xs="width:100%;margin:0px 0px"
+                ngStyle.sm="width:100%;margin:0px 0px" class="fit-social-card">
+                <div fxLayout="row" fxLayoutAlign="start center" class="fit-social-card-descriptions">
+                    <span style="font-size: 18px;color: #0189bd;">Info</span>
+                </div>
+                <div *ngIf="modeldata && modeldata.email_id" fxLayout="row" fxLayoutGap="10px"
+                    fxLayoutAlign="start center" class="fit-social-card-descriptions">
+                    <div fxLayout="column">
+                        <span class="material-icons" style="font-size: 18px;color: #0189bd;">
+                            email
+                        </span>
+                    </div>
+                    <div fxLayout="column" matTooltip="email" [matTooltipPosition]="'above'">
+                        <div style="font-size: 15px;"> <a
+                                href="mailto:{{modeldata.email_id}}">{{modeldata.email_id}}</a></div>
+                    </div>
+                </div>
+                <div *ngIf="modeldata && modeldata.mobile_number" fxLayout="row" fxLayoutGap="10px"
+                    fxLayoutAlign="start center" class="fit-social-card-descriptions">
+                    <div fxLayout="column">
+                        <span class="material-icons" style="font-size: 18px;color: #0189bd;">
+                            call
+                        </span>
+                    </div>
+                    <div fxLayout="column" matTooltip="contact" [matTooltipPosition]="'above'">
+                        <div style="font-size: 15px;"> <a>+91 {{modeldata.mobile_number}}</a></div>
+                    </div>
+                </div>
+                <div *ngIf="modeldata && modeldata.created_at" fxLayout="row" fxLayoutGap="10px"
+                    fxLayoutAlign="start center" class="fit-social-card-descriptions">
+                    <div fxLayout="column">
+                        <span class="material-icons" style="font-size: 18px;color: #0189bd;">
+                            insert_invitation
+                        </span>
+                    </div>
+                    <div fxLayout="column" matTooltip="Joined date" [matTooltipPosition]="'above'">
+                        <div style="font-size: 15px;"> <a>{{modeldata.created_at | date}}</a></div>
+                    </div>
+                </div>
+            </div>
+            <div *ngIf="modeldata && modeldata.expertise_in" fxLayout="column" ngStyle.sm="margin:10px 0px;"
+                class="fit-social-card-users" ngStyle.xs="height:100%;margin:10px 0px;">
+                <div fxLayout="row" fxLayoutAlign="start center" class="fit-social-card-descriptions">
+                    <span style="font-size: 18px;color: #0189bd;">About</span>
+                </div>
+                <div fxLayout="row" style="overflow: auto;">
+                    <span class="descriptions" [innerHTML]="modeldata.expertise_in">
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div fxLayout="column" class="app-layout-cards-list-view" style="margin-top: 10px;"
+        fxLayoutGap="10px">
+        <div *ngIf="pageManager.status === 1; else showInfoContainer">
+            <app-loading-component [imageSize]="2"> </app-loading-component>
+        </div>
+        <ng-template #showInfoContainer>
+            <div *ngIf="pageManager.action === 2; else showEventInfo">
+                <app-no-content></app-no-content>
+            </div>
+            <ng-template #showEventInfo>
+                <div fxLayout="row">
+                    <span style="font-size: 18px;color: #0189bd;">Upcoming Sessions</span>
+                </div>
+                <div fxLayout="row wrap" fxLayoutGap="20px" fxLayoutAlign="none">
+                    <div fxLayout="row wrap" *ngFor="let menu of menus">
+                        <app-batches-trainer [modeldata]="menu"></app-batches-trainer>
+                    </div>
+                </div>
+            </ng-template>
+        </ng-template>
+    </div>
+    <div *ngIf="events && events.length" fxLayout="column" class="app-layout-cards-list-view" fxLayoutGap="10px">
+        <div fxLayout="row">
+            <span style="font-size: 18px;color: #0189bd;">My Events</span>
+        </div>
+        <div fxLayout="row wrap" fxLayoutGap="20px" fxLayoutAlign="none">
+            <div fxLayout="row wrap" *ngFor="let menu of events">
+                <app-event-trainer [modeldata]="menu"></app-event-trainer>
+            </div>
+        </div>
+    </div>
+</div>

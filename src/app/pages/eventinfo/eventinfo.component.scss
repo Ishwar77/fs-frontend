@@ -1,0 +1,242 @@
+.main-container {
+  padding: 10px;
+  background: #f4f4f4;
+  .event-image-section {
+    height: 280px;
+    max-width: 100%;
+    border: 0px;
+  }
+  .event-card-container {
+    padding: 10px 20px;
+    background-color: #fff;
+    border-radius: 5px;
+    .event-info-name {
+      font-weight: 500;
+      letter-spacing: 0.5px;
+      font-size: 17px;
+      color: #0181b2;
+      margin-top: 10px;
+    }
+    .event-description {
+      font-size: 0.95rem;
+      font-weight: 400;
+      line-height: 1.7;
+      text-align: justify;
+      overflow: auto;
+      height: 125px;
+      letter-spacing: 1px;
+    }
+  }
+  .share-info-icon {
+    padding: 8px;
+    cursor: pointer;
+    color: #0181b2;
+  }
+  .trainer-container {
+    border-left-style: outset;
+    height: 125px;
+    background-color: #fff;
+    border-radius: 5px;
+    .trainer-image {
+      height: 130px;
+      width: auto;
+      border-top-right-radius: 50px;
+    }
+    .trainer-header {
+      font-weight: 500;
+      letter-spacing: 0.5px;
+      font-size: 1.4rem;
+      color: #0181b2;
+      line-height: 1.9;
+      // &:hover {
+      //   text-decoration: underline;
+      // }
+    }
+    .trainer-phone {
+      font-weight: 500;
+      letter-spacing: 0.5px;
+      font-size: 12px;
+      color: #000;
+      margin-bottom: 15px;
+    }
+    .trainer-info {
+      font-weight: 400;
+      letter-spacing: 0.3px;
+      font-size: 12px;
+      color: darkgrey;
+    }
+  }
+  .subscription-container {
+    padding: 10px 20px;
+    background-color: #fff;
+    border-radius: 5px;
+    .subscription-card-container {
+      cursor: pointer;
+      padding-top: 10px;
+      border-radius: 0.5rem;
+      width: 140px;
+      font-size: 100%;
+      font-weight: 500;
+      height: 110px;
+      margin-bottom: 15px;
+      border: 1px solid rgba(36, 37, 38, 0.08);
+      &:hover {
+        border: 2px solid #0181b2;
+      }
+      &.active {
+        border: 2px solid #0181b2;
+      }
+    }
+    .subscription-header {
+      color: #0181b2;
+      font-size: 2.5rem;
+      font-weight: 600;
+      .subscription-rupee {
+        font-size: 1.125rem;
+        margin-top: 6px;
+      }
+      .subscription-info {
+        font-size: 100%;
+        font-weight: 500;
+      }
+    }
+  }
+  .review-container {
+    background-color: #fff;
+    border-radius: 5px;
+    padding: 15px;
+    .review-image {
+      border-radius: 2px;
+      > .review-image-icon {
+        width: 75px;
+        border-radius: 50%;
+        height: 100%;
+        object-fit: cover;
+        height: 80px;
+      }
+    }
+  }
+  .subscription-add-button {
+    height: 30px;
+    width: 30px;
+    border-radius: 20px;
+    color: #fff;
+    background-color: #0181b2;
+    cursor: default;
+    text-align: center;
+    padding: 3px;
+  }
+  .batch-time-selection {
+    &.disabled {
+      opacity: 0.6;
+    }
+  }
+  .selected-event-label {
+    margin-top: -10px;
+    padding: 2px;
+    font-size: 0.85rem;
+    font-weight: 400;
+    letter-spacing: 0.5px;
+  }
+  .selected-subscription-batch {
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    border: 1px solid rgba(36, 37, 38, 0.08);
+    .remove-button-icon {
+      cursor: pointer;
+      margin-bottom: 5px;
+      background-color: #b40e0e;
+      height: 30px;
+      width: 30px;
+      outline: 0;
+    }
+    .header {
+      font-size: 0.8rem;
+      font-weight: 400;
+      letter-spacing: 0.4px;
+    }
+    .sub-header {
+      font-size: 0.85rem;
+      font-weight: 500;
+      letter-spacing: 0.3px;
+    }
+  }
+  .subscription-offers {
+    // font-size: 1.1rem;
+    letter-spacing: 0.8px;
+    font-weight: 500;
+    color: #0181b2;
+    cursor: pointer;
+  }
+  .subscription-offer-card {
+    width: 206px;
+    background: #fff;
+    color: #212121;
+    font-size: 14px;
+    font-weight: 400;
+    border-color: #f0f0f0;
+    padding: 8px;
+    transition: opacity 0.3s ease-in-out;
+    box-shadow: 0 4px 16px 0 rgba(0, 0, 0, 0.2);
+    .offer-shape-card {
+      border-top: 1px solid #f4f4f4;
+      border-left: 1px solid #f4f4f4;
+      width: 13px;
+      height: 13px;
+      -webkit-transform: rotate(45deg);
+      transform: rotate(45deg);
+      margin-top: -17px;
+      background-color: #fff;
+    }
+    .coupons-offers-List {
+      border-radius: 5px;
+      width: 90px;
+      padding: 5px;
+      margin-bottom: 5px;
+      border: 1px solid rgba(36, 37, 38, 0.08);
+      cursor: pointer !important;
+      .coupon-header {
+        font-size: 1.1rem;
+        letter-spacing: 0.5px;
+        font-weight: 500;
+        color: #17a2b8;
+        line-height: 1.5;
+      }
+      .coupon-discount {
+        font-size: 0.8rem;
+        letter-spacing: 0.5px;
+        font-weight: 400;
+      }
+    }
+  }
+  .subscription-info-container {
+    border-radius: 5px;
+    border: 1px solid rgba(36, 37, 38, 0.08);
+    .subscription-details-header {
+      font-size: 1.2rem;
+      font-weight: 500;
+      letter-spacing: 0.5px;
+      border-bottom: 1px solid rgba(36, 37, 38, 0.08);
+      padding: 10px;
+    }
+    .subscription-info {
+      font-size: 0.89rem;
+      font-weight: 400;
+      letter-spacing: 0.5px;
+    }
+  }
+}
+.no-data-loaded-container {
+  .no-image-icon {
+    color: #dc3545;
+    font-size: 5.45rem;
+  }
+  .no-heading {
+    margin-bottom: 15px;
+    color: #0181b2;
+    font-size: 1rem;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+  }
+}

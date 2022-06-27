@@ -1,0 +1,40 @@
+<div mat-dialog-content>
+  <div class="category-dialog">
+    <div class="user-head">Additional Details</div>
+
+    <div class="user-info">
+      <span class="user-title">Image:</span>
+      <img class="admin-img" src="{{item.image}}" alt="Image">
+    </div>
+    <div class="user-info">
+      <span class="user-title">Event Created:</span>
+      <span class="user-data" matInput>{{item.created | date:'dd/MM/yyyy'}}</span>
+    </div>
+
+    <div class="user-info">
+      <span class="user-title">Start Date:</span>
+      <span class="user-data" matInput>{{item.start_date | date:'dd/MM/yyyy'}}</span>
+    </div>
+    <div class="user-info">
+      <span class="user-title">End Date:</span>
+      <span class="user-data" matInput>{{item.end_date | date:'dd/MM/yyyy'}}</span>
+    </div>
+    <div class="user-info">
+      <span class="user-title">Price:</span>
+      <span class="user-data" matInput>₹ {{item.price}}</span>
+    </div>
+    <div class="user-info">
+      <span class="user-title">Trial Period:</span>
+      <span class="user-data" matInput>{{item.period}} days</span>
+    </div>
+    <div class="user-info">
+      <span class="user-title">Description:</span>
+      <span class="user-data-desc" matInput [innerHtml]="item.description || 'NA'"></span>
+    </div>
+
+  </div>
+
+</div>
+<div mat-dialog-actions class="data-btn">
+  <button mat-raised-button color="warn" [mat-dialog-close]="true">Close</button>
+</div>

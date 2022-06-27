@@ -1,0 +1,154 @@
+<div *ngIf="pageManager.status === 1; else showInfoContainer">
+  <app-loading-component [imageSize]="2"> </app-loading-component>
+</div>
+<ng-template #showInfoContainer>
+  <div *ngIf="pageManager.action === 2; else showEventInfo">
+    <app-no-content></app-no-content>
+    <h1>NO Rewards at the moment</h1>
+  </div>
+  <ng-template #showEventInfo>
+    <div fxLayout="column" *ngIf="!showview && userrole == 6">
+      <div fxLayout="row" fxLayoutGap="20px" fxLayoutAlign="space-between center" class="event-summary-container">
+        <div fxLayout="column">
+          <button class="action-btn" mat-raised-button color="accent" (click)="showview = !showview"> Redeem Request
+          </button>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="!showview">
+      <div *ngIf="!menus" style="text-align: center;font-size: 1rem;color: #0189bd;line-height: 0.8;margin: 15px 0;"
+        class="no-points">
+        <p style="color: #4474a6;">
+          You have <b>0 Reward Points</b>, so far...!
+        </p>
+        <p>
+          Start Inviting your friends and family to make th e Fitness session joyful and earn Reward points
+        </p>
+        <p>
+          Use th ese points to get Discount Coupons and oth er Rewards in exchange!!!
+        </p>
+      </div>
+      <div>
+
+        <div fxLayout="column" fxLayoutGap="20px" fxLayoutGap.sm="0px" fxLayoutGap.xs="0px" ngStyle.xs="padding:0px"
+          ngStyle.sm="padding:0px" style="padding:10px;height: calc(100vh - 25px);overflow: auto;"
+          fxLayoutAlign="start center">
+          <div fxLayout="column" fxLayoutGap="5px" fxHide.md fxHide.lg fxHide.xl>
+            <h1>My Rewards</h1>
+          </div>
+          <div fxLayoutGap="15px" class="reward-container" fxLayout="column" fxLayoutAlign="start center">
+            <div fxLayout="column">
+              <div class="reward-header">Total Available Points </div>
+            </div>
+            <div fxLayoutGap="15px" fxLayout="column" ngStyle.xs="margin-bottom: 25px;"
+              ngStyle.sm="margin-bottom: 25px;">
+              <div fxLayout="column" *ngIf="menus && menus.length  !== 0;else showzero" class="reward-amount">
+                {{menus[0].balance_points}}
+
+              </div>
+              <div fxLayout="column" *ngIf="menus[0].balance_points >= 500">
+                <button *ngIf="showreedem" mat-raised-button color="accent" (click)=reedeemReward()>Redeem</button>
+              </div>
+              <ng-template #showzero>
+                <div class="reward-amount">
+                  0
+                </div>
+              </ng-template>
+            </div>
+          </div>
+          <div fxHide.xs fxHide.sm *ngIf="menus && menus.length  !== 0;else showother" fxLayout="column"
+            style="width : 100%;padding-right: 10px;padding-left: 10px;">
+            <div fxLayout="column">
+              <div fxLayoutAlign="center center" fxLayout="column">
+                <table mat-table style="border-radius: 5px;" [dataSource]="dataSource" matSort>
+
+                  <ng-container matColumnDef="id">
+                    <th mat-header-cell ngStyle.xs="font-size:10px" *matHeaderCellDef style="color: #4474a6;"> No.
+                    </th>
+                    <td class="data-center" mat-cell ngStyle.xs="font-size:10px"
+                      *matCellDef="let element;let i = index">
+                      {{i+1}}
+                    </td>
+                  </ng-container>
+
+                  <ng-container matColumnDef="title">
+                    <th mat-header-cell ngStyle.xs="font-size:10px" *matHeaderCellDef style="color: #4474a6;">
+                      Title
+                    </th>
+                    <td mat-cell ngStyle.xs="font-size:10px" *matCellDef="let element"> {{element.comment || ''}}
+                    </td>
+                  </ng-container>
+
+                  <ng-container matColumnDef="credit">
+                    <th mat-header-cell ngStyle.xs="font-size:8px" *matHeaderCellDef style="color: #4474a6;">
+                      Credit(Points)</th>
+                    <td class="data-center" mat-cell ngStyle.xs="font-size:10px" *matCellDef="let element">
+                      {{element.credited_points || '0'}} </td>
+                  </ng-container>
+
+                  <ng-container matColumnDef="debit">
+                    <th mat-header-cell ngStyle.xs="font-size:8px" *matHeaderCellDef style="color: #4474a6;">
+                      Debit(Points)</th>
+                    <td class="data-center" mat-cell ngStyle.xs="font-size:10px" *matCellDef="let element">
+                      {{element.debited_points || '0'}} </td>
+                  </ng-container>
+
+                  <ng-container matColumnDef="balance">
+                    <th mat-header-cell ngStyle.xs="font-size:10px" *matHeaderCellDef style="color: #4474a6;">
+                      Balance </th>
+                    <td class="data-center" mat-cell ngStyle.xs="font-size:10px" *matCellDef="let element">
+                      {{element.balance_points || '0'}}
+                    </td>
+                  </ng-container>
+                  <tr mat-header-row style="border-radius: 5px;" *matHeaderRowDef="displayedColumns">
+                  </tr>
+                  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <div fxLayout="column" fxHide.lg fxHide.md *ngFor="let element of menus" style="width : 100%;">
+            <div fxLayout="column">
+              <div fxLayout="column" style="background: rgb(224 230 235);
+            padding: 3px 20px; font-weight: 500;">
+                <div fxLayout="column">
+                  {{element.created_at | date}}
+                </div>
+              </div>
+            </div>
+            <div fxLayout="column">
+              <div fxLayout="row" fxLayoutAlign="space-between center" style=" box-shadow: 0 8px 23px 0 rgba(0,0,0,.17);   background: #fff;
+                padding: 10px 20px;; font-weight: 500;">
+                <div fxLayout="column">
+                  <span style="color: #0082b3;">{{element.comment || ''}}</span>
+                  <span style="font-size: .6rem;color: #807e7e;">Closing Balance: {{element.balance_points || '0'}}
+                    Points</span>
+                </div>
+                <ng-template  >
+                  <div fxLayout="column" style="color:#3db43d;font-size: 1.2rem;"
+                  *ngIf="element.credited_points;else showpoints"     >
+                  +{{element.credited_points}}
+                </div>
+                </ng-template>
+
+                <ng-template #showpoints >
+                  <div fxLayout="column" *ngIf="element.debited_points" style="color:#ed2d1f;font-size: 1.2rem;">
+                    -{{element.debited_points}}
+                  </div>
+                </ng-template>
+
+              </div>
+            </div>
+          </div>
+          <ng-template #showother>
+            <h1>There are no rewards at the moment</h1>
+          </ng-template>
+        </div>
+      </div>
+    </div>
+    <div>
+      <app-rewards-history *ngIf="showview" (back)="showview = !showview"></app-rewards-history>
+    </div>
+  </ng-template>
+</ng-template>

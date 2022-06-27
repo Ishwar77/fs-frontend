@@ -1,0 +1,41 @@
+<div *ngIf="pageManager.status === 1; else showInfoContainer">
+  <app-loading-component [imageSize]="2"> </app-loading-component>
+</div>
+<ng-template #showInfoContainer>
+  <div *ngIf="pageManager.action === 2; else showEventInfo">
+    <app-no-content></app-no-content>
+  </div>
+  <ng-template #showEventInfo>
+    <div class="preview" *ngIf="pageManager.action === 1 && pageManager.status === 2">
+      <div class="row">
+        <div class="column" (click)="routetoanother(1)">
+          <div class="card">
+            <h3 class="count-events">{{menus.Number_Of_Active_Users}}</h3>
+            <p class="name-events">Users</p>
+          </div>
+        </div>
+
+        <div class="column">
+          <div class="carding" (click)="routetoanother(2)">
+            <h3 class="count-events">{{menus.Number_Of_Active_Events}}</h3>
+            <p class="name-events">Events</p>
+          </div>
+        </div>
+
+        <div class="column" (click)="routetoanother(3)">
+          <div class="card">
+            <h3 class="count-events">{{menus.Number_Of_Active_Trainers}}</h3>
+            <p class="name-events">Trainers</p>
+          </div>
+        </div>
+
+        <div class="column">
+          <div class="carding" (click)="routetoanother(4)">
+            <h3 class="count-events">{{menus.Number_Of_Active_Reviews}}</h3>
+            <p class="name-events">Reviews</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+</ng-template>

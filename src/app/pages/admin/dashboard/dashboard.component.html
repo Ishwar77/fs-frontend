@@ -1,0 +1,47 @@
+<div class="user-dashboard">
+  <div class="user-menu-container" fxLayout="row">
+    <div class="user-menu-dash">
+      <div class="dashimage" fxLayout="column">
+        <div class="memberimage" fxLayout="column" fxLayoutAlign="center center">
+          <img *ngIf="image" class="admin-img" src="{{image}}" alt="Image">
+          <img *ngIf="!image" class="admin-img" src="https://cdn.pixabay.com/photo/2014/04/02/10/25/man-303792__480.png" alt="Image">
+          <div class="editbtn" fxLayoutAlign="center center">
+              <input mat-input style="display: none;" type="file" (change)="onFileSelecte($event)" #fileInput>
+              <button mat-raised-button type color="accent"
+              (click)="fileInput.click()">Change Image</button>
+          </div>
+
+          <!-- <div class="edit-image" [hidden]="!enableEdit2" fxLayoutAlign="space-around center">
+            <input mat-input style="display: none;" type="file" (change)="onFileSelecte($event)" #fileInput>
+            <button class="browse" mat-raised-button color="accent" type="button" (click)="fileInput.click()">Browse
+            </button>
+            <button class="upload" mat-raised-button type="primary" (click)="onUpload()">Upload</button>
+          </div> -->
+        </div>
+        
+        <div class="person-info" *ngIf="items && items.length != 0">
+          <div class="membername">{{items.diaplay_name | uppercase}} <span class="gender">({{items.gender}})</span></div>
+          <div class="membertyp" *ngIf="userrole == 3">Member</div>
+          <div class="membertyp" *ngIf="userrole == 6">Trainer</div>
+          <div class="membertyp" *ngIf="userrole !== 3 && userrole !== 6">Admin</div>
+          <div class="memberreg">Joined: {{items.created_at | date:'dd/MM/yyyy'}}</div>
+        </div>
+
+      </div>
+    <div class="user-menu-dash" *ngIf="menus && menus.length">
+      <a *ngFor="let menu of menus" class="user-dash-menu" (click)="selectMenu(menu)"
+        [class.active]="menu.title === activeMenu.title">
+        <div class="menu-name">
+          <!-- <div>
+            <i class="material-icons icon-admin"> {{ menu.iconClass }}</i>
+          </div> -->
+          <div> <span class="menu-name" fxShow.xs="false">&nbsp; {{ menu.title }} </span></div>
+        </div>
+      </a>
+    </div>
+    </div>
+    <div class="menu-link-content">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>

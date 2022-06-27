@@ -1,0 +1,46 @@
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  border: 1px solid black;
+  width: 100%;
+}
+
+
+.report-head-style th {
+  font-size: 12px;
+  background-color: #084052;
+  color: #fff;
+}
+
+.report-style td {
+  font-size: 1.2rem;
+}
+.mat-form-field {
+  font-size: 14px;
+  width: 100%;
+}
+
+.btn {
+  background-color: white;
+  border: none;
+  color: black;
+  padding: 3px 5px;
+  cursor: pointer;
+  font-size: 10px;
+}
+
+/* Darker background on mouse-over */
+.btn:hover {
+  background-color: #084052;
+  color: #fff;
+}
+.slno {
+  font-weight: 800;
+}
+.pro-img {
+  width: 20%;
+  height: 90px;
+}
+.action-btn {
+  margin: 0px 10px;
+}

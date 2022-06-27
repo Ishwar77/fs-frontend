@@ -1,0 +1,168 @@
+<div class="extra-form">
+  <button class="action-btn" mat-raised-button color="accent" (click)="eventAdd()">ADD EVENT</button>
+  <div *ngIf="!toggle" fxLayout="row" fxLayoutGap="10px">
+    <button class="action-btn" mat-raised-button color="accent" (click)="userstoggle(1)">ACTIVE EVENTS
+    </button>
+    <button fxLayout="column" class="action-btn" mat-raised-button color="warn" (click)="ExportTOExcel(2)">
+      <span class="material-icons">
+        cloud_download
+      </span>
+    </button>
+  </div>
+
+  <div *ngIf="toggle" fxLayout="row" fxLayoutGap="10px">
+    <button class="action-btn" mat-raised-button color="accent" (click)="userstoggle(2)">PENDING EVENTS </button>
+    <button fxLayout="column" class="action-btn" mat-raised-button color="accent" (click)="ExportTOExcel(1)">
+      <span class="material-icons">
+        cloud_download
+      </span>
+    </button>
+  </div>
+</div>
+
+<div *ngIf="pageManager.status === 1; else showInfoContainer">
+  <app-loading-component [imageSize]="2"> </app-loading-component>
+</div>
+<ng-template #showInfoContainer>
+  <div *ngIf="pageManager.action === 2; else showEventInfo">
+    <app-no-content></app-no-content>
+  </div>
+  <ng-template #showEventInfo>
+    <div class="app-usermanage" *ngIf="pageManager.action === 1 && pageManager.status === 2">
+
+      <mat-form-field color="acent">
+        <mat-label>Search</mat-label>
+        <input matInput (keyup)="applyFilter($event)" placeholder="Event Lists">
+      </mat-form-field>
+
+      <h1 *ngIf="toggle">The Table showing list of Active Events</h1>
+      <table id="excel-table" mat-table [dataSource]="dataSource" class="mat-elevation-z8" *ngIf="toggle">
+
+        <ng-container matColumnDef="event_id">
+          <th mat-header-cell *matHeaderCellDef> ID </th>
+          <td class="data-center" mat-cell *matCellDef="let element"> {{element.event_id}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="event_name">
+          <th mat-header-cell *matHeaderCellDef> Event Name </th>
+          <td mat-cell *matCellDef="let element"><a class="hover-info" (click)="eventinfo(element)">
+              {{element.event_name}}</a>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="Trainer">
+          <th mat-header-cell *matHeaderCellDef> Trainer </th>
+          <td mat-cell *matCellDef="let element"><a class="hover-info" (click)="trainerinfo(element)">
+              {{element.Instructor.diaplay_name}}</a>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="Action">
+          <th mat-header-cell *matHeaderCellDef> Action </th>
+          <td mat-cell *matCellDef="let element" class="action-link">
+            <div class="action-sec">
+              <a class="action-edit" color="accent" (click)="eventEdit(element)"><i class="fa fa-pencil-square"
+                  aria-hidden="true"></i></a>
+              <a class="action-delete" color="warn" (click)="deleteevent(element)"><i class="fa fa-trash"
+                  aria-hidden="true"></i></a>
+              <a class="action-lock" color="warn" (click)="activateevent(element,1)">
+                <i class="fa fa-lock" aria-hidden="true"></i></a>
+            </div>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="subscription">
+          <th mat-header-cell *matHeaderCellDef> Subscription </th>
+          <td class="data-center" mat-cell *matCellDef="let element">
+
+            <button class="action-btn" mat-raised-button color="accent" (click)="movetosubscription(element)"><i
+                class="fa fa-money" aria-hidden="true"></i></button>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="coupon">
+          <th mat-header-cell *matHeaderCellDef> Coupon </th>
+          <td class="data-center" mat-cell *matCellDef="let element">
+            <button class="action-btn" mat-raised-button color="accent" (click)="movetocoupon(element)"><i
+                class="fa fa-gift" aria-hidden="true"></i></button>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="info">
+          <th mat-header-cell *matHeaderCellDef> Additional Info </th>
+          <td class="data-center" mat-cell *matCellDef="let element"><a class="hover-info"
+              (click)="additionalinfo(element)">
+              View More</a>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="users">
+          <th mat-header-cell *matHeaderCellDef> Users </th>
+          <td class="data-center" mat-cell *matCellDef="let element"><a class="hover-info" (click)="tousers(element)">
+              <i class="fa fa-users" aria-hidden="true"></i></a>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+
+      <h1 *ngIf="!toggle">The Table showing list of Pending Events</h1>
+      <table id="excel-table" mat-table [dataSource]="inactivedatasource" class="mat-elevation-z8" *ngIf="!toggle">
+
+        <ng-container matColumnDef="event_id">
+          <th mat-header-cell *matHeaderCellDef> ID </th>
+          <td class="data-center" mat-cell *matCellDef="let element"> {{element.event_id}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="event_name">
+          <th mat-header-cell *matHeaderCellDef> Event Name </th>
+          <td mat-cell *matCellDef="let element">
+            {{element.event_name}}
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="Trainer">
+          <th mat-header-cell *matHeaderCellDef> Trainer </th>
+          <td mat-cell *matCellDef="let element"><a class="hover-info" (click)="trainerinfo(element)">
+              {{element && element.Instructor && element.Instructor.diaplay_name ? element.Instructor.diaplay_name : ''}}</a>
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="cover_image">
+          <th mat-header-cell *matHeaderCellDef> Image </th>
+          <td class="data-center" mat-cell *matCellDef="let element"> <img class="admin-img"
+              src="{{element.cover_image}}" alt="Image">
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="price">
+          <th mat-header-cell *matHeaderCellDef> Amount(₹) </th>
+          <td class="data-center" mat-cell *matCellDef="let element"> {{element.price}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="start_date">
+          <th mat-header-cell *matHeaderCellDef> Start Date </th>
+          <td class="data-center" mat-cell *matCellDef="let element"> {{element.start_date | date:'dd/MM/yyyy' }} </td>
+        </ng-container>
+        <ng-container matColumnDef="end_date">
+          <th mat-header-cell *matHeaderCellDef> End Date </th>
+          <td class="data-center" mat-cell *matCellDef="let element"> {{element.end_date | date:'dd/MM/yyyy'}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="Action">
+          <th mat-header-cell *matHeaderCellDef> Action </th>
+          <td class="data-center" mat-cell *matCellDef="let element">
+            <div class="action-sec">
+              <button class="action-btn" mat-raised-button color="accent"
+                (click)="activateevent(element,2)">Activate</button>
+            </div>
+          </td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns1"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns1;"></tr>
+      </table>
+
+      <mat-paginator #paginator *ngIf="dataSource" [length]="menus.length" [pageSize]="5" [pageSizeOptions]="[5,10,100]"
+        [showFirstLastButtons]="true" (page)="managePagination($event)">
+      </mat-paginator>
+    </div>
+  </ng-template>
+</ng-template>

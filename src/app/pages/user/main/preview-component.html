@@ -1,0 +1,99 @@
+<!-- <div *ngIf="pageManager.status === 1; else showInfoContainer">
+    <app-loading-component [imageSize]="2"> </app-loading-component>
+</div>
+<ng-template #showInfoContainer>
+    <div *ngIf="pageManager.action === 2; else showEventInfo">
+        <app-no-content></app-no-content>
+    </div>
+    <ng-template #showEventInfo> -->
+<div fxLayout="column" fxLayoutGap="30px" style="padding:10px">
+    <div fxLayout="column">
+        <div class="row-value" fxLayout.xs="column" fxLayout="row" fxLayoutAlign.hide-xs="space-between center"
+            fxLayoutAlign.lg="space-between center" fxLayoutAlign.xl="space-between center"
+            fxLayoutAlign.sm="space-between center">
+            <div class="col-value" fxFlex.xs="100%" fxFlex.lg="20%" *ngFor="let card of statsRow">
+                <app-fit-stats-card [model]="card"></app-fit-stats-card>
+            </div>
+        </div>
+    </div>
+    <div fxLayout="column">
+        <div fxLayout="row" fxLayout.xs="column" fxLayout.sm="column" fxLayoutAlign="flex-start center"
+            fxLayoutGap="25px">
+            <div fxLayout="column" class="widget-container" *ngIf="items && items.length != 0">
+                <div fxLayout="column" style="box-shadow: 0px 1px 0px #c1c9d0">
+                    <div class="head-section-main" fxLayout="row" fxLayoutAlign="center center">
+                        Subscribed Event
+                    </div>
+                </div>
+                <div fxLayout="column" class="widget-scrollbox">
+                    <div fxLayout="column" class="widget-scrollbox-content" *ngFor="let item of items">
+                        <app-dashboard-widgets routerLink="/event/{{item.Subscription.Event.uuid}}"
+                            [type]="item ? item.type : 'N/A'" [isCounts]="false"
+                            [imgSrc]="item?item.Subscription.Event.cover_image:'https://images.squarespace-cdn.com/content/v1/5bd878b990f904bb126ab42d/1541646404217-5THDN8I46499OFMTVV0L/ke17ZwdGBToddI8pDm48kFyD7pzB8zoMIVY5aiUuFlp7gQa3H78H3Y0txjaiv_0fDoOvxcdMmMKkDsyUqMSsMWxHk725yiiHCCLfrh8O1z4YTzHvnKhyp6Da-NYroOW3ZGjoBKy3azqku80C789l0pqDcdGwoY_hLk-aIWaChNLnhTp154YFiG6enxMCFEkwvhs3baVuiWoBcI20N-gKxg/fitness-festival-event-2-large.png?format=2500w'"
+                            [title]="item ? item.Subscription.Event.event_name : 'N/A'"
+                            [subheader]="item ? (item.start_date | date:'medium') : 'N/A'"
+                            [counts]="item ? item.subscribersCount : 'N/A'"></app-dashboard-widgets>
+                    </div>
+                </div>
+            </div>
+            <div fxLayout="column" class="widget-container" fxFlex="30" *ngIf="batches && batches.length != 0">
+                <div fxLayout="column" style="box-shadow: 0px 1px 0px #c1c9d0">
+                    <div class="head-section-main" fxLayout="row" fxLayoutAlign="center center">
+                        Upcoming Sessions
+                    </div>
+                </div>
+                <div fxLayout="column" class="widget-scrollbox">
+                    <div fxLayout="column" class="widget-scrollbox-content" *ngFor="let batch of batches">
+                        <app-dashboard-widgets [type]="batch ? 'Start Time' : 'N/A'" [isCounts]="false"
+                            [imgSrc]="batch?batch.cover_image:'https://images.squarespace-cdn.com/content/v1/5bd878b990f904bb126ab42d/1541646404217-5THDN8I46499OFMTVV0L/ke17ZwdGBToddI8pDm48kFyD7pzB8zoMIVY5aiUuFlp7gQa3H78H3Y0txjaiv_0fDoOvxcdMmMKkDsyUqMSsMWxHk725yiiHCCLfrh8O1z4YTzHvnKhyp6Da-NYroOW3ZGjoBKy3azqku80C789l0pqDcdGwoY_hLk-aIWaChNLnhTp154YFiG6enxMCFEkwvhs3baVuiWoBcI20N-gKxg/fitness-festival-event-2-large.png?format=2500w'"
+                            [title]="batch ? batch. event_name : 'N/A'"
+                            [subheader]="batch ? batch.start_time_new: 'N/A'"
+                            [subtime]="batch ? batch.end_time_new: 'N/A'" [progress]="batch ? batch.inProgress: 'N/A'"
+                            [link]="batch ? batch.link:'N/A'" [password]="batch ? batch.password:'N/A'"
+                            (meetingclicked)="meetingdialog(batch)">
+                        </app-dashboard-widgets>
+                    </div>
+                </div>
+            </div>
+
+            <div fxLayout="column" class="widget-container" *ngIf="events && events.length != 0">
+                <div fxLayout="column" style="box-shadow: 0px 1px 0px #c1c9d0">
+                    <div class="head-section-main" fxLayout="row" fxLayoutAlign="center center">
+                        Top Events
+                    </div>
+                </div>
+                <div fxLayout="column" class="widget-scrollbox">
+                    <div fxLayout="column" class="widget-scrollbox-content" *ngFor="let event of events">
+                        <app-dashboard-widgets routerLink="/event/{{event.uuid}}" [type]="event ? event.type : 'N/A'"
+                            [isCounts]="true"
+                            [imgSrc]="event?event.cover_image:'https://images.squarespace-cdn.com/content/v1/5bd878b990f904bb126ab42d/1541646404217-5THDN8I46499OFMTVV0L/ke17ZwdGBToddI8pDm48kFyD7pzB8zoMIVY5aiUuFlp7gQa3H78H3Y0txjaiv_0fDoOvxcdMmMKkDsyUqMSsMWxHk725yiiHCCLfrh8O1z4YTzHvnKhyp6Da-NYroOW3ZGjoBKy3azqku80C789l0pqDcdGwoY_hLk-aIWaChNLnhTp154YFiG6enxMCFEkwvhs3baVuiWoBcI20N-gKxg/fitness-festival-event-2-large.png?format=2500w'"
+                            [title]="event ? event.event_name : 'N/A'"
+                            [subheader]="event ? (event.dueDate | date:'medium') : 'N/A'"
+                            [counts]="event ? event.subscribers : 'N/A'">
+                        </app-dashboard-widgets>
+                    </div>
+                </div>
+            </div>
+
+            <div fxLayout="column" class="widget-container" *ngIf="trainers && trainers.length != 0">
+                <div fxLayout="column" style="box-shadow: 0px 1px 0px #c1c9d0">
+                    <div class="head-section-main" fxLayout="row" fxLayoutAlign="center center">
+                        Top Trainers
+                    </div>
+                </div>
+                <div fxLayout="column" class="widget-scrollbox">
+                    <div fxLayout="column" class="widget-scrollbox-content" *ngFor="let trainer of trainers">
+                        <app-dashboard-widgets routerLink="/coach/{{trainer.pageName}}"
+                            [type]="trainer ? trainer.type : 'N/A'" [isCounts]="true"
+                            [imgSrc]="trainer.profile_picture_url" [title]="trainer ? trainer.diaplay_name : 'N/A'"
+                            [subheader]="trainer ? (trainer.joinedDate | date:'medium') : 'N/A'"
+                            [counts]="trainer ? trainer.subscribers : 'N/A'"></app-dashboard-widgets>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<!-- </ng-template>
+</ng-template> -->

@@ -1,0 +1,97 @@
+<div class="contact-us">
+  <div class="contact-main-head">
+    <h2 class="contact-head">Get in touch with us.</h2>
+  </div>
+  <hr />
+  <div class="contact" fxLayout="row" fxLayout.xs="column" fxLayout.md="row">
+    <div class="contact-left">
+      <div class="contact-addr contact-card">
+        <div class="addr-head">
+          <h3> <i class="material-icons contact-icons">
+              map
+            </i> &nbsp; Our Office Address :</h3>
+        </div>
+        <div class="addr-details">
+          <p>
+            Plot No. 113, 2nd floor,<br />
+            above ICICI Bank, 3rd Phase,<br />
+            Banashankari 3rd Stage,<br />
+            Bengaluru, Karnataka 560085
+          </p>
+        </div>
+      </div>
+      <div class="contact-Mobile contact-card">
+        <div class="addr-head">
+          <h3> <i class="material-icons contact-icons">
+              phone
+            </i> &nbsp; Contact Our Support :</h3>
+        </div>
+        <div class="contact-details">
+
+          <div class="mobile-info">
+
+            <span>Mobile: +91 789 289 1430</span>
+          </div>
+          <div class="timeings">
+            <span>Email &nbsp;&nbsp;:<a
+                href="mailto:Thefitsocials@gmail.com?subject=Enquiry">Thefitsocials@gmail.com</a></span><br />
+            <span>Website: <a>www.fitsocial.com</a></span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div class="contact-right">
+      <!-- <div class="contact-head" fxAlign.md="center">
+        <h4>Get in touch for professional queries!</h4>
+      </div> -->
+      <form class="contact-form" autocomplete="off" [formGroup]="contactForm"
+        (ngSubmit)="contactForm.valid && contact()" novalidate>
+
+        <mat-form-field class="contact-full-width">
+          <input matInput formControlName="fullName" name="fullName" placeholder="Full Name" autocomplete="off"
+            [(ngModel)]="data.full_name" required>
+          <mat-error *ngIf="contactForm.controls['fullName'].errors?.required">This field is required.</mat-error>
+          <mat-error *ngIf="contactForm.controls['fullName'].errors?.pattern">Only allowed letters.</mat-error>
+        </mat-form-field>
+        <mat-form-field class="contact-full-width">
+          <input type="email" formControlName="email" name="email" matInput placeholder="Email" autocomplete="off"
+            [(ngModel)]="data.email" required>
+          <mat-error *ngIf="contactForm.controls['email'].errors?.required">This field is required.</mat-error>
+          <mat-error *ngIf="contactForm.controls['email'].errors?.email">Email Valid Invaild.</mat-error>
+        </mat-form-field>
+        <mat-form-field class="contact-full-width">
+          <input type="number" min="1" (mouseup)="onlyNumbers($event)" (mousedown)="onlyNumbers($event)"
+          (keyup)="onlyNumbers($event)" (keydown)="onlyNumbers($event)" matInput placeholder="Mobile No" [(ngModel)]="data.mobile_number" name="mobile"
+            formControlName="mobile" autocomplete="off" required>
+          <mat-error *ngIf="contactForm.controls['mobile'].errors?.required">This field is required.</mat-error>
+          <mat-error
+            *ngIf="contactForm.controls['mobile'].errors?.minLength && contactForm.controls['mobile'].errors?.maxLength ">
+            Mobile number should have 10 digits.</mat-error>
+          <mat-error *ngIf="contactForm.controls['mobile'].errors?.pattern">Mobile number must have 10 digits and only
+            number. </mat-error>
+
+        </mat-form-field>
+        <mat-form-field class="contact-full-width">
+          <input type="text" matInput placeholder="Subject" name="subject" formControlName="subject"
+            [(ngModel)]="data.subject" autocomplete="off" required>
+          <mat-error *ngIf="contactForm.controls['subject'].errors?.required">This field is required.</mat-error>
+        </mat-form-field>
+        <mat-form-field class="contact-full-width">
+          <textarea matInput name="" formControlName="message" name="message" placeholder="Message"
+            [(ngModel)]="data.message" autocomplete="off" cols="30" rows="5" required></textarea>
+          <mat-error *ngIf="contactForm.controls['message'].errors?.required">This field is required.</mat-error>
+        </mat-form-field>
+        <re-captcha formControlName="recaptchaReactive"></re-captcha>
+        <mat-error *ngIf="contactForm.controls['recaptchaReactive'].errors?.required">This field is required.</mat-error>
+        <div class="contact-btn">
+          <button mat-raised-button color="warn" (click)="reset()">RESET</button>
+          <button mat-raised-button color="accent" [disabled]="!contactForm.valid">SEND</button>
+
+        </div>
+
+
+      </form>
+    </div>
+  </div>
+</div>

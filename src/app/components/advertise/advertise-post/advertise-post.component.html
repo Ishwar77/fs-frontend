@@ -1,0 +1,131 @@
+<div fxLayout="column" fxLayoutGap="5px" fxLayoutAlign="center center" *ngIf="paymentSuccess === false">
+  <div fxLayout="column">
+    <div fxLayout="row" fxLayoutGap="10px">
+      <div fxLayout="column">
+        <mat-form-field appearance="outline" color="accent">
+          <mat-label>Start Date</mat-label>
+          <input type="date" name="startdate" [(ngModel)]="data.ad_startDate" matInput autocomplete="off" required
+            (change)="paycondition()">
+        </mat-form-field>
+      </div>
+      <div fxLayout="column">
+        <mat-form-field class="example-full-width" appearance="outline">
+          <mat-label>Banner Type</mat-label>
+          <mat-select>
+            <mat-option *ngFor="let AdvertiseSpotList of spotList" [value]="AdvertiseSpotList"
+              (click)="AdSpotSelect(AdvertiseSpotList)">
+              {{AdvertiseSpotList.spot_name}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </div>
+  </div>
+  <div fxLayout="column">
+    <div fxLayout="row" fxLayoutGap="10px">
+      <div fxLayout="column">
+        <mat-form-field appearance="outline" color="accent">
+          <mat-label>Banner Name</mat-label>
+          <input matInput placeholder="Banner Name" [(ngModel)]="data.ad_title" name="name" required
+            (change)="paycondition()">
+        </mat-form-field>
+      </div>
+      <div fxLayout="column">
+        <div class="image-select">
+          <input type="file" #Image name="file" id="file" class="inputfile" (change)="imageselection($event)" />
+          <label for="file"><i class="fa fa-upload upload-img" aria-hidden="true"></i>Choose a file</label>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div fxLayout="column">
+    <div fxLayout="row" fxLayoutGap="10px">
+      <div fxLayout="column">
+        <mat-form-field appearance="outline" color="accent">
+          <mat-label>Days</mat-label>
+          <input matInput placeholder="Days" name="days" [(ngModel)]="data.adDays" required
+            (change)="daysSelect(data.adDays)" [disabled]="!spotHide">
+        </mat-form-field>
+      </div>
+      <div fxLayout="column">
+        <mat-form-field appearance="outline" color="accent">
+          <mat-label>Amount(₹)/day</mat-label>
+          <input name="price" matInput [(ngModel)]="amount" required readonly [disabled]="!spotHide">
+        </mat-form-field>
+      </div>
+    </div>
+  </div>
+  <div fxLayout="column" style="width:100%">
+    <div fxLayout="row">
+      <div fxLayout="column" fxFlex="100%">
+        <angular-editor [config]="config" [(ngModel)]="data.ad_description" [ngModelOptions]="{standalone: true}"
+          (change)="paycondition()">
+        </angular-editor>
+      </div>
+    </div>
+  </div>
+  <div fxLayout="column">
+    <div fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="center center">
+      <div fxLayout="column">
+        <button [disabled]="!spotHide || !showpay" mat-raised-button color="accent" (click)="AdvertiseAdd()">PAY
+          <span *ngIf="spotHide"> ₹ {{data && data.adAmount ? data.adAmount : ''}}/-</span>
+        </button>
+      </div>
+      <div fxLayout="column">
+        <button mat-raised-button color="warn" [mat-dialog-close]="true">CANCEL</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<div fxLayoutGap="20px" fxLayout="column" *ngIf="paymentSuccess === true" class="success-container">
+  <div fxLayout="column" class="success-info-container">
+    <div fxLayout="column" class="success-details-header" fxLayoutAlign="center center"
+      style="letter-spacing:0.8px;padding:20px;color:#28a745">
+      Advertisement posting is Successful
+    </div>
+    <div fxLayout="column" fxLayoutGap="20px" style="padding:20px;">
+      <div fxLayout="row" *ngIf="amount" fxLayoutGap.xs="30px">
+        <div fxLayout="column" fxFlex="20%" class="success-info">
+          Amount
+        </div>
+        <div fxLayout="column" class="success-info" style="font-weight: 500;">
+          ₹ {{data && data.adAmount ? data.adAmount : ''}}/-
+        </div>
+      </div>
+      <div fxLayout="column">
+        <div fxLayout="row" fxLayoutGap.xs="30px">
+          <div fxLayout="column" fxFlex="20%" class="success-info">
+            Days
+          </div>
+          <div fxLayout="column" class="success-info" style="font-weight: 500;">
+            {{data && data.adDays ? data.adDays : ''}}
+          </div>
+        </div>
+      </div>
+      <div fxLayout="column">
+        <div fxLayout="row" fxLayoutGap.xs="30px">
+          <div fxLayout="column" fxFlex="20%" class="success-info">
+            Title
+          </div>
+          <div fxLayout="column" class="success-info" style="font-weight: 500;">
+            {{data && data.ad_title ? data.ad_title : ''}}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div fxLayout="column" style="padding: 0px 5px;font-size: 0.9rem;letter-spacing: 0.8px;font-weight: 400;">
+    <p>
+      You will recieve a confirmation email, in sometime.
+    </p>
+    <p>
+      Look into your SPAM / JUNK folder once, you avoid this by adding our email to your contact list.
+    </p>
+    <p>
+      For any query or concers, reach out to our support team.
+    </p>
+  </div>
+</div>

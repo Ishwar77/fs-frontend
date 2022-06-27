@@ -1,0 +1,27 @@
+[
+  {
+    "title": "Facebook",
+    "url": "https://www.facebook.com/sharer.php?u=${url}",
+    "icon": ""
+  },
+  {
+    "title": "Twitter",
+    "url": "https://twitter.com/intent/tweet?url=${url}&text=${title}",
+    "icon": ""
+  },
+  {
+    "title": "Instagram",
+    "url": "https://www.facebook.com/sharer.php?u=${url}",
+    "icon": ""
+  },
+  {
+    "title": "Linkedin",
+    "url": "https://www.linkedin.com/sharing/share-offsite/?url=${url}",
+    "icon": ""
+  },
+  {
+    "title": "WhatsApp",
+    "url": "https://api.whatsapp.com/send?phone={phone_number}&text={title}%20{url}",
+    "icon": ""
+  }
+]

@@ -1,0 +1,118 @@
+.app-register {
+  > .logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    > .logo-img {
+      width: 150px;
+      height: 150px;
+    }
+  }
+}
+.app-register {
+  > .register-form {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    > form {
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      margin: 10px 10px;
+      width: 100%;
+      > .inline-form {
+        display: flex;
+        align-items: center;
+        width: 100%;
+        justify-content: flex-start;
+      }
+    }
+  }
+}
+.radio-group {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  margin: 0px 10px;
+}
+
+.example-radio-button {
+  margin-right: 20px;
+}
+.date-radio mat-form-field {
+  margin-right: 90px;
+}
+
+.btn-signup button {
+  min-width: 200px;
+  margin: 5px 10px;
+}
+.btn-signup {
+  justify-content: center !important;
+}
+
+@media only screen and (max-width: 768px) {
+  .date-radio {
+    flex-direction: column;
+    //  margin-left: 0;
+    //display: flex;
+    margin-right: 0px !important;
+    margin-left: 0px !important;
+    width: 100%;
+  }
+  .inline-form {
+    flex-direction: column;
+  }
+  mat-form-field {
+    margin: 0;
+    width: 100%;
+  }
+  form {
+    margin: 0 !important;
+  }
+  .date-radio mat-form-field {
+    margin-right: 0;
+  }
+  .radio-group {
+    //margin-left: 0px !important;
+    margin-left: 0px !important;
+  }
+  .logo-img {
+    display: none;
+  }
+  .cdk-overlay-pane {
+    overflow-x: auto;
+  }
+}
+
+.section-2 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.links {
+  color: #0189bd;
+  cursor: pointer;
+}
+
+.error-snackbar {
+  background-color: red !important;
+  color: #fff !important;
+}
+.sucess-snackbar {
+  background-color: green !important;
+  color: #fff !important;
+}
+
+mat-form-field {
+  width: 250px !important;
+  margin: 0px 10px;
+}
+.userreg {
+  font-size: 1.6em;
+  font-weight: 700;
+  text-align: center;
+}

@@ -1,0 +1,48 @@
+<div fxLayout="column" class="main-container">
+  <div fxLayout="column"  fxLayoutAlign="center center">
+    <div class="slider-wrapper" fxLayout="column">
+      <div *ngFor="let item of _sliderImage" fxLayoutGap="15px" class="slider-wrapper-content" fxLayout="column"
+        fxLayoutAlign="center center" [class.hidden]="!item.isActive">
+        <div fxLayout="column" class="image-update" fxLayoutAlign="center center">
+          <img [src]="item.reviewImage" width="100%" [alt]="item.reviewName" class="Maiora-Review-Image">
+        </div>
+        <!-- <div fxLayout="column">
+          <div class="image-slide-description" style="margin-bottom:5px;font-weight: 700;color: #000;">
+            {{item.reviewName}}</div>
+          <div class="image-slide-description" style="font-weight: 500;font-style: italic;font-size: 10px;">
+            {{item.reviewPosition}}</div>
+        </div>
+        <div fxLayout="column">
+          <span class="image-slide-description">{{item.reviewComment}}</span>
+        </div> -->
+      </div>
+    </div>
+  </div>
+  <div fxLayout="column" fxLayoutAlign="center center" style="width:100%;margin-bottom:20px;position: absolute;
+  bottom: 10%;">
+    <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="5px">
+      <div *ngFor="let slider of _sliderImage; let i = index" class="slider-image-dots" [class.active]="slider.isActive"
+        (click)="slideTo(i, true)">
+      </div>
+    </div>
+  </div>
+  <!-- <div fxLayout="column"   style="width:100%;height:100%;position: absolute;
+ ">
+    <div fxLayout="row" style="padding: 10px;height: 100%;" fxLayoutAlign="space-between center">
+      <div fxLayout="column" fxLayoutAlign="center center">
+    <button  fxLayoutAlign="center center" class="arrow-btn" mat-raised-button color="accent" (click)="showPreviousImage()">
+      <span  class="material-icons"> arrow_back_ios
+    </span>
+    </button>
+      </div>
+       <div fxLayout="column" fxLayoutAlign="center center" >
+        <button  fxLayoutAlign="center center" class="arrow-btn" mat-raised-button color="accent" (click)="showNextImage()">
+           <span  class="material-icons">  arrow_forward_ios</span></button>
+      </div>
+    </div>
+  </div> -->
+  <div>
+    cooumn
+  </div>
+
+</div>

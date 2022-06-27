@@ -1,0 +1,100 @@
+<div *ngIf="menus" class="small-card-container" fxLayout="column" (click)="cardclicked(menus)">
+    <div fxLayout="column" class="sub-header" fxLayoutAlign="start center">
+        {{ menus ? (menus.title | uppercase) : '' }}
+    </div>
+    <div fxLayout="column" fxLayoutGap="10px" class="content-container" fxLayoutAlign="start start">
+        <div fxLayout="column">
+            <div fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="start start" matTooltip="Max Discount Amount"
+                [matTooltipPosition]="'above'">
+                <div fxLayout="column">
+                    <span class="material-icons" style="font-size: 20px;color: #0189bd;">
+                        payments
+                    </span>
+                </div>
+                <div fxLayout="column">
+                    <div>Rs. {{ menus ? menus.max_discount_amount : ''}}</div>
+                </div>
+            </div>
+        </div>
+        <div fxLayout="column">
+            <div fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="start start" matTooltip="Created Date"
+                [matTooltipPosition]="'above'">
+                <div fxLayout="column">
+                    <span class="material-icons" style="font-size: 18px;color: #0189bd;">
+                        insert_invitation
+                    </span>
+                </div>
+                <div fxLayout="column">
+                    <div>{{ menus ? (menus.created_at | date:'dd/MM/yyy') : ''}}</div>
+                </div>
+            </div>
+        </div>
+        <div fxLayout="column">
+            <div fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="start start" matTooltip="Tax"
+                [matTooltipPosition]="'above'">
+                <div fxLayout="column">
+                    <span class="material-icons" style="font-size: 18px;color: #0189bd;">
+                        local_offer
+                    </span>
+                </div>
+                <div fxLayout="column">
+                    <div>{{ menus ? (menus.discount_percent) : ''}} % off</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div fxLayout="column" class="footer-container">
+        <div fxLayout="row" fxLayoutAlign="space-between center" style="height: 47px;">
+            <div fxLayout="column">
+                <div fxLayout="row" fxLayoutGap="5px" fxLayoutAlign="start center" style="height: 37px;color: #e20b0b;"
+                    matTooltip="Expiry Date" [matTooltipPosition]="'above'">
+                    <div fxLayout="column">
+                        <span class="material-icons" style="font-size: 18px;">
+                            insert_invitation
+                        </span>
+                    </div>
+                    <div fxLayout="column">
+                        <div>{{ menus ? (menus.expiry | date:'dd/MM/yyyy') : '' }}​</div>
+                    </div>
+                </div>
+            </div>
+            <!-- <div fxLayout="column" fxLayoutAlign="start center" style="padding: 2px 10px;">
+                <div fxLayout="row">
+                    <span *ngIf="menus.isPrivate === 0" class="material-icons" style="font-size: 18px;color: #0189bd;" matTooltip="Public Coupon" [matTooltipPosition]="'above'">
+                        public
+                    </span>
+                    <span *ngIf="menus.isPrivate === 1" class="material-icons" style="font-size: 18px;color: #0189bd;" matTooltip="Private Coupon" [matTooltipPosition]="'above'">
+                        label_important
+                    </span>
+                </div>
+                <div fxLayout="row" class="counts-show" matTooltip="Max Usage Count" [matTooltipPosition]="'above'">
+                    <span>{{ menus ? menus.max_usage_count : '' }}</span>
+                </div>
+            </div> -->
+
+
+
+
+            <div fxLayout="column">
+                <div fxLayout="row" fxLayoutGap="5px">
+                    <div fxLayout="column">
+                        <span *ngIf="menus.isPrivate === 0" matTooltip="Public Coupon" [matTooltipPosition]="'above'"><i
+                                class="material-icons" style="color: #4474a6;cursor:pointer">public</i>
+                        </span>
+                        <span *ngIf="menus.isPrivate === 1" matTooltip="Private Coupon"
+                            [matTooltipPosition]="'above'"><i class="material-icons"
+                                style="color: #4474a6;cursor:pointer">label_important</i>
+                        </span>
+                    </div>
+                    <div fxLayout="column" class="counts-show" matTooltip="Max Usage Count"
+                        [matTooltipPosition]="'above'">
+                        <span>{{ menus ? menus.max_usage_count : '' }}</span>
+                    </div>
+                </div>
+            </div>
+
+
+
+        </div>
+    </div>
+</div>

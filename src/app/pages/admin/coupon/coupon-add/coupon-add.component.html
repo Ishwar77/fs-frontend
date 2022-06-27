@@ -1,0 +1,67 @@
+<div class="app-eventadd">
+  <div class="logo">
+    <div class="form-title">
+      Coupon Register
+    </div>
+  </div>
+  <div class="eventadd-form">
+    <form>
+      <div class="inline-form">
+        <mat-form-field appearance="outline" color="accent">
+          <mat-label>TITLE</mat-label>
+          <input type="text" name="title" matInput autocomplete="off" placeholder="Title" [(ngModel)]="data.title"
+            required>
+        </mat-form-field>
+      </div>
+
+      <div class="inline-form">
+        <mat-form-field appearance="outline" color="accent">
+          <mat-label>DISCOUNT VALUE</mat-label>
+          <input type="number" min="1" max="100" (mouseup)="onlyNumbers($event)" (mousedown)="onlyNumbers($event)"
+            (keyup)="onlyNumbers($event)" (keydown)="onlyNumbers($event)" name="discount" matInput autocomplete="off"
+            placeholder="DISCOUNT VALUE" [(ngModel)]="data.discount_percent" required>
+        </mat-form-field>
+
+      </div>
+
+      <div class="inline-form">
+        <mat-form-field appearance="outline" color="accent">
+          <mat-label>MAXIMUM DISCOUNT AMOUNT</mat-label>
+          <input type="number" min="1" (mouseup)="onlyNumbers($event)" (mousedown)="onlyNumbers($event)"
+            (keyup)="onlyNumbers($event)" (keydown)="onlyNumbers($event)" name="amount" matInput autocomplete="off"
+            placeholder="MAXIMUM DISCOUNT AMOUNT" [(ngModel)]="data.max_discount_amount" required>
+        </mat-form-field>
+      </div>
+
+      <div class="inline-form">
+        <mat-form-field appearance="outline" color="accent">
+          <mat-label>MAXIMUM USAGE COUNT</mat-label>
+          <input type="number" min="1" (mouseup)="onlyNumbers($event)" (mousedown)="onlyNumbers($event)"
+            (keyup)="onlyNumbers($event)" (keydown)="onlyNumbers($event)" name="count" matInput autocomplete="off"
+            placeholder="MAXIMUM USAGE COUNT" [(ngModel)]="data.max_usage_count" required>
+        </mat-form-field>
+      </div>
+
+      <div class="inline-form">
+        <mat-form-field appearance="outline" color="accent">
+          <mat-label>EXPIRY DATE</mat-label>
+          <input type="date" name="expiry" matInput autocomplete="off" placeholder="EXPIRY DATE"
+            [(ngModel)]="data.expiry" required>
+        </mat-form-field>
+        <div>
+          <mat-radio-group aria-labelledby="example-radio-group-label" class="example-radio-group"
+            [(ngModel)]="favoriteSeason" [ngModelOptions]="{standalone: true}">
+            <mat-radio-button class="example-radio-button" *ngFor="let season of seasons" [value]="season">
+              {{season}}
+            </mat-radio-button>
+          </mat-radio-group>
+        </div>
+      </div>
+
+      <div class="inline-form btn-signup">
+        <button mat-raised-button color="accent" tabindex="9" (click)="addcoupon()">Add Coupon</button>
+        <button mat-raised-button color="warn" (click)="reset()">Reset</button>
+      </div>
+    </form>
+  </div>
+</div>

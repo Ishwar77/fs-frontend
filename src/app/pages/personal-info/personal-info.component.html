@@ -1,0 +1,240 @@
+<div fxLayout="column" fxLayoutGap="10px" style="height: 608px;overflow: auto;">
+  <div fxLayout="row wrap" fxLayoutAlign="start center" class="first-row">
+
+    <div fxLayout="column" class="fit-social-card" ngStyle.xs="height:390px">
+      <div fxLayout="column" fxLayoutAlign="center center" style="background-color: rgba(1, 137, 189, 0.15);
+      padding: 10px;color: rgb(1, 137, 189);font-size: 1.4rem;font-weight: 500;">Personal Information</div>
+      <div fxLayout="column" fxLayoutGap="5px">
+        <div class="user-profile" fxLayout="row" fxLayoutAlign="space-evenly center" fxLayout.xs="column"
+          fxLayoutAlign.xs="start start" fxLayout.sm="column" fxLayoutAlign.sm="start start">
+          <div class="name-heads" ngStyle.xs="min-width:0 !important" ngStyle.sm="min-width:0 !important">
+            Full Name
+          </div>
+          <div class="name-detailss">
+            <mat-form-field class="example-full-width" color="accent">
+              <input type="text" matInput [(ngModel)]="menus.diaplay_name" [disabled]="!enableEdit">
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+      <div fxLayout="column" class="fit-social-card-descriptions">
+        <div class="user-profile" fxLayout="row" fxLayoutAlign="space-evenly center" fxLayout.xs="column"
+          fxLayoutAlign.xs="start start" fxLayout.sm="column" fxLayoutAlign.sm="start start">
+          <div class="name-heads" ngStyle.xs="min-width:0 !important" ngStyle.sm="min-width:0 !important">
+            Contact
+          </div>
+          <div class="name-detailss">
+            <mat-form-field class="example-full-width" color="accent">
+              <input type="tel" matInput [(ngModel)]="menus.mobile_number" minlength="10" maxlength="10"
+                [disabled]="!enableEdit">
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+      <div fxLayout="column" class="fit-social-card-descriptions" *ngIf="userrole == 6">
+        <div class="user-profile" fxLayout="row" fxLayoutAlign="space-evenly center" fxLayout.xs="column"
+          fxLayoutAlign.xs="start start" fxLayout.sm="column" fxLayoutAlign.sm="start start">
+          <div class="name-heads" ngStyle.xs="min-width:0 !important" ngStyle.sm="min-width:0 !important">
+            Page Name
+          </div>
+          <div class="name-detailss">
+            <mat-form-field class="example-full-width" color="accent">
+              <input type="text" matInput [(ngModel)]="menus.pageName" [disabled]="!enableEdit">
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+      <div fxLayout="column" class="fit-social-card-descriptions">
+        <div class="user-profile" fxLayout="row" fxLayoutAlign="space-evenly center" fxLayout.xs="column"
+          fxLayoutAlign.xs="start start" fxLayout.sm="column" fxLayoutAlign.sm="start start">
+          <div class="name-heads" ngStyle.xs="min-width:0 !important" ngStyle.sm="min-width:0 !important">
+            Referal A Friend
+            <button class="transparentBtn" style="outline: 0;" (click)="copyInputMessage()" value="click to copy">
+              <span class="material-icons" style="font-size: 18px;color: #0189bd;">content_copy</span>
+            </button>
+          </div>
+          <div class="name-detailss">
+            <mat-form-field class="example-full-width" color="accent">
+              <input matInput [(ngModel)]="menus.uuid" m readonly>
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+      <div fxLayout="column" class="fit-social-card-descriptions">
+        <div class="user-profile-info" fxLayout="row" fxLayoutAlign="center center">
+          <button mat-raised-button color="accent" (click)="save(1)" [hidden]="!enableEdit"> SAVE</button>
+          <button mat-raised-button color="warn" (click)="cancel(1)" [hidden]="!enableEdit"> CANCEL</button>
+          <button mat-raised-button color="accent" [hidden]="enableEdit"
+            (click)="enableEditMethod(!enableEdit, 0)">Edit</button>
+        </div>
+      </div>
+    </div>
+
+    <div fxLayout="column" class="fit-social-card">
+      <div fxLayout="column" fxLayoutAlign="center center" style="background-color: rgba(1, 137, 189, 0.15);
+      padding: 10px;
+      color: rgb(1, 137, 189);
+      font-size: 1.4rem;
+      font-weight: 500;">Password Settings</div>
+      <div fxLayout="column" fxLayoutGap="10px" class="fit-social-card-imagename">
+        <div class="user-profile" fxLayout="row" fxLayoutAlign="space-evenly center" fxLayout.xs="column"
+          fxLayoutAlign.xs="start start" fxLayout.sm="column" fxLayoutAlign.sm="start start">
+          <div class="name-heads" ngStyle.xs="min-width:0 !important" ngStyle.sm="min-width:0 !important">
+            New Password
+          </div>
+          <div class="name-detailss">
+            <mat-form-field class="example-full-width" color="accent">
+              <input type="text" matInput [(ngModel)]="data.password">
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+      <div fxLayout="column" class="fit-social-card-descriptions">
+        <div class="user-profile" fxLayout="row" fxLayoutAlign="space-evenly center" fxLayout.xs="column"
+          fxLayoutAlign.xs="start start" fxLayout.sm="column" fxLayoutAlign.sm="start start">
+          <div class="name-heads" ngStyle.xs="min-width:0 !important" ngStyle.sm="min-width:0 !important">
+            Confirm Password
+          </div>
+          <div class="name-detailss">
+            <mat-form-field class="example-full-width" color="accent">
+              <input type="text" matInput [(ngModel)]="data.cpassword">
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+      <div fxLayout="column" class="fit-social-card-descriptions">
+        <div class="user-profile-info" fxLayout="row" fxLayoutAlign="center center">
+          <button mat-raised-button color="accent" (click)="update()"> SAVE</button>
+          <button mat-raised-button color="warn" (click)="reset()"> RESET</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div fxLayout="row wrap" fxLayoutAlign="start center" class="first-row">
+
+    <div fxLayout="column" class="fit-social-card" style="height: 307px;" ngStyle.xs="height:324px">
+      <div fxLayout="column" fxLayoutAlign="center center" style="background-color: rgba(1, 137, 189, 0.15);
+      padding: 10px;color: rgb(1, 137, 189);font-size: 1.4rem;font-weight: 500;">Fitness Information</div>
+      <div fxLayout="column" fxLayoutGap="10px" class="fit-social-card-imagename">
+        <div class="user-profile" fxLayout="row" fxLayoutAlign="space-evenly center" fxLayout.xs="column"
+          fxLayoutAlign.xs="start start" fxLayout.sm="column" fxLayoutAlign.sm="start start">
+          <div class="name-heads" ngStyle.xs="min-width:0 !important" ngStyle.sm="min-width:0 !important">
+            Height
+          </div>
+          <div class="name-detailss">
+            <mat-form-field class="example-full-width" color="accent">
+              <input type="text" matInput placeholder="In Feet Eg:6.2" [(ngModel)]="data.height"
+                [disabled]="!enableEdit3">
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+      <div fxLayout="column" class="fit-social-card-descriptions">
+        <div class="user-profile" fxLayout="row" fxLayoutAlign="space-evenly center" fxLayout.xs="column"
+          fxLayoutAlign.xs="start start" fxLayout.sm="column" fxLayoutAlign.sm="start start">
+          <div class="name-heads" ngStyle.xs="min-width:0 !important" ngStyle.sm="min-width:0 !important">
+            Weight
+          </div>
+          <div class="name-detailss">
+            <mat-form-field class="example-full-width" color="accent">
+              <input type="text" matInput [(ngModel)]="data.weight" placeholder="In Kgs Eg:70"
+                [disabled]="!enableEdit3">
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+      <div fxLayout="column" class="fit-social-card-descriptions">
+        <div class="user-profile" fxLayout="row" fxLayoutAlign="space-evenly center" fxLayout.xs="column"
+          fxLayoutAlign.xs="start start" fxLayout.sm="column" fxLayoutAlign.sm="start start">
+          <div class="name-heads" ngStyle.xs="min-width:0 !important" ngStyle.sm="min-width:0 !important">
+            BMI(Kg/m2)
+          </div>
+          <div class="name-detailss">
+            <mat-form-field class="example-full-width" color="accent">
+              <input type="text" matInput [(ngModel)]="data.bmi" pattern="[0-9]*" minlength="10" maxlength="10"
+                [disabled]="!enableEdit3" readonly>
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+      <div fxLayout="column" class="fit-social-card-descriptions">
+        <div class="user-profile-info" fxLayout="row" fxLayoutAlign="center center">
+          <button mat-raised-button color="accent" (click)="savefitness()" [hidden]="!enableEdit3">
+            SAVE</button>
+          <button mat-raised-button color="warn" (click)="cancel(2)" [hidden]="!enableEdit3"> CANCEL</button>
+          <button mat-raised-button color="accent" [hidden]="enableEdit3" (click)="enableEditMethod3(!enableEdit3, 0)">
+            Edit</button>
+        </div>
+      </div>
+    </div>
+
+    <div fxLayout="column" class="fit-social-card" style="height: 307px;">
+      <div fxLayout="column" fxLayoutAlign="center center" style="background-color: rgba(1, 137, 189, 0.15);
+      padding: 10px;
+      color: rgb(1, 137, 189);
+      font-size: 1.4rem;
+      font-weight: 500;">BMI Categories</div>
+      <div fxLayout="column" style="border: 1px solid #f4f4f4;">
+        <div fxLayout="column">
+          <div fxLayout="row" fxLayoutAlign="space-between" style="padding: 10px;">
+            <div>UNDERWEIGHT(Less Than )</div>
+            <div> 18.5</div>
+          </div>
+          <div fxLayout="row" fxLayoutAlign="space-between" style="padding: 10px;">
+            <div>NORMAL WEIGHT</div>
+            <div> 18.5 to 24.9</div>
+          </div>
+          <div fxLayout="row" fxLayoutAlign="space-between" style="padding: 10px;">
+            <div>OVER WEIGHT</div>
+            <div> 25 to 29.9</div>
+          </div>
+
+          <div fxLayout="row" fxLayoutAlign="space-between" style="padding: 10px;">
+            <div>Obesity</div>
+            <div> 30 or Greater</div>
+          </div>
+
+        </div>
+      </div>
+      <div *ngIf="data.bmi" fxLayout="column" style="padding: 10px;">
+        <div style="font-weight: 600;"> Your BMI status is
+          <span *ngIf="data.bmi<30" style="color:green"> {{bmivalue()}} </span>
+          <span *ngIf="data.bmi>29" style="color:red"> {{bmivalue()}} </span>
+          <!-- <span style="color:red"> Poor </span></div> -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div fxLayout="row wrap" *ngIf="userrole == 6" fxLayoutAlign="start center" class="first-row">
+    <div fxLayout="column" class="fit-social-card" style="height: 300px;width: 94%;" ngStyle.xs="height:330px">
+      <div fxLayout="column" fxLayoutAlign="center center" style="background-color: rgba(1, 137, 189, 0.15);
+        padding: 10px;color: rgb(1, 137, 189);font-size: 1.4rem;font-weight: 500;">
+        <a routerLink="/coach/{{menus.pageName}}" matTooltip="Profile page" [matTooltipPosition]="'above'">About</a>
+      </div>
+      <div fxLayout="column" fxLayoutGap="10px" class="fit-social-card-imagename">
+        <div class="user-profile" fxLayout="row" fxLayoutAlign="space-evenly center" fxLayout.xs="column"
+          fxLayoutAlign.xs="start start" fxLayout.sm="column" fxLayoutAlign.sm="start start">
+
+          <div class="name-detailss" style="width: 100%;">
+            <angular-editor [(ngModel)]="menus.expertise_in" [ngModelOptions]="{standalone: true}" [spellcheck]="true"
+              placeholder="About Here....." [config]="config" required>
+            </angular-editor>
+          </div>
+        </div>
+      </div>
+      <div fxLayout="column" class="fit-social-card-descriptions">
+        <div class="user-profile-info" fxLayout="row" fxLayoutAlign="center center">
+          <button mat-raised-button color="accent" (click)="save(2);enableEdit4=false;config.editable=false"
+            [hidden]="!enableEdit4"> SAVE</button>
+          <button mat-raised-button color="warn" (click)="enableEdit4=false;config.editable=false"
+            [hidden]="!enableEdit4"> CANCEL</button>
+          <button mat-raised-button color="accent" [hidden]="enableEdit4" (click)="enableEditMethod4(!enableEdit4, 0)">
+            Edit</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,54 @@
+<div class="app-eventadd">
+  <div class="logo">
+    <div class="form-title">
+      Coupon Edit
+    </div>
+  </div>
+  <div class="eventadd-form">
+    <form>
+      <div class="inline-form">
+        <mat-form-field appearance="outline" color="accent">
+          <mat-label>TITLE</mat-label>
+          <input type="text" name="title" matInput autocomplete="off" [(ngModel)]="item.titlevalue" required>
+        </mat-form-field>
+      </div>
+
+      <div class="inline-form">
+        <mat-form-field appearance="outline" color="accent">
+          <mat-label>DISCOUNT VALUE</mat-label>
+          <input type="number" min="1" max="100" (mouseup)="onlyNumbers($event)" (mousedown)="onlyNumbers($event)"
+          (keyup)="onlyNumbers($event)" (keydown)="onlyNumbers($event)" name="discount" matInput autocomplete="off" [(ngModel)]="item.percentvalue" required>
+        </mat-form-field>
+
+      </div>
+
+      <div class="inline-form">
+        <mat-form-field appearance="outline" color="accent">
+          <mat-label>MAXIMUM DISCOUNT AMOUNT</mat-label>
+          <input type="number" min="1" (mouseup)="onlyNumbers($event)" (mousedown)="onlyNumbers($event)"
+          (keyup)="onlyNumbers($event)" (keydown)="onlyNumbers($event)" name="amount" matInput autocomplete="off" [(ngModel)]="item.disamount" required>
+        </mat-form-field>
+      </div>
+
+      <div class="inline-form">
+        <mat-form-field appearance="outline" color="accent">
+          <mat-label>MAXIMUM USAGE COUNT</mat-label>
+          <input type="number" min="1" (mouseup)="onlyNumbers($event)" (mousedown)="onlyNumbers($event)"
+          (keyup)="onlyNumbers($event)" (keydown)="onlyNumbers($event)" name="count" matInput autocomplete="off" [(ngModel)]="item.countvalue" required>
+        </mat-form-field>
+      </div>
+
+      <div class="inline-form">
+        <mat-form-field appearance="outline" color="accent">
+          <mat-label>EXPIRY DATE</mat-label>
+          <input name="expiry" matInput autocomplete="off" [(ngModel)]="item.expiryvalue" required>
+        </mat-form-field>
+      </div>
+
+      <div class="inline-form btn-signup">
+        <button mat-raised-button color="accent" tabindex="9" (click)="editsubscription()">UPDATE</button>
+        <button mat-raised-button color="warn" [mat-dialog-close]="true">Cancel</button>
+      </div>
+    </form>
+  </div>
+</div>

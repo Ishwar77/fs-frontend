@@ -1,0 +1,17 @@
+<div fxLayout="column" fxLayoutAlign="center center">
+  <app-loading-component *ngIf="!load" [imageSize]="2"> </app-loading-component>
+</div>
+<div class="app-HomePage" *ngIf="load" fxLayout="column">
+  <div fxLayout="column" *ngIf="sliderImageDataModel">
+    <app-slider-ad [sliderImage]="sliderImageDataModel"></app-slider-ad>
+  </div>
+  <div fxLayout="column">
+    <app-promo-section></app-promo-section>
+  </div>
+  <div fxLayout="column">
+    <app-invite-promo></app-invite-promo>
+  </div>
+  <div fxLayout="column">
+    <app-process></app-process>
+  </div>
+</div>

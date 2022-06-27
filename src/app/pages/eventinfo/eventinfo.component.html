@@ -1,0 +1,453 @@
+<div *ngIf="pageManager.status === 1; else showInfoContainer">
+  <app-loading-component [imageSize]="2"> </app-loading-component>
+</div>
+<ng-template #showInfoContainer>
+  <div *ngIf="pageManager.action === 2; else showEventInfo">
+    <app-no-content></app-no-content>
+  </div>
+  <ng-template #showEventInfo>
+    <div *ngIf="selectedEvent">
+      <div fxFlexFill fxLayout="column" fxLayoutGap="10px" class="main-container">
+        <div fxLayout="column" class="event-container">
+          <div fxLayout="row" fxLayout.xs="column" fxLayout.sm="column" fxLayoutGap="15px">
+            <div fxLayout="column" fxFlex="35%" ngStyle.xs="width:100%">
+              <img class="event-image-section"
+                [src]="selectedEvent && selectedEvent.cover_image ? selectedEvent.cover_image : 'https://i.ibb.co/RbWnw6T/bg-4.jpg'"
+                alt="event-image">
+            </div>
+            <div fxLayout="column" class="event-card-container" fxLayoutGap="10px" fxFlex>
+              <div fxLayout="column">
+                <div fxLayout="row" fxLayoutAlign="space-between start">
+                  <div fxLayout="column">
+                    <div fxLayout="column" class="event-info-name">
+                      {{selectedEvent ? selectedEvent.event_name : ''}}
+                    </div>
+                    <div fxLayout="column" class="trainer-header">
+                      <div fxLayout="row" fxLayoutGap="10px">
+                        <div fxLayout="row" style="font-size: 0.7rem;">
+                          By -<a style="color:#0a3667;cursor: pointer;margin-left: 7px;"
+                            routerLink="/coach/{{selectedEvent.Instructor.pageName}}">{{selectedEvent ? (selectedEvent.Instructor.diaplay_name|uppercase) : ''}}</a>
+                        </div>
+
+                        <div fxLayout="row" *ngIf="ratingvalue">
+                          <span class="staring" style="height: 16px;" fxLayoutAlign="center center">
+                            {{ratingvalue ? ratingvalue : ''}}&nbsp;
+                            <i class="fa fa-star"></i></span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div fxLayout="column" class="share-info-icon">
+                    <span class="material-icons" (click)="openDialog(selectedEvent.event_name)">
+                      share
+                    </span>
+                  </div>
+                </div>
+              </div>
+              <div fxLayout="column" class="event-description" [innerHTML]="selectedEvent.description"> </div>
+            </div>
+          </div>
+        </div>
+        <div fxLayout="column">
+          <div fxLayout="row" fxLayout.xs="column" fxLayout.sm="column" fxLayoutGap="10px">
+            <div fxLayout="column" fxLayoutGap="10px" fxFlex="35%">
+              <div fxLayout="column">
+                <div fxLayout="column" fxLayoutGap="20px" class="review-container">
+                  <div fxLayout="column">
+                    <div fxLayout="column">
+                      <button style="color:#0181b2;" mat-button color="accent" *ngIf="!isReview"
+                        (click)="isReview = !isReview">Give Us
+                        Feedback</button>
+                      <div *ngIf="isReview">
+
+                        <mat-form-field *ngIf="isReview" class="example-full-width">
+                          <mat-label>Write a Review</mat-label>
+                          <textarea matInput [(ngModel)]="reviews" name="reviewTitle" id="reviewTitle"
+                            [ngModelOptions]="{standalone: true}" rows="5"></textarea>
+                        </mat-form-field>
+                        <div fxLayout="column" fxLayoutAlign=" start center">
+                          <div fxLayout="row" fxLayoutGap="10px">
+                            <div fxLayout="column" fxLayoutAlign=" start center">
+                              <div fxLayout="row">
+                                <ul class="list-inline rating-list" *ngFor="let star of stars"
+                                  style="display: inline-block">
+                                  <li (click)="countStar(star)" [ngClass]="{'selected': (star <= selectedValue)}">
+                                    <i class="fa fa-star"></i>
+                                  </li>
+                                </ul>
+                              </div>
+                            </div>
+                            <div fxLayout="column" *ngIf="selectedValue">
+                              {{selectedValue ? selectedValue : ''}} out of 5 stars
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div fxLayout="column" *ngIf="isReview">
+                      <div fxLayout="row" fxLayoutAlign="space-between center">
+                        <div fxLayout="column">
+                          <div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="10px">
+                            <div fxLayout="column">
+                              <button mat-raised-button color="warn" (click)="isReview = !isReview">Cancel</button>
+                            </div>
+                            <div fxLayout="column">
+                              <button [disabled]="!selectedValue" mat-raised-button style="background-color: #408ab4;"
+                                (click)="reviewclick(reviews)" matTooltip="Give the ratings"
+                                [matTooltipPosition]="'above'">Submit</button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div *ngIf="selectedReviews && selectedReviews.length !== 0" fxLayout="column"
+                    style="height: 340px;overflow: auto;" fxLayoutGap="10px">
+                    <div *ngFor="let item of selectedReviews" fxLayout="row" fxLayoutGap="17px"
+                      style="padding-bottom:20px;border-bottom: 1px solid;height: 128px;">
+                      <div fxLayout="column" class="review-image" fxLayoutAlign="center center">
+                        <img class="review-image-icon"
+                          src="{{item && item.profile_picture_url ? item.profile_picture_url : 'https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909__480.png'}}">
+                      </div>
+                      <div fxLayout="column" fxLayoutGap="2px" fxLayoutAlign="center start">
+                        <div fxLayout="row" fxLayoutGap="6px" style="font-weight:500;letter-spacing: 0.5px;">
+                          <div fxLayout="column">
+                            {{item.diaplay_name}}
+                          </div>
+                          <div fxLayout="column" style="font-size: 0.65rem;color: rgba(0, 0, 0, 0.54)">
+                            {{item.designation}}
+                          </div>
+                        </div>
+                        <div fxLayout="row" fxLayoutGap="10px" style="font-weight:500;letter-spacing: 0.5px;">
+                          <div fxLayout="column" style="font-size: 0.65rem;color: rgba(0, 0, 0, 0.54)">
+                            {{item.updated_at | date:'short'}}
+                          </div>
+                          <div fxLayout="row" *ngIf="item && item.ratings">
+                            <ul class="list-inline rating-list" *ngFor="let star of stars"
+                              style="display: inline-block">
+                              <li [ngClass]="{'selected': (star <= item.ratings)}"><i class="fa fa-star"></i>
+                              </li>
+                            </ul>
+                            <div style="font-weight: 600;"> &nbsp;({{item.ratings}})</div>
+                          </div>
+                        </div>
+                        <div fxLayout="row"
+                          style="letter-spacing: 0.5px;font-size: 12px;text-align: justify;overflow: auto;">
+                          {{item.review}}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div fxLayout="column" fxLayoutGap="30px" class="subscription-container" fxFlex>
+              <div fxLayoutGap="20px" fxLayout="column" *ngIf="paymentSuccess === true else showRest"
+                class="success-container">
+                <div fxLayout="column" class="success-info-container">
+                  <div fxLayout="column" class="success-details-header" fxLayoutAlign="center center"
+                    style="letter-spacing:0.8px;padding:20px;color:#28a745">
+                    Your Subscription is Successful
+                  </div>
+                  <div fxLayout="column" fxLayoutGap="20px" style="padding:20px;">
+                    <div fxLayout="row" *ngIf="amount" fxLayoutGap.xs="30px">
+                      <div fxLayout="column" fxFlex="20%" class="success-info">
+                        Amount
+                      </div>
+                      <div fxLayout="column" class="success-info" style="font-weight: 500;">
+                        ₹ {{amount}}/-
+                      </div>
+                    </div>
+                    <div fxLayout="column" *ngIf="selectedSubscription.tax && amount">
+                      <div fxLayout="row" fxLayoutGap.xs="30px">
+                        <div fxLayout="column" fxFlex="20%" class="success-info">
+                          Tax
+                        </div>
+                        <div fxLayout="column" class="success-info" style="font-weight: 500;">
+                          {{selectedSubscription.tax}} %
+                        </div>
+                      </div>
+                    </div>
+                    <div fxLayout="column">
+                      <div fxLayout="row" fxLayoutGap.xs="30px">
+                        <div fxLayout="column" fxFlex="20%" class="success-info">
+                          Duration
+                        </div>
+                        <div fxLayout="column" class="success-info" style="font-weight: 500;">
+                          {{selectedSubscription.days}} days
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div fxLayout="column"
+                  style="padding: 0px 5px;font-size: 0.9rem;letter-spacing: 0.8px;font-weight: 400;">
+                  <p>
+                    You will recieve a confirmation email, in sometime.
+                  </p>
+                  <p>
+                    Look into your SPAM / JUNK folder once, you avoid this by adding our email to your contact list.
+                  </p>
+                  <p>
+                    For any query or concers, reach out to our support team.
+                  </p>
+                </div>
+              </div>
+              <ng-template #showRest>
+                <div fxLayout="column" fxLayoutGap="10px">
+                  <div fxLayout="row wrap" ngStyle.xs="place-content:center" fxLayoutGap="15px" fxLayoutGap.sm="5px"
+                    fxLayoutGap.xs="5px">
+                    <div fxLayout="column" (click)="subscriptionClick(item)"
+                      [class.active]="selectedSubscription === item" fxLayoutGap="15px" fxLayoutAlign="center center"
+                      class="subscription-card-container" *ngFor="let item of Listsubscriptions">
+                      <div fxLayout="column" class="subscription-header">
+                        <div fxLayout="row" fxLayoutGap="5px">
+                          <div fxLayout="column" class="subscription-rupee" *ngIf="!item.isFree">
+                            ₹
+                          </div>
+                          <div fxLayout="column" *ngIf="!item.isFree">
+                            {{item ? item.amount : 0}}
+                          </div>
+                          <div fxLayout="column" style="font-size:1.1rem;text-align: center;" *ngIf="item.isFree">
+                            Free Subscription
+                          </div>
+                        </div>
+                      </div>
+                      <div fxLayout="column" class="subscription-info">
+                        {{item ? item.days : 'N/A'}} Days Pack
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <ng-template [ngIf]="selectedSubscription">
+                  <div *ngIf="pageManager.status === 1; else showInfoBatches">
+                    <app-loading-component [imageSize]="2"> </app-loading-component>
+                  </div>
+
+                  <ng-template #showInfoBatches>
+                    <div *ngIf="pageManager.action === 2; else showBatchesInfo">
+                      <app-no-content></app-no-content>
+                    </div>
+                    <ng-template #showBatchesInfo>
+                      <div fxLayout="column"
+                        style="font-weight: 600;letter-spacing: 0.5px;font-size: 0.9rem;color: #0181b2;"
+                        fxLayoutAlign="center center" *ngIf="!_batchesList || !_batchesList.length">
+                        <span>Please Contact the Trainer to Subscribe</span>
+                      </div>
+                      <div fxLayout="column" fxLayoutAlign.xs="center center"
+                        *ngIf="_batchesList && _batchesList.length">
+                        <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="start start" fxLayoutGap="30px">
+                          <div fxLayout="column" fxLayoutGap="10px" fxFlex="60%">
+
+                            <div fxLayout="column" fxLayoutAlign.xs="center center"
+                              *ngIf="_batchesList && _batchesList.length !== 0"
+                              [class.disabled]="selectedBatchs && selectedBatchs.length === selectedSubscription['batch_count']">
+                              <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="start baseline">
+                                <div fxLayout="column" class="batch-time-selection" style="margin-right: 10px;">
+                                  <mat-form-field class="example-full-width" appearance="outline">
+                                    <mat-label>Choose Timings</mat-label>
+                                    <mat-select required
+                                      [disabled]="selectedBatchs && selectedBatchs.length === selectedSubscription['batch_count']">
+                                      <mat-option [value]="batch.start_time_new - batch.end_time_new"
+                                        *ngFor="let batch of _batchesList" (click)="sessionClick(batch)"
+                                        [disabled]="batch.has_limit === 1 && batch.available_seats === 0">
+                                        {{ batch.start_time_new }} - {{ batch.end_time_new }}
+                                      </mat-option>
+                                    </mat-select>
+                                  </mat-form-field>
+                                </div>
+                                <div fxLayout="column" *ngIf="selectedBatch" style="margin-right: 20px;">
+                                  <mat-form-field class="example-full-width" appearance="outline"
+                                    *ngIf="selectedBatch['frequency'] !== 1 && selectedBatch['frequency_config']">
+                                    <mat-label>Choose Day</mat-label>
+                                    <mat-select required *ngIf="selectedBatch['frequency'] !== 1"
+                                      [disabled]="selectedBatchs && selectedBatchs.length === selectedSubscription['batch_count']">
+                                      <mat-option [value]="day"
+                                        *ngFor="let day of selectedBatch['frequency_config_parsed']"
+                                        (click)="chooseDays(day)">
+                                        {{ day }}
+                                      </mat-option>
+                                    </mat-select>
+                                  </mat-form-field>
+                                </div>
+                                <div fxLayout="column" (click)="addCheckListItem()" class="subscription-add-button">
+                                  <span class="material-icons" style="cursor: pointer;"> add </span>
+                                </div>
+                              </div>
+                              <div *ngIf="selectedBatch && selectedBatch['frequency'] === 1"
+                                class="selected-event-label">
+                                This is a Daily Event
+                              </div>
+                              <div fxLayout="column">
+                                <div fxLayout="row wrap" fxLayoutGap="10px">
+                                  <div fxLayout="column" fxLayoutAlign="start center"
+                                    *ngFor="let item of selectedBatchs; let i = index"
+                                    class="selected-subscription-batch">
+                                    <div fxLayout="column">
+                                      <button class="remove-button-icon custom-mat-fab" mat-fab color="primary"
+                                        aria-label="delete icon" (click)="removeCheckListItem(i)">
+                                        <mat-icon style="font-size: 16px;">delete</mat-icon>
+                                      </button>
+                                    </div>
+                                    <div fxLayout="column" class="header">{{item ? item['label_day'] : ''}}</div>
+                                    <div fxLayout="column" class="sub-header">{{item ? item['start_time_new'] : ''}} -
+                                      {{item ? item['end_time_new'] : ''}}</div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+
+                            <div fxLayout="column" *ngIf="amount && (_batchesList && _batchesList.length !== 0)">
+                              <div fxLayout="row" fxLayoutGap="20px">
+                                <div fxLayout="column">
+                                  <mat-form-field class="example-full-width">
+                                    <mat-label>Promo Code</mat-label>
+                                    <input matInput [(ngModel)]="promoCode">
+                                    <mat-hint *ngIf="ListCoupons && ListCoupons.length !== 0" MatHint.align="end"
+                                      class="subscription-offers" (click)="offersCardShow = !offersCardShow">Click here
+                                      for
+                                      offer Coupons
+                                    </mat-hint>
+                                  </mat-form-field>
+                                </div>
+                                <div fxLayout="column">
+
+                                  <button mat-flat-button color="accent" [disabled]="!promoCode"
+                                    (click)="applycoupon(promoCode,selectedEvent.event_id)">Apply</button>
+                                </div>
+                              </div>
+                            </div>
+                            <div fxLayout="column"
+                              *ngIf="amount && offersCardShow && (_batchesList && _batchesList.length !== 0)"
+                              class="subscription-offer-card">
+                              <div fxLayout="column" fxLayoutAlign="center center">
+                                <div class="offer-shape-card"> </div>
+                              </div>
+                              <div fxLayout="column" *ngIf="ListCoupons && ListCoupons.length !== 0">
+                                <div fxLayout="row wrap" fxLayoutGap="5px">
+                                  <div fxLayout="column" fxLayoutAlign="start center" (click)="prepopulateData(item)"
+                                    class="coupons-offers-List" *ngFor="let item of ListCoupons">
+                                    <div fxLayout="column" class="coupon-header">{{item.title}}</div>
+                                    <div fxLayout="column" class="coupon-discount">Get {{item.discount_percent}}% Off
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div fxLayout="column"
+                            *ngIf="selectedSubscription && (_batchesList && _batchesList.length !== 0)" fxFlex
+                            class="subscription-info-container" ngStyle.xs="width:100%">
+                            <div fxLayout="column" class="subscription-details-header" fxLayoutAlign="center center">
+                              Subscription Details
+                            </div>
+                            <div fxLayout="column" fxLayoutGap="20px" style="padding: 10px;">
+                              <div fxLayout="column">
+                                <div fxLayout="row">
+                                  <div fxLayout="column" fxFlex="55%">
+                                    <div fxLayout="column" class="subscription-info">Batches</div>
+                                  </div>
+                                  <div fxLayout="column">
+                                    <div fxLayout="column" class="subscription-info" style="font-weight: 500;">
+                                      {{selectedSubscription ? selectedSubscription.batch_count : 'N/A'}}
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <div fxLayout="column" *ngIf="selectedSubscription.tax && amount">
+                                <div fxLayout="row">
+                                  <div fxLayout="column" fxFlex="55%">
+                                    <div fxLayout="column" class="subscription-info">Tax</div>
+                                  </div>
+                                  <div fxLayout="column">
+                                    <div fxLayout="column" class="subscription-info" style="font-weight: 500;">
+                                      {{selectedSubscription ? selectedSubscription.tax : 'N/A'}}%
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <div fxLayout="column" *ngIf="couponvalue && couponvalue.length !== 0">
+                                <div fxLayout="row">
+                                  <div fxLayout="column" fxFlex="55%">
+                                    <div fxLayout="column" class="subscription-info">Coupon</div>
+                                  </div>
+                                  <div fxLayout="column">
+                                    <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="10px">
+                                      <div fxLayout="column" class="subscription-info"
+                                        style="font-weight: 500;color: #0181b2;">
+                                        {{couponvalue}}({{discountpercent}}%)
+                                      </div>
+                                      <div fxLayout="column" fxLayoutAlign="center center" style="cursor: pointer;"
+                                        (click)="removecoupon()">
+                                        <mat-icon color="warn" style="font-size: 1.4rem;">delete</mat-icon>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <div fxLayout="column">
+                                <div fxLayout="row">
+                                  <div fxLayout="column" fxFlex="55%">
+                                    <div fxLayout="column" class="subscription-info">Duration</div>
+                                  </div>
+                                  <div fxLayout="column">
+                                    <div fxLayout="column" class="subscription-info" style="font-weight: 500;">
+                                      {{selectedSubscription ? selectedSubscription.days : 'N/A'}} Sessions
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <div fxLayout="column" style="margin-bottom: 10px !important" *ngIf="amount">
+                                <div fxLayout="row">
+                                  <div fxLayout="column" fxFlex="55%">
+                                    <div fxLayout="column" class="subscription-info">Total Amount</div>
+                                  </div>
+                                  <div fxLayout="column">
+                                    <div fxLayout="column" class="subscription-info"
+                                      style="font-size: 1.3rem;font-weight: 700;color:#0181b2">
+                                      ₹ {{amount}}/-
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </ng-template>
+
+                  </ng-template>
+                </ng-template>
+                <div flexLayout="column" fxLayoutAlign.xs="center center" fxLayoutAlign.sm="center center"
+                  *ngIf="isLoaded && (_batchesList && _batchesList.length !== 0)">
+                  <div fxLayout="row" fxLayout.xs="column" ngStyle.xs="place-content:start;align-items:start;"
+                    fxLayoutAlign="flex-end flex-end">
+                    <button type="button" style="outline:0;background-color: #0181b2 !important" color="accent"
+                      *ngIf="userrole == 3 " mat-flat-button [disabled]="selectedBatchs && selectedBatchs.length == 0"
+                      (click)="subscribe()">Subscribe</button>
+                  </div>
+                </div>
+                <div fxLayout="column" *ngIf="!isLoaded">
+                  <div fxLayout="column" class="no-data-loaded-container" fxLayoutAlign="center center"
+                    style="height: 250px;">
+                    <div fxLayout="column" style="margin-bottom:20px">
+                      <img style="width: 100px;height:100%;opacity: 0.2;"
+                        src="https://cdn2.iconfinder.com/data/icons/audio-16/96/user_avatar_profile_login_button_account_member-512.png"
+                        alt="">
+                    </div>
+                    <div *ngIf="!userId" fxLayout="column" class="no-heading">
+                      Please Login to subscribe
+                    </div>
+                  </div>
+                </div>
+              </ng-template>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </ng-template>
+</ng-template>
+<input type="hidden" #hidden (click)="sucesspage()" />

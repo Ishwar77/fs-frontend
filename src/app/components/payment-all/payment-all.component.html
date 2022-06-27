@@ -1,0 +1,185 @@
+<div fxLayout="column" class="fitsocial-payment-card">
+  <div fxLayout="column">
+    <div fxLayout="row" class="payment-first-row" fxLayoutAlign="start center" fxLayoutGap="5px">
+      <div fxLayout="column" class="fitsocial-date">
+       {{paymentCard.created_at | date:'d MMM, y' || 'NA'}}
+      </div>
+      <div fxLayout="column" class="fitsocial-payment-user">
+        <div fxLayout="column" class="payment-user-name">
+          {{paymentCard.notes.user_name || 'NA'}}
+        </div>
+        <div fxLayout="column">
+          <div fxLayout="row" class="fitsocial-sub-info" fxLayoutGap="10px" fxLayoutAlign="start center"
+            matTooltip="Contact" [matTooltipPosition]="'above'">
+            <div fxLayout="column">
+              <i class="fa fa-envelope"></i>
+            </div>
+            <div fxLayout="column">
+              <a href="mailto:{{paymentCard.email}}">{{paymentCard && paymentCard.email|| 'NA'}}</a>
+            </div>
+          </div>
+        </div>
+        <div fxLayout="column">
+          <div fxLayout="row" class="fitsocial-payment-user-info" fxLayoutGap="10px" fxLayoutAlign="start center"
+            matTooltip="Contact" [matTooltipPosition]="'above'">
+            <div fxLayout="column">
+              <i class="fa fa-phone-square"></i>
+            </div>
+            <div fxLayout="column">
+              {{paymentCard && paymentCard.contact || 'NA' }}
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- <div fxLayout="column">
+
+      </div> -->
+    </div>
+  </div>
+  <div fxLayout="column" fxLayoutGap="5px" class="payment-first-second ">
+    <div fxLayout="column" fxLayoutAlign="start center" class="payment-event-name" *ngIf="paymentCard.notes.eventId">
+      {{paymentCard && paymentCard.notes.event_name || 'NA' }}
+    </div>
+    <div fxLayout="column">
+      <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="10px">
+        <div fxLayout="column" style="min-width: 120px;" *ngIf="paymentCard.notes.trainer_name">
+          <div fxLayout="row" class="second-info" fxLayoutGap="5px" fxLayoutAlign="start center" matTooltip="Registered Batch"
+            [matTooltipPosition]="'above'">
+            <div fxLayout="column">
+              <i style="color:#0189bd" class="fa fa-clock-o"></i>
+            </div>
+            <div fxLayout="column">
+              {{paymentCard && paymentCard.trainer_name}}
+            </div>
+          </div>
+        </div>
+        <div fxLayout="column"  *ngIf=" paymentCard.notes.subscription_days">
+          <div fxLayout="row"  class="second-info" fxLayoutGap="5px" fxLayoutAlign="space-between center" matTooltip=" Subscription Pack"
+            [matTooltipPosition]="'above'">
+            <div fxLayout="column">
+              <i style="color:#0189bd" class="fa fa-sun-o"></i>
+            </div>
+            <div fxLayout="column">
+              {{paymentCard && paymentCard.notes.subscription_days || 'NA'}} Days
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <div fxLayout="column">
+      <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="10px">
+        <div fxLayout="column" style="min-width: 120px;" *ngIf="paymentCard.eventExpiryDate">
+          <div fxLayout="row" class="second-info" fxLayoutGap="5px" fxLayoutAlign="start center" matTooltip=" Subscription Expiry"
+            [matTooltipPosition]="'above'">
+            <div fxLayout="column">
+              <i style="color:red" class="fa fa-calendar-times-o"></i>
+            </div>
+            <div fxLayout="column">
+              {{paymentCard && paymentCard.eventExpiryDate}}
+            </div>
+          </div>
+        </div>
+        <div fxLayout="column" *ngIf="paymentCard.trainerName">
+          <div fxLayout="row" class="second-info" fxLayoutGap="5px" fxLayoutAlign="start center" matTooltip="Trainer"
+            [matTooltipPosition]="'above'">
+            <div fxLayout="column">
+              <i style="color:#0189bd" class="fa fa-user"></i>
+            </div>
+            <div fxLayout="column">
+              {{paymentCard && paymentCard.trainer_name}}
+            </div>
+          </div>
+        </div>
+
+
+      </div>
+    </div>
+
+  </div>
+  <div fxLayout="column">
+    <div fxLayout="row" style="padding-top: 10px;" fxLayoutAlign="space-between center" fxLayoutGap="5px">
+      <div fxLayout="column">
+        <div fxLayout="row"   fxLayoutGap="5px" fxLayoutAlign="start center" matTooltip="Total Amount"
+          [matTooltipPosition]="'above'">
+          <div fxLayout="column">
+            <i class="fa fa-inr"></i>
+          </div>
+          <div fxLayout="column" style="font-size: 1.2rem; font-weight: 500;">
+            {{paymentCard && paymentCard.notes.final_amount || '0.00'}}/-
+          </div>
+        </div>
+      </div>
+      <div fxLayout="column">
+        <div fxLayout="row"   fxLayoutGap="5px" fxLayoutAlign="end center" matTooltip="Total Amount"
+          [matTooltipPosition]="'above'">
+          <div fxLayout="column" style="cursor:pointer;font-size: 1.3rem;">
+            <i class="fa fa-info-circle" *ngIf="!expanded" (click)="expanded=!expanded"></i>
+            <i style="color:red;cursor: pointer;" class="fa fa-times-circle" *ngIf="expanded" (click)="expanded=!expanded"></i>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+<!-- Card Expand Section -->
+  <div fxLayout="column" style="padding-top:10px ;" fxLayoutGap="5px" *ngIf="expanded">
+    <div fxLayout="column" *ngIf="paymentCard.method">
+      <div fxLayout="row" fxLayoutGap="5px" fxLayoutAlign="start center">
+        <div fxLayout="column">
+          <i class="fa fa-institution"></i>
+        </div>
+        <div fxLayout="column">
+          {{paymentCard && paymentCard.method || 'NA'}}
+        </div>
+      </div>
+    </div>
+    <div fxLayout="column" *ngIf="paymentCard.order_id">
+      <div fxLayout="row" fxLayoutGap="5px" fxLayoutAlign="start center">
+        <div fxLayout="column">
+          <i class="fa fa-shopping-cart"></i>
+        </div>
+        <div fxLayout="column">
+          {{paymentCard && paymentCard.order_id || 'NA'}}
+        </div>
+      </div>
+    </div>
+    <div fxLayout="column" *ngIf="paymentCard.id ">
+      <div fxLayout="row" fxLayoutGap="5px" fxLayoutAlign="start center">
+        <div fxLayout="column">
+          <i class="fa fa-credit-card"></i>
+        </div>
+        <div fxLayout="column">
+          {{paymentCard && paymentCard.id || 'NA' }}
+        </div>
+      </div>
+    </div>
+    <div fxLayout="column" *ngIf="paymentCard.notes.coupon_name">
+      <div fxLayout="column">
+        <div fxLayout="row" fxLayoutGap="5px" fxLayoutAlign="start center">
+          <div fxLayout="column">
+            <i class="fa fa-bullhorn"></i>
+          </div>
+          <div fxLayout="column">
+            {{paymentCard && paymentCard.notes.coupon_name || 'NA'}}
+          </div>
+        </div>
+      </div>
+    </div>
+    <div fxLayout="column" *ngIf="paymentCard.notes.subscription_amount">
+      <div fxLayout="column">
+        <div fxLayout="row" fxLayoutGap="5px" fxLayoutAlign="start center">
+          <div fxLayout="column">
+            <i class="fa fa-inr"></i>
+          </div>
+          <div fxLayout="column">
+            &nbsp;  {{paymentCard && paymentCard.notes.subscription_amount || '0.00'}}/-
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</div>

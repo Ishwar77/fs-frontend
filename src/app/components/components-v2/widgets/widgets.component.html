@@ -1,0 +1,17 @@
+<div fxLayout="column">
+    <div class="widget-list-container" fxLayout="row" fxLayoutAlign="start center">
+        <div class="widget-icon">
+            <img class="img-icon" [src]="_imgSrc ? _imgSrc:''">
+            <div class="active-session" *ngIf="_progress && _progress === 1"></div>
+        </div>
+        <div class="header">
+            <div style="width: 140px;">{{_title ? _title : ''}} </div>
+            <div *ngIf="!_subtime" class="sub-header" [matTooltip]="_type"> {{_subheader ? _subheader : ''}} </div>
+            <div *ngIf="_subtime" class="sub-header" [matTooltip]="_type">{{_subheader}} to {{_subtime}}</div>
+            <div *ngIf="_progress === 1 && _link" class="sub-header" matTooltip="Meeting Link"
+                [matTooltipPosition]="'above'">
+                <a style="cursor: pointer;" (click)="senddata(_link,password)">click here</a>
+            </div>
+        </div>
+    </div>
+</div>

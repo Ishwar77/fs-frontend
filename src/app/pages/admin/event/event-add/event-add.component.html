@@ -1,0 +1,113 @@
+<div class="app-eventadd">
+  <div class="logo">
+    <div class="form-title">
+      Event Register
+    </div>
+  </div>
+  <div class="eventadd-form">
+    <form>
+      <div class="inline-form">
+        <mat-form-field appearance="outline" color="accent">
+          <mat-label>Event Name</mat-label>
+          <input matInput name="name" placeholder="Event Name" [(ngModel)]="data.name" tabindex="1" required>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" color="accent">
+          <mat-label>Type</mat-label>
+          <mat-select required>
+            <mat-option *ngFor="let menu of menus" [value]="menu" (click)="menuptions(menu.event_master_id)">
+              {{menu.event_master_name}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <div class="inline-form">
+        <mat-form-field appearance="outline" color="accent">
+          <mat-label>Start Date</mat-label>
+          <input type="date" name="startdate" tabindex="3" matInput autocomplete="off" [(ngModel)]="data.startdate"
+            required>
+        </mat-form-field>
+        <mat-form-field appearance="outline" color="accent">
+          <mat-label>End Date</mat-label>
+          <input type="date" name="enddate" tabindex="5" matInput autocomplete="off" [(ngModel)]="data.enddate"
+            required>
+        </mat-form-field>
+
+      </div>
+
+      <!-- <div class="inline-form">
+        <mat-form-field appearance="outline" color="accent">
+          <mat-label>Start Time</mat-label>
+          <input type="time" tabindex="4" name="starttime" matInput [(ngModel)]="data.starttime" required>
+        </mat-form-field>
+        <mat-form-field appearance="outline" color="accent">
+          <mat-label>End Time</mat-label>
+          <input type="time" name="endtime" tabindex="6" matInput [(ngModel)]="data.endtime" required>
+        </mat-form-field>
+      </div> -->
+
+      <div class="inline-form">
+        <mat-form-field appearance="outline" color="accent">
+          <mat-label>Amount(₹)</mat-label>
+          <input type="number" min="1" (mouseup)="onlyNumbers($event)" (mousedown)="onlyNumbers($event)"
+          (keyup)="onlyNumbers($event)" (keydown)="onlyNumbers($event)" name="price" matInput tabindex="2" placeholder="Enter Your Last Name"
+            [(ngModel)]="data.price" required>
+        </mat-form-field>
+        <mat-form-field appearance="outline" color="accent">
+          <mat-label>Trial Period</mat-label>
+          <input type="number" min="0" (mouseup)="onlyNumbers($event)" (mousedown)="onlyNumbers($event)"
+          (keyup)="onlyNumbers($event)" (keydown)="onlyNumbers($event)" name="period" matInput [(ngModel)]="data.period" required>
+        </mat-form-field>
+      </div>
+
+      <div class="inline-form">
+        <mat-form-field appearance="outline" color="accent">
+          <mat-label>Trainer</mat-label>
+          <mat-select required>
+            <mat-option *ngFor="let train of trainers" [value]="train" (click)="trainerlist(train.user_id)">
+              {{train.diaplay_name}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <div class="image-section">
+        <input type="file" #Image tabindex="8" name="file" id="file" class="inputfile" (change)="onFileChanged($event)" />
+        <label for="file"><i class="fa fa-upload upload-img" aria-hidden="true"></i>Choose a file</label>
+      </div>
+
+      </div>
+
+      <!-- <div class="inline-form">
+
+
+        <mat-form-field appearance="outline" color="accent">
+          <mat-label>Meeting Link</mat-label>
+          <textarea type="textarea" name="link" tabindex="4" matInput autocomplete="off" placeholder="Meeting Link Here..."
+            [(ngModel)]="data.link" required></textarea>
+        </mat-form-field>
+      </div> -->
+      <!-- <div class="inline-form">
+        <mat-form-field appearance="outline" color="accent">
+          <mat-label>Meeting Link</mat-label>
+          <textarea matInput
+          cdkTextareaAutosize
+          #autosize="cdkTextareaAutosize"
+          cdkAutosizeMinRows="1"
+          cdkAutosizeMaxRows="5"  [(ngModel)]="data.link" [ngModelOptions]="{standalone: true}"></textarea>
+        </mat-form-field>
+      </div> -->
+
+      <div class="inline-form editor-inline">
+        <angular-editor [(ngModel)]="data.description" placeholder="Description  Here....." [ngModelOptions]="{standalone: true}" [config]="config" required>
+        </angular-editor>
+      </div>
+
+
+      <div class="inline-form btn-signup">
+        <button mat-raised-button color="warn" (click)="reset()">Reset</button>
+        <button mat-raised-button color="accent" tabindex="9" (click)="addevent()">Add Event</button>
+      </div>
+    </form>
+  </div>
+</div>

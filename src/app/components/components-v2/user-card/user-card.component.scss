@@ -1,0 +1,73 @@
+.fit-social-card {
+  border-radius: 5px;
+  background: #fff;
+  width: 262px;
+  margin-bottom: 15px;
+  transition: box-shadow 1s ease;
+  &:hover {
+    box-shadow: 0px 0px 6px #0189bd;
+  }
+  &.active {
+    border: 1px solid #0189bd;
+  }
+}
+.fit-social-card-first {
+  padding: 15px;
+  border-bottom: 1px solid #e2e8f0;
+}
+.fit-social-image {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  -o-object-fit: cover;
+  object-fit: cover;
+}
+.fit-social-card-second {
+  background-color: #9fd2d6;
+  color: #fff;
+  padding: 5px;
+  font-size: 8px;
+  border-radius: 25px;
+  width: 21px;
+  text-align: center;
+}
+.fit-social-card-third {
+  background-color: #8154ef;
+  color: #fff;
+  padding: 5px;
+  font-size: 8px;
+  border-radius: 25px;
+  width: 21px;
+  text-align: center;
+}
+.fit-social-card-fourth {
+  background-color: #ff4e4e;
+  color: #fff;
+  padding: 5px;
+  font-size: 8px;
+  border-radius: 25px;
+  width: 21px;
+  text-align: center;
+}
+.fit-social-card-footer {
+  padding-left: 15px;
+  padding-bottom: 10px;
+  padding-right: 15px;
+}
+.fit-social-card-description {
+  display: block;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  width: 230px;
+}
+.fit-social-card-descriptions {
+  font-size: 14px;
+  color: #0189bd;
+  text-align: justify;
+  margin-bottom: 10px;
+  height: 15px;
+}
+.fit-social-card-imagename {
+  margin-bottom: 10px;
+}

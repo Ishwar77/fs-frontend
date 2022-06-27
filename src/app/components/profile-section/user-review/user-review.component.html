@@ -1,0 +1,91 @@
+<div *ngIf="pageManager.status === 1; else showInfoContainer">
+  <app-loading-component [imageSize]="2"> </app-loading-component>
+</div>
+<ng-template #showInfoContainer>
+  <div *ngIf="pageManager.action === 2; else showEventInfo">
+    <app-no-content></app-no-content>
+    <div fxLayout="column" fxLayoutAlign="center center">
+      <h3>There are no Reviews at the moment</h3>
+    </div>
+  </div>
+  <ng-template #showEventInfo>
+    <div fxLayout="column" style="height: 72vh;overflow:auto">
+      <div fxLayout="column" fxLayoutAlign="center center" style="background-color: rgba(1, 137, 189, 0.15);
+  padding: 10px;color: rgb(1, 137, 189);font-size: 1.4rem;font-weight: 500;">
+        My Reviews
+      </div>
+      <div fxLayout="column" ngStyle.xs="width: 100%;" ngStyle.sm="width: 100%;" style="  background-color: #fff;
+  border-radius: 5px;">
+        <div fxLayout="row">
+          <div fxLayout="column" style="width:100%;height: 500px;overflow: auto;" *ngIf="!showview">
+            <div fxLayout="row" *ngFor="let item of items;index as i" fxLayout.xs="column" fxLayout.sm="column"
+              fxLayoutGap="20px" style="border-bottom: 1px solid #e6e3e3;padding: 15px;">
+              <div fxLayout="column" style="    width: 100%;">
+                <div fxLayout="column">
+                  <div fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="space-between center">
+                    <div fxLayout="row">
+                      <div fxLayout="column" class="user-name"> {{item.event_name}} </div>
+                    </div>
+                    <div fxLayout="column">
+                      <div fxLayout="row" fxLayoutGap="5px">
+                        <div fxLayout="column">
+                          <a *ngIf="enableEditIndex !== i" (click)="enableEditIndex = i"><i
+                              class="fa fa-pencil-square-o review-edit" aria-hidden="true"></i></a>
+                        </div>
+                        <div fxLayout="column">
+                          <a *ngIf="enableEditIndex !== i" (click)="deletereview(item)"><i
+                              class="fa fa-trash-o review-delete" aria-hidden="true"></i></a>
+                        </div>
+                        <div fxLayout="column">
+                          <a *ngIf="enableEditIndex === i" (click)="reviewSave(item,i)"><i
+                              class="fa fa-floppy-o  review-save" aria-hidden="true"></i></a>
+                        </div>
+                        <div fxLayout="column">
+                          <a *ngIf="enableEditIndex === i" (click)="enableEditIndex = null"><i
+                              class="fa fa-close review-delete" aria-hidden="true"></i></a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div fxLayout="column" style="text-align: justify;margin: 5px 0px;">
+                  <div *ngIf="enableEditIndex !== i;else showother">{{item.review}}</div>
+                  <ng-template #showother>
+                    <mat-form-field class="example-full-width" color="accent">
+                      <textarea matInput [(ngModel)]="item.review"></textarea>
+                    </mat-form-field>
+                  </ng-template>
+                </div>
+                <div fxLayout="column">
+                  <div fxLayout="row" fxLayout.xs="column" fxLayout.sm="column" fxLayoutAlign="space-between center"
+                    fxLayoutAlign.xs="center start" fxLayoutAlign.sm="center start">
+                    <div fxLayout="column">
+                      <div fxLayout="row" fxLayoutGap="10px">
+                        <div fxLayout="column">
+                          Event :
+                        </div>
+                        <div fxLayout="column">
+                          <a (click)="routetoevent(item)"
+                            style="cursor: pointer;color: #0b68c7;">{{item.Event.event_name}}</a>
+                        </div>
+                      </div>
+                    </div>
+                    <div fxLayout="column">
+                      <div fxLayout="row" fxLayoutGap="10px">
+                        <span class="event-heads">Created Date:</span><span
+                          class="event-name">{{item.created_at | date}}</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div fxLayout="column" style="width: 100%;" fxHide.xs fxHide.sm>
+            <img class="banner" src="https://i.ibb.co/cJfj9x9/Referal-Banner.jpg" alt="" srcset="">
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+</ng-template>

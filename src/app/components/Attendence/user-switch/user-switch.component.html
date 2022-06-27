@@ -1,0 +1,47 @@
+<div fxLayout="column" fxLayoutGap="10px">
+  <div fxLayout="column">
+    <mat-form-field color="acent">
+      <mat-label>Search</mat-label>
+      <input matInput (keyup)="applyFilter($event)" placeholder="Search Users">
+    </mat-form-field>
+  </div>
+  <div fxLayout="column">
+    <table mat-table class="mat-elevation-z8">
+
+      <ng-container matColumnDef="amount">
+        <th mat-header-cell *matHeaderCellDef>Select </th>
+        <td class="data-center" mat-cell *matCellDef="let element"> rjm </td>
+      </ng-container>
+
+      <ng-container matColumnDef="slno">
+        <th mat-header-cell *matHeaderCellDef> ID </th>
+        <td class="data-center" mat-cell *matCellDef="let i=index"> {{i+1}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="notes">
+        <th mat-header-cell *matHeaderCellDef>Select</th>
+        <td mat-cell *matCellDef="let element" style="text-align: left;">
+          <mat-checkbox>
+
+          </mat-checkbox>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+    <!-- <mat-paginator #paginator *ngIf="dataSource" [length]="menus.length" [pageSize]="5" [pageSizeOptions]="[5,10,100]"
+      [showFirstLastButtons]="true" (page)="managePagination($event)">
+    </mat-paginator> -->
+  </div>
+  <div fxLayout="column">
+    <div fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="center center">
+      <div fxLayout="column">
+        <button mat-raised-button color="warn">Cancel </button>
+      </div>
+      <div fxLayout="column">
+        <button mat-raised-button color="accent">Add </button>
+      </div>
+    </div>
+  </div>
+</div>

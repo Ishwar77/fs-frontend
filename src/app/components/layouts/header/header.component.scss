@@ -1,0 +1,58 @@
+.menu-header {
+  font-size: 1.1rem;
+  cursor: pointer;
+  font-family: Segoe UI;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: 0.5px;
+  outline: 0;
+}
+.menu-header:hover {
+  color: #0189bc;
+  text-decoration: none;
+  transition: all 1s ease;
+  cursor: pointer;
+}
+.header-image {
+  outline: 0;
+  cursor: pointer;
+  background-color: rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+  padding: 5px 10px;
+  transition: all 2s ease-in 0.5s;
+}
+
+.notification-container {
+  position: absolute;
+  top: 75px;
+  right: 43px;
+  background: #fff;
+  color: #212121;
+  font-size: 14px;
+  width: 400px;
+  min-width: 400px;
+  font-weight: 400;
+  border-color: #f0f0f0;
+  padding: 8px;
+  transition: opacity 0.3s ease-in-out;
+  box-shadow: 0 4px 16px 0 rgba(0, 0, 0, 0.2);
+  z-index: 100;
+  .notify-shape-card {
+    border-top: 1px solid #f4f4f4;
+    border-left: 1px solid #f4f4f4;
+    width: 13px;
+    height: 13px;
+    -webkit-transform: rotate(45deg);
+    transform: rotate(45deg);
+    margin-top: -15px;
+    background-color: #fff;
+  }
+}
+
+.notification-head-main {
+  font-weight: 600;
+  font-size: 1.4rem;
+}
+.notification-lists {
+  padding-top: 15px;
+}

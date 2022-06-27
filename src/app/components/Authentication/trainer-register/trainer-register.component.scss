@@ -1,0 +1,43 @@
+.app-trainer-register {
+  background: #e3e3e3;
+}
+
+.login-not {
+  margin: 10px 0px;
+}
+
+.links {
+  color: #0189bd;
+  cursor: pointer;
+}
+.trainer-register {
+  box-shadow: 0px 3px 20px #0000000b;
+  opacity: 1;
+  background-color: #fff;
+  // background-color: rgba(255, 255, 255, var(--bg-opacity));
+  border-radius: 0.375rem;
+  margin: 20px;
+}
+form {
+  padding: 10px;
+}
+mat-radio-button {
+  margin: 0px 10px;
+}
+
+.userreg {
+  font-size: 1.6em;
+  font-weight: 700;
+  text-align: center;
+  margin: 10px;
+}
+.baho {
+  background-color: royalblue !important;
+  color: #fff !important;
+  text-decoration: none !important;
+  padding: 15px !important;
+  &:hover{cursor: pointer;}
+}
+.nomember {
+  text-align-last: center;
+}

@@ -1,0 +1,354 @@
+<div *ngIf="pageManager.status === 1; else showInfoContainer">
+  <app-loading-component [imageSize]="2"> </app-loading-component>
+</div>
+<ng-template #showInfoContainer>
+  <div *ngIf="pageManager.action === 2; else showEventInfo">
+    <app-no-content></app-no-content>
+  </div>
+  <ng-template #showEventInfo>
+    <div class="app-profile" fxLayout="column" fxFlexFill>
+      <div class="profile-info box" fxLayout="column">
+        <div fxLayout="column" fxHide.lg fxHide.md>
+          <div fxLayout="row" fxLayoutAlign="space-between center">
+            <div fxLayout="column" ngStyle.sm="min-width:110px;cursor: pointer;text-align:left"
+              ngStyle.xs="min-width:110px;cursor: pointer;text-align:right" class="edit-profile">
+              <a (click)="editprofile(menus)">Edit Profile</a>
+            </div>
+            <div fxLayout="column" ngStyle.sm="min-width:110px;cursor: pointer;text-align:right"
+              ngStyle.xs="min-width:110px;cursor: pointer;text-align:right" class="edit-profile">
+              <div>
+                <a *ngIf="!expanded" (click)="expanded=!expanded">About Info</a>
+              </div>
+              <div fxLayout="row" fxLayoutGap="10px">
+                <div fxLayout="column">
+                  <a *ngIf="expanded" (click)="saveaboutinfo()">Save</a>
+                </div>
+                <div fxLayout="column">
+                  <a *ngIf="expanded" (click)="expanded=!expanded" style="color: red;">Cancel</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div fxLayout="row">
+          <div fxLayout="row" fxLayout.xs="column" fxLayout.sm="column" ngStyle.xs="width:100%" ngStyle.sm="width:100%"
+            class="row-sec" fxLayoutAlign.xs="center center" fxLayoutAlign.sm="center center"
+            fxLayoutAlign="start center">
+
+            <div fxLayout="column" class="profile-image" ngStyle.xs="margin-bottom:10px"
+              ngStyle.sm="margin-bottom:10px">
+              <img *ngIf="menus && menus.profile_picture_url" class="profile-pic" src="{{menus.profile_picture_url}}"
+                height="200px" width="200px" alt="fitsocial-profile-image" srcset="">
+              <img *ngIf="!menus.profile_picture_url" class="profile-pic"
+                src="https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909__480.png" height="200px"
+                width="200px" alt="fitsocial-profile-image" srcset="">
+              <input mat-input style="display: none;" type="file" (change)="onFileSelecte($event)" #fileInput>
+              <i class="fa fa-camera fa-5x" fxHide.xs (click)="fileInput.click()"></i>
+            </div>
+            <i class="fa fa-camera fa-5x image-change" fxHide.sm fxHide.lg fxHide.md (click)="fileInput.click()"></i>
+            <div fxLayout="column">
+              <div fxLayout="column" fxLayoutGap="20px">
+                <div class="profile-details" fxLayout="column" fxLayoutGap="10px">
+                  <div *ngIf="name" fxLayout="column">
+                    <div class="name" fxLayoutAlign.xs="center center" fxLayoutAlign.sm="center center"
+                      ngStyle.xs="font-size: 1.5rem;" ngStyle.sm="font-size: 1.5rem;"
+                      (click)="routetopublicprofile(menus && userrole == 6 ? menus.pageName : '')">
+                      {{name | uppercase}}
+                    </div>
+                  </div>
+                  <div fxLayout="column">
+                    <div *ngIf="userrole == 3" class="username" ngStyle.xs="text-align:center">Member</div>
+                    <div *ngIf="userrole == 6" class="username" ngStyle.xs="text-align:center">Trainer</div>
+                    <div *ngIf="userrole == 1" class="username" ngStyle.xs="text-align:center">Admin</div>
+                  </div>
+                </div>
+
+                <div *ngIf="menus && menus.created_at" fxLayout="column">
+                  <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap.xs="10px">
+                    <div fxLayout="column" ngStyle.sm="min-width:110px" ngStyle.xs="min-width:110px"
+                      class="profile-info-title">Joined On </div>
+                    <div fxLayout="column">{{menus.created_at | date:'dd/MM/yyyy'}}</div>
+                  </div>
+                </div>
+                <div *ngIf="menus && menus.email_id" fxLayout="column">
+                  <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap.xs="10px">
+                    <div fxLayout="column" ngStyle.sm="min-width:110px" ngStyle.xs="min-width:110px"
+                      class="profile-info-title">Email </div>
+                    <div fxLayout="column">{{menus.email_id}}</div>
+                  </div>
+                </div>
+                <div fxLayout="column">
+                  <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap.xs="10px">
+                    <div fxLayout="column" ngStyle.sm="min-width:110px" ngStyle.xs="min-width:110px"
+                      class="profile-info-title">Contact </div>
+                    <div fxLayout="column">{{contact}}</div>
+                  </div>
+                </div>
+                <div fxLayout="column" fxHide.sm fxHide.xs>
+                  <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap.xs="10px">
+                    <div fxLayout="column" fxLayoutAlign.xs="start center" fxLayoutAlign.sm="start center"
+                      fxLayoutAlign.md="start start" fxLayoutAlign.lg="start start" ngStyle.sm="min-width:110px"
+                      ngStyle.xs="min-width:110px" class="edit-profile">
+                      <a (click)="editprofile(menus)">Edit Profile</a>
+                    </div>
+                    <div *ngIf="userrole == 6" fxLayout="column" fxLayoutAlign="start start" class="edit-profile">
+                      <div>
+                        <a *ngIf="!expanded" (click)="expanded=!expanded">About Info</a>
+                      </div>
+                      <div fxLayout="row" fxLayoutGap="10px">
+                        <div fxLayout="column">
+                          <a *ngIf="expanded" (click)="saveaboutinfo()">Save</a>
+                        </div>
+                        <div fxLayout="column">
+                          <a *ngIf="expanded" (click)="expanded=!expanded" style="color: red;">Cancel</a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div *ngIf="userrole == 6" fxLayout="column" fxHide.lg fxHide.md>
+                  <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap.xs="10px">
+                    <div fxLayout="column" ngStyle.sm="min-width:110px" ngStyle.xs="min-width:110px"
+                      class="profile-info-title" matTooltip="Used in the URL of trainer public profile"
+                      [matTooltipPosition]="'above'">Page name </div>
+                    <div fxLayout="column">{{menus.pageName}}</div>
+                  </div>
+                </div>
+
+                <div fxLayout="column" fxHide.lg fxHide.md>
+                  <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap.xs="10px">
+                    <div fxLayout="column" ngStyle.sm="min-width:110px" ngStyle.xs="min-width:110px"
+                      class="profile-info-title">Gender </div>
+                    <div fxLayout="column">{{menus.gender | uppercase}}</div>
+                  </div>
+                </div>
+
+                <div *ngIf="rewardpoints" fxLayout="column" fxHide.lg fxHide.md>
+                  <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap.xs="10px">
+                    <div fxLayout="column" ngStyle.sm="min-width:110px" ngStyle.xs="min-width:110px"
+                      class="profile-info-title">Reward Points</div>
+                    <div fxLayout="column">{{rewardpoints?rewardpoints:'0'}}</div>
+                  </div>
+                </div>
+
+                <div *ngIf="ratingvalue && userrole == 6" fxLayout="column" fxHide.lg fxHide.md>
+                  <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap.xs="10px">
+                    <div fxLayout="column" ngStyle.sm="min-width:110px" ngStyle.xs="min-width:110px"
+                      class="profile-info-title">Rating</div>
+                    <div fxLayout="column">
+                      <span class="staring" fxLayoutAlign="center center">
+                        {{ratingvalue ? ratingvalue : ''}}&nbsp;
+                        <i class="fa fa-star"></i>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+
+                <div fxLayout="column" fxHide.md fxHide.lg fxHide.xl>
+                  <div fxLayout="row" fxLayoutAlign="center center">
+                    <div fxLayout="column" ngStyle.sm="min-width:110px;cursor: pointer;"
+                      ngStyle.xs="min-width:110px;cursor: pointer;" class="edit-profile">
+                      <button mat-raised-button (click)="openDialog(menus.uuid)" color="accent"
+                        style="cursor: pointer;">Invite Your Friends</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="line" fxLayout="row" fxHide.xs fxHide.sm></div>
+          <div fxLayout="row" fxHide.xs fxHide.sm class="row-sec" fxLayoutAlign="center center">
+            <div fxLayout="column" fxLayoutGap="20px">
+              <div fxLayout="column" *ngIf="userrole == 6">
+                <div fxLayout="row" fxLayoutAlign="start center">
+                  <div fxLayout="column" class="profile-info-title"
+                    matTooltip="Used in the URL of trainer public profile" [matTooltipPosition]="'above'">Page Name
+                  </div>
+                  <div fxLayout="column">{{pagename?pagename:'NA'}}</div>
+                </div>
+              </div>
+              <div fxLayout="column" *ngIf="menus.gender">
+                <div fxLayout="row" fxLayoutAlign="start center">
+                  <div fxLayout="column" class="profile-info-title">Gender</div>
+                  <div fxLayout="column">{{menus.gender | uppercase}}</div>
+                </div>
+              </div>
+              <div *ngIf="userrole == 3" fxLayout="column">
+                <div fxLayout="row" fxLayoutAlign="start  center">
+                  <div fxLayout="column" class="profile-info-title">Designation</div>
+                  <div fxLayout="column">{{designation?designation:'NA'}}</div>
+                </div>
+              </div>
+              <div *ngIf="rewardpoints" fxLayout="column">
+                <div fxLayout="row" fxLayoutAlign="start center">
+                  <div fxLayout="column" class="profile-info-title">Reward Points</div>
+                  <div fxLayout="column" style="font-size: 1.2rem;font-weight: 500;">{{rewardpoints?rewardpoints:''}}
+                  </div>
+                </div>
+              </div>
+              <div *ngIf="ratingvalue && userrole == 6" fxLayout="column">
+                <div fxLayout="row" fxLayoutAlign="start center">
+                  <div fxLayout="column" class="profile-info-title">Rating</div>
+                  <div fxLayout="column" style="font-size: 1.2rem;font-weight: 500;">
+                    <span class="staring" fxLayoutAlign="center center">
+                      {{ratingvalue ? ratingvalue : ''}}&nbsp;
+                      <i class="fa fa-star"></i>
+                    </span>
+                  </div>
+                </div>
+              </div>
+              <!-- <div *ngIf="userrole == 6" fxLayout="column">
+                <div fxLayout="row" fxLayoutAlign="start center">
+                  <button mat-raised-button color="accent" (click)="postAdvertise()">Post Your Advertise</button>
+                </div>
+              </div> -->
+            </div>
+          </div>
+          <div class="line" fxLayout="row" fxHide.xs fxHide.sm></div>
+          <div fxLayout="column" fxLayoutGap="15px" fxHide.xs fxHide.sm class="row-sec">
+            <div fxLayout="column"> <img
+                src="data:image/jpeg;base64,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"
+                alt="" srcset=""></div>
+            <div fxLayout="column" class="refer-head" fxLayoutAlign="center center"> Refer Your Friend</div>
+            <div fxLayout="column"> <button mat-raised-button color="accent"
+                (click)="openDialog(menus.uuid)">Invite</button></div>
+          </div>
+        </div>
+        <div fxLayout="column" *ngIf="expanded && userrole == 6">
+          <div>
+            <!-- <app-profile-about></app-profile-about> -->
+            <div class="name-detailss" style="width: 100%;">
+              <angular-editor [(ngModel)]="menus.expertise_in" [ngModelOptions]="{standalone: true}" [spellcheck]="true"
+                placeholder="About Here....." [config]="config" required>
+              </angular-editor>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="profile-info box-2" fxLayout="column">
+        <mat-tab-group animationDuration="1000ms" (selectedTabChange)="onTabPanelClick($event, $event.tab)">
+          <mat-tab>
+            <ng-template mat-tab-label>
+              <div fxLayout="column" fxLayoutAlign="center center">
+                <mat-icon class="example-tab-icon" style="font-size: 22px;color: #0189bd;">home
+                </mat-icon>
+                <span style="font-size: 1rem;" fxHide.xs fxHide.sm>Home</span>
+              </div>
+            </ng-template>
+            <app-preview-v2 *ngIf="userrole == 3 && isFirstTabVisible"></app-preview-v2>
+            <app-preview *ngIf="userrole == 6 && isFirstTabVisible"></app-preview>
+          </mat-tab>
+
+          <mat-tab>
+            <ng-template mat-tab-label>
+              <div fxLayout="column" fxLayoutAlign="center center">
+                <mat-icon class="example-tab-icon" style="font-size: 22px;color: #0189bd;">event_note
+                </mat-icon>
+                <span *ngIf="userrole == 3" style="font-size: 1rem;" fxHide.xs fxHide.sm>My events</span>
+                <span *ngIf="userrole == 6" style="font-size: 1rem;" fxHide.xs fxHide.sm>Users</span>
+              </div>
+            </ng-template>
+            <app-eventlist *ngIf="userrole == 3 && isSecondTabVisible"></app-eventlist>
+            <app-user-list *ngIf="userrole == 6 && isSecondTabVisible"></app-user-list>
+          </mat-tab>
+
+          <mat-tab fxHide.xs fxHide.sm>
+            <ng-template mat-tab-label>
+              <div fxLayout="column" fxLayoutAlign="center center">
+                <mat-icon class="example-tab-icon" style="font-size: 22px;color: #0189bd;">payment
+                </mat-icon>
+                <span style="font-size: 1rem;" fxHide.xs fxHide.sm>Payments</span>
+              </div>
+            </ng-template>
+            <app-payment-history *ngIf="isThirdTabVisible"></app-payment-history>
+          </mat-tab>
+
+          <mat-tab>
+            <ng-template mat-tab-label>
+              <div fxLayout="column" fxLayoutAlign="center center">
+                <mat-icon class="example-tab-icon" style="font-size: 22px;color: #0189bd;">text_snippet
+                </mat-icon>
+                <span style="font-size: 1rem;" fxHide.xs fxHide.sm>Rewards</span>
+              </div>
+            </ng-template>
+            <app-rewards-page *ngIf="isFourthTabVisible"></app-rewards-page>
+          </mat-tab>
+
+          <mat-tab *ngIf="userrole == 6">
+            <ng-template mat-tab-label>
+              <div fxLayout="column" fxLayoutAlign="center center">
+                <mat-icon class="example-tab-icon" style="font-size: 22px;color: #0189bd;">preview
+                </mat-icon>
+                <span style="font-size: 1rem;" fxHide.xs fxHide.sm>Batches</span>
+              </div>
+            </ng-template>
+            <app-trainer-batches *ngIf="isFifthTabVisible"></app-trainer-batches>
+          </mat-tab>
+
+          <mat-tab *ngIf="userrole == 6">
+            <ng-template mat-tab-label>
+              <div fxLayout="column" fxLayoutAlign="center center">
+                <mat-icon class="example-tab-icon" style="font-size: 22px;color: #0189bd;">preview
+                </mat-icon>
+                <span style="font-size: 1rem;" fxHide.xs fxHide.sm>Onboard</span>
+              </div>
+            </ng-template>
+            <app-trainer-onboarding-component></app-trainer-onboarding-component>
+          </mat-tab>
+
+          <mat-tab>
+            <ng-template mat-tab-label>
+              <div fxLayout="column" fxLayoutAlign="center center">
+                <mat-icon class="example-tab-icon" style="font-size: 22px;color: #0189bd;">info
+                </mat-icon>
+                <span style="font-size: 1rem;" fxHide.xs fxHide.sm>BMI Info</span>
+              </div>
+            </ng-template>
+            <app-bmi-info></app-bmi-info>
+          </mat-tab>
+
+          <mat-tab>
+            <ng-template mat-tab-label>
+              <div fxLayout="column" fxLayoutAlign="center center">
+                <mat-icon class="example-tab-icon" style="font-size: 22px;color: #0189bd;">settings
+                </mat-icon>
+                <span style="font-size: 1rem;" fxHide.xs fxHide.sm>Settings</span>
+              </div>
+            </ng-template>
+            <app-setting></app-setting>
+          </mat-tab>
+
+          <mat-tab>
+            <ng-template mat-tab-label>
+              <div fxLayout="column" fxLayoutAlign="center center">
+                <mat-icon class="example-tab-icon" style="font-size: 22px;color: #0189bd;">preview
+                </mat-icon>
+                <span style="font-size: 1rem;" fxHide.xs fxHide.sm>Reviews</span>
+              </div>
+            </ng-template>
+            <app-user-review></app-user-review>
+          </mat-tab>
+          <!-- <mat-tab>
+            <ng-template mat-tab-label>
+              <div fxLayout="column" fxLayoutAlign="center center">
+                <mat-icon class="example-tab-icon" style="font-size: 22px;color: #0189bd;">preview
+                </mat-icon>
+                <span style="font-size: 1rem;" fxHide.xs fxHide.sm>Advertise</span>
+              </div>
+            </ng-template>
+            <div fxLayout="row wrap" style="padding: 10px;" fxLayoutGap="10px">
+              <div fxLayout="column"  *ngFor="let advertiseGet of advertiseListAll">
+                <app-banner [modelData]="advertiseGet"></app-banner>
+              </div>
+
+            </div>
+
+          </mat-tab> -->
+
+        </mat-tab-group>
+      </div>
+    </div>
+  </ng-template>
+</ng-template>

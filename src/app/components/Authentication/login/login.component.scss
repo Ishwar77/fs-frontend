@@ -1,0 +1,108 @@
+.app-login {
+  > .logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    > .logo-img {
+      width: 150px;
+      height: 150px;
+    }
+  }
+}
+.app-login {
+  > .login-form {
+    > form {
+      > .inline-form {
+        display: flex;
+        align-items: center;
+        width: 100%;
+        justify-content: center;
+      }
+    }
+  }
+}
+
+mat-form-field {
+  width: 100%;
+}
+.example-margin {
+  margin: 0 10px;
+}
+.date-radio {
+  display: flex;
+  align-items: flex-start;
+  margin-left: -43px;
+
+  > .radio-group {
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    margin-left: -44px;
+  }
+}
+.example-radio-button {
+  margin-right: 20px;
+}
+.date-radio mat-form-field {
+  margin-right: 90px;
+}
+
+.btn-signup button {
+  min-width: 200px;
+  margin: 5px 10px;
+}
+@media only screen and (max-width: 768px) {
+  .date-radio {
+    flex-direction: column;
+    margin-left: 0;
+  }
+  .inline-form {
+    flex-direction: column;
+  }
+  mat-form-field {
+    margin: 0;
+  }
+
+  .date-radio mat-form-field {
+    margin-right: 0;
+  }
+  .radio-group {
+    margin-left: 0px !important;
+  }
+
+  .cdk-overlay-pane {
+    overflow-x: auto;
+  }
+  .section-1 {
+    flex-direction: column;
+  }
+}
+
+.section-1 {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.section-2 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 20px 0px;
+}
+.links {
+  color: #0189bd;
+  cursor: pointer !important;
+
+}
+.userreg {
+  font-size: 1.6em;
+  font-weight: 700;
+  text-align: center;
+}
+// .login-snackbar {
+//   background-color:#0189bd !important;
+
+//   color: #fff !important;
+//   z-index: 100 !important;
+// }

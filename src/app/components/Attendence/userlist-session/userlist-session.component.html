@@ -1,0 +1,64 @@
+<div fxLayout="column" fxLayoutGap="20px">
+  <div fxLayout="column" style="padding: 15px 15px 0px 15px;">
+    <input class="search" (keyup)="applyfilter($event.target.value,data)" autocomplete="off" placeholder="Search Users">
+  </div>
+  <div fxLayout="column">
+    <div fxLayout="row" class="userlist-head" fxLayoutAlign="space-between center">
+      <div fxLayout="column" class="userlist-head">Users({{userslist.length}})</div>
+      <div fxLayout="column">
+        <div fxLayout="row" fxLayoutGap="5px">
+          <!-- <div fxLayout="column" class="checked-container" style="color: #0189bd;cursor: pointer;" >
+            <span class="material-icons" (click)="openDialog($event)">add</span>
+          </div> -->
+          <div fxLayout="column">
+            <div class="checked-container" [class.active]="selectall" (click)="selectallusers()">
+              <span class="material-icons checked-icon">
+                done
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div fxLayout="column" *ngIf="userslist" class="activeclass">
+    <div fxLayout="row" *ngFor="let item of userslist" class="user-session" fxLayoutAlign="space-between center">
+      <div fxLayout="column">
+        <div fxLayout="row" fxLayoutGap="20px" fxLayoutAlign="start center">
+          <div fxLayout="column">
+            <img height="50px" width="50px" style="border-radius: 50%;"
+              [src]="item.profile_picture_url ? item.profile_picture_url : placeholder" alt="" srcset="">
+            <div class="active-session"></div>
+          </div>
+          <div fxLayout="column" fxLayoutGap="5px">
+            <div fxLayout="row">
+              {{item ? item.diaplay_name : 'N/A'}}
+            </div>
+            <div fxLayout="row">
+              {{item ? (item.expiry_date | date): 'N/A'}}
+            </div>
+          </div>
+        </div>
+      </div>
+      <div fxLayout="column">
+        <div class="checked-container" [class.active]="item.user_isOnline" (click)="approveUser(item)">
+          <span class="material-icons checked-icon">
+            done
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div fxLayout="column" style="padding: 15px;">
+    <div fxLayout="row" fxLayoutAlign="space-between center">
+      <div fxLayout="column">
+        <button [disabled]="!array.length" class="user-btn-action" (click)="saveClicked.next(array)" mat-raised-button
+          color="accent">Save</button>
+      </div>
+      <div fxLayout="column">
+        <button class="user-btn-action" mat-raised-button color="warn" (click)="sessionclicked.next()">Session
+          End</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,30 @@
+<h1 mat-dialog-title style="border-bottom: 1px solid rgb(217 217 217);color:#02729b" fxLayoutAlign="center center">
+  How would you rate this trainer?</h1>
+<div mat-dialog-content fxLayout="column" fxLayoutAlign="center center" style="text-align: center;">
+  <div fxLayout="column">
+    <div fxLayout="column">
+      <div fxLayout="column" style="overflow: auto;" fxLayoutAlign="center center">
+        <div fxLayout="row wrap" fxLayoutGap="10px">
+          <div fxLayout="column">
+            <div fxLayout="row" style="font-size: 11px;">
+              <ul class="list-inline rating-list" *ngFor="let star of stars" style="display: inline-block">
+                <li (click)="countStar(star)" [ngClass]="{'selected': (star <= selectedValue)}">
+                  <i class="fa fa-star" style="font-size: 30px;"></i>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div fxLayout="column" style="margin: 15px 0px;width: 100%; ">
+    <div fxLayout="row" fxLayoutAlign="center start">
+      <div fxLayout="column">
+        <button [disabled]="!selectedValue" mat-raised-button color="accent"
+          style="border: none;outline: none;height: 50px !important;"
+          (click)="submitrating(selectedValue)">Submit</button>
+      </div>
+    </div>
+  </div>
+</div>

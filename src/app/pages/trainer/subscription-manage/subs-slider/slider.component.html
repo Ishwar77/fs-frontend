@@ -1,0 +1,51 @@
+<div class="slider-panel-item" ngStyle.xs="width:350px" ngStyle.sm="width:350px">
+    <div class="header-items">
+        <div class="header">
+            {{(  getPanelTitle()) | trim : 25 }}
+        </div>
+        <div class="actions">
+            <button *ngIf="model['viewMode'] !== 1" mat-raised-button style="background-color: #db5024;"
+                (click)="deleteevent()">
+                <span><i class="fa fa-trash"></i> </span>
+            </button>
+            <button mat-raised-button (click)="saveAction()" style="margin: 10px;">
+                <span class="material-icons">{{ getPanelTitle(false)}} </span>
+            </button>
+            <button mat-raised-button fxHide.md fxHide.lg (click)="closesilder()">
+                <span class="material-icons">cancel</span>
+            </button>
+        </div>
+    </div>
+    <div class="slider-content">
+        <form>
+            <div class="inline-form">
+                <mat-form-field appearance="outline" color="accent">
+                    <mat-label>Days</mat-label>
+                    <input type="number" min=0 matInput name="days" placeholder="Days" [(ngModel)]="model['days']" tabindex="1"
+                        required [ngModelOptions]="{standalone: true}" [disabled]="model['viewMode'] === 3">
+                </mat-form-field>
+            </div>
+            <div class="inline-form">
+                <mat-form-field appearance="outline" color="accent">
+                    <mat-label>Amount</mat-label>
+                    <input type="number" min=0 matInput name="amount" placeholder="Amount" [(ngModel)]="model['amount']" tabindex="1"
+                        required [ngModelOptions]="{standalone: true}" [disabled]="model['viewMode'] === 3">
+                </mat-form-field>
+            </div>
+            <div class="inline-form">
+                <mat-form-field appearance="outline" color="accent">
+                    <mat-label>Tax</mat-label>
+                    <input type="number" min=0 max=100 matInput name="tax" placeholder="Tax" [(ngModel)]="model['tax']" tabindex="1"
+                        required [ngModelOptions]="{standalone: true}" [disabled]="model['viewMode'] === 3">
+                </mat-form-field>
+            </div>
+            <div class="inline-form">
+                <mat-form-field appearance="outline" color="accent">
+                    <mat-label>Batch Count</mat-label>
+                    <input type="number" min=0 max=100 matInput name="tax" placeholder="Batch Count" [(ngModel)]="model['batchs']" tabindex="1"
+                        required [ngModelOptions]="{standalone: true}" [disabled]="model['viewMode'] === 3">
+                </mat-form-field>
+            </div>
+        </form>
+    </div>
+</div>

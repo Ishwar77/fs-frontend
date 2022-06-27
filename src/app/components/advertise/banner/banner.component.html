@@ -1,0 +1,69 @@
+<div fxLayout="column" class="banner-container">
+  <div class="banner-type">Sponsered</div>
+  <div fxLayout="column" fxLayoutGap="5px">
+    <div fxLayout="column">
+      <img height="100px" width="100%" src="{{modelData.advertisement_image || 'https://via.placeholder.com/348x100'}}" alt="">
+    </div>
+    <div fxLayout="column" fxLayoutGap="10px"  class="banner-content">
+      <div fxLayout="column">
+        <div fxLayout="row" fxLayoutAlign="space-between start">
+          <div fxLayout="column">
+            <div fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="start center">
+              <!-- <div fxLayout="column">
+                <img height="50px" width="50px" src="https://pmcvariety.files.wordpress.com/2020/05/netflix-logo.png"
+                  alt="">
+              </div> -->
+              <div fxLayout="column">
+                <div fxLayout="column" class="banner-title">{{modelData.advertisement_title || 'NA' }}</div>
+
+              </div>
+            </div>
+          </div>
+          <!-- <div fxLayout="column" fxLayoutAlign="space-between start" fxLayoutGap="5px" >
+            <div fxLayout="column">24:00:00​</div>
+            <div fxLayout="column">
+              <button mat-raised-button style="background-color: #3f51b5;width: 120px !important;" color="primary">Know
+                More</button>
+            </div>
+          </div> -->
+        </div>
+      </div>
+      <div fxLayout="column" style="min-height: 40px;
+      max-height: 40px;">
+
+          <div fxLayout="column" class="banner-description">{{(modelData.advertisement_description | trim : 110) || 'NA'}}</div>
+
+      </div>
+      <div fxLayout="column">
+
+        <div fxLayout="row" fxLayoutAlign="space-between center">
+          <div fxLayout="column">
+            <div fxLayout="row" fxLayoutGap="5px" fxLayoutAlign="start center"  *ngIf="modelData.advertisement_start_date">
+              <div fxLayout="column">
+                <span class="material-icons" style="color:#04abe9">insert_invitation</span>
+              </div>
+              <div fxLayout="column" style="color:#04abe9">
+                {{modelData.advertisement_start_date | date }}
+              </div>
+            </div>
+
+          </div>
+          <div fxLayout="column">
+            <div fxLayout="row" fxLayoutGap="5px" fxLayoutAlign="end center" *ngIf="modelData.advertisement_end_time">
+              <div fxLayout="column">
+                <span class="material-icons" style="color:#c74a4a">hourglass_full</span>
+              </div>
+              <div fxLayout="column" style="color:#c74a4a">
+                {{(modelData.advertisement_end_time | date) || 'NA' }}
+              </div>
+            </div>
+
+          </div>
+
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

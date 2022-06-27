@@ -1,0 +1,168 @@
+.user-tab-icon {
+  margin-right: 8px;
+}
+.user-label {
+  display: inline-grid !important;
+}
+
+.user-tab-group {
+  flex-direction: row !important;
+}
+
+.menu-link-content {
+  padding: 0px 30px;
+}
+.user-menu-dash {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  background-color: #000;
+  color: #fff;
+  width: 181px;
+}
+.user-menu-container {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  width: 100%;
+}
+
+.user-dash-menu {
+  width: 100%;
+  border-right: solid #fff 4px;
+  transition: background-color ease-in-out 0.3s;
+  &.active {
+    border-right: solid #007bff 4px;
+  }
+
+  &:hover {
+    cursor: pointer;
+    background-color: #0088bc;
+  }
+}
+.user-dash-menu,
+.user-dash-menu.i {
+  padding: 17px 21px;
+  text-decoration: none;
+  border: 1px solid #f4f4f4;
+  min-width: 181px;
+  width: 100%;
+}
+
+.menu-link-content {
+  // border: 1px solid #f4f4f4;
+  width: 100%;
+  height: auto;
+  min-height: 200px;
+  overflow: auto;
+  margin: 10px 0px;
+}
+
+.menu-name {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  height: 100%;
+  text-transform: uppercase;
+}
+.icon-admin {
+  color: #084052;
+}
+
+.admin-img:hover {
+  border: none;
+  text-decoration: none;
+  cursor: pointer;
+}
+.dashimage {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+  border: 4px solid #40a6cd;
+}
+.profile {
+  border-radius: 50%;
+}
+.user-info {
+  font-size: 0.8rem;
+}
+.username {
+  font-size: 1.3rem;
+  padding: 10px 10px;
+  font-weight: 500;
+}
+.admin-img {
+  height: 150px;
+  border-radius: 50%;
+  min-width: 150px;
+  max-width: 150px;
+  padding: 5px 5px;
+  border: none;
+  cursor: pointer;
+  box-shadow: 1px 1px 20px 1px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0, 0, 0, 0.12);
+}
+
+.membername{
+  font-size: 1.3rem;
+color: #fff;
+}
+
+.membertyp, .memberreg, .gender{
+  font-size: 1rem;
+  color: #fff;
+  margin: 5px 0px;
+}
+.person-info{
+  text-align: center;
+  background: #0189bd;
+  width: 100%;
+  color: #fff;
+  padding: 10px;
+}
+.edit-image{
+  width: 100%;
+  margin: 10px 0px;
+
+}
+.editbtn{
+  margin: 10px 0px;
+}
+.memberimage{
+  width: 100%;
+  padding: 10px 0px;
+}
+
+
+
+.example-container {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.example-is-mobile .example-toolbar {
+  position: fixed;
+  z-index: 2;
+}
+
+h1.example-app-name {
+  margin-left: 8px;
+}
+
+.example-sidenav-container {
+  flex: 1;
+}
+
+.example-is-mobile .example-sidenav-container {
+  flex: 1 0 auto;
+}
+.menu-list {
+  display: block;
+}

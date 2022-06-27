@@ -1,0 +1,74 @@
+.fb:hover {
+  text-decoration: none;
+  background: #3b5998;
+  color: #fff;
+  transition: all 0.3s ease-in;
+  outline: 0;
+  cursor: pointer;
+}
+.insta:hover {
+  text-decoration: none;
+  background: #d6249f;
+  background: radial-gradient(circle at 30% 107%, #fdf497 0, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285aeb 90%);
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.25);
+  color: #fff;
+  transition: all 0.3s ease-in;
+  outline: 0;
+  cursor: pointer;
+}
+.twitter:hover {
+  text-decoration: none;
+  background: #1da1f2;
+  color: #fff;
+  transition: all 0.3s ease-in;
+  outline: 0;
+  cursor: pointer;
+}
+.linedin:hover {
+  text-decoration: none;
+  background: #0077b5;
+  color: #fff;
+  transition: all 0.3s ease-in;
+  outline: 0;
+  cursor: pointer;
+}
+.whatsapp:hover {
+  text-decoration: none;
+  background: #00bfa5;
+  color: #fff;
+  transition: all 0.3s ease-in;
+  outline: 0;
+  cursor: pointer;
+}
+.mail:hover {
+  text-decoration: none;
+  background: #d40000;
+  color: #fff;
+  transition: all 0.3s ease-in;
+  outline: 0;
+  cursor: pointer;
+}
+.copy:hover {
+  text-decoration: none;
+  background: #1db8a1;
+  color: #fff;
+  transition: all 0.3s ease-in;
+  outline: 0;
+  cursor: pointer;
+}
+i {
+  font-size: 1.3rem;
+  background-color: #1c6682;
+  color: #fff;
+  padding: 8px;
+  border-radius: 50%;
+  width: 35px;
+  height: 35px;
+  text-align: center;
+  outline: none;
+  border: none;
+}
+a {
+  outline: none;
+  border: none;
+}

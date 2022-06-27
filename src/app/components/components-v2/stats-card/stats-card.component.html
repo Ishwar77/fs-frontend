@@ -1,0 +1,8 @@
+<ng-template [ngIf]="_model">
+    <div class="widget-card-container" (click)="cardClicked()" [matTooltip]="_model.title" fxLayout="column">
+        <div fxLayout="column" fxLayoutGap="15px" fxLayoutAlign="center center">
+            <div class="widget-count">{{ _model.value }} </div>
+            <div class="widget-header"> {{ _model.title }} </div>
+        </div>
+    </div>
+</ng-template>

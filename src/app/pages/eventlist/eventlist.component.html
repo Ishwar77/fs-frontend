@@ -1,0 +1,21 @@
+<div *ngIf="pageManager.status === 1; else showInfoContainer">
+  <app-loading-component [imageSize]="2"> </app-loading-component>
+</div>
+<ng-template #showInfoContainer>
+  <div *ngIf="pageManager.action === 2; else showEventInfo">
+    <h1>There are no Events at the moment</h1>
+  </div>
+  <ng-template #showEventInfo>
+    <div class="app-layout-cards-list-view" fxLayout="column">
+      <div fxLayout="row wrap" fxLayoutGap="15px" fxLayoutAlign="none" *ngIf="users && users.length">
+        <div fxLayoutAlign="center center" fxHide.md fxHide.lg fxHide.xl>
+          <h1>My Subscriptions</h1>
+        </div>
+        <div fxLayout="row" *ngFor="let user of users">
+          <app-cards [modelData]="user" (batchTransfer)="getBatchTransfer($event)" [batchdata]="menus"
+            (getbatches)="getbatchesinfo($event)"></app-cards>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+</ng-template>

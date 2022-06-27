@@ -1,0 +1,27 @@
+<div class="event-banner">
+  <mat-card>
+    <img style="height: 178px;" mat-card-image [src]="menu.image" alt="event-image" (click)="cardClicked.next(menu)">
+    <mat-card-header fxLayout="row" fxLayoutAlign="center">
+      <div fxLayout="column" fxLayoutAlign="center center">
+        <div fxLayout="row" fxLayoutAlign="center center" (click)="cardClicked.next(menu)">
+          <mat-card-title class="title-event">{{menu.name}}</mat-card-title>
+        </div>
+        <div fxLayout="row" fxLayoutGap="10px">
+          <div fxLayout="column" *ngIf="menu && menu.Instructor && menu.Instructor.diaplay_name"
+            routerLink="/coach/{{menu.Instructor.pageName}}">
+            <span *ngIf="menu && menu.Instructor && menu.Instructor.diaplay_name">By
+              -
+              {{menu.Instructor.diaplay_name}}</span>
+          </div>
+          <div fxLayout="column" *ngIf="menu.ratingvalue" fxLayoutAlign="center center">
+            <div fxLayout="row">
+              <span class="staring" fxLayoutAlign="center center">
+                {{menu && menu.ratingvalue ? menu.ratingvalue : ''}}&nbsp;
+                <i class="fa fa-star"></i></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </mat-card-header>
+  </mat-card>
+</div>

@@ -1,0 +1,101 @@
+.order-place {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.order-done {
+  background-color: #41a53f;
+  color: #fff;
+}
+
+.material-icons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.order-place-icon {
+  margin: 0px 10px;
+  color: #41a53f;
+}
+.orders-table {
+  height: 66vh;
+  padding: 20px 24px !important;
+}
+.order-confirm a {
+  text-decoration: none;
+}
+
+@media screen and (max-width: 600px) {
+  .orders-table {
+    height: 49vh !important;
+  }
+}
+.orders-table .info-table {
+  max-width: 175px;
+  border: 1px solid #f4f4f4;
+  margin-bottom: 0 !important;
+  min-width: 175px;
+  min-height: 58px;
+  padding: 11px 4px;
+}
+.order-info {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+.order-confirm {
+  justify-content: center;
+  display: flex;
+  align-items: center;
+}
+.info-head {
+  font-weight: bold;
+  font-size: 16px;
+}
+.info-head-sub {
+  font-weight: normal;
+  font-size: 16px;
+}
+.order-address {
+  margin: 20px 0;
+  display: flex;
+  align-items: center;
+
+  justify-content: center;
+}
+.order-address span {
+  color: red;
+  font-size: 15px;
+  font-weight: bold;
+}
+.order-address a {
+  font-size: 13px;
+  font-weight: bold;
+}
+.address-select {
+  padding: 10px 5px;
+  width: 290px;
+  max-width: 290px;
+  font-size: 15px;
+}
+.no-del {
+  color: #000;
+  background-color: #fff;
+}
+.yes-del {
+  color: #fff;
+  background-color: rgb(201, 56, 56);
+}
+.del-dailog {
+  width: auto;
+  height: auto;
+}
+.content-del {
+  width: 100%;
+  font-size: 12px;
+}
+.del-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

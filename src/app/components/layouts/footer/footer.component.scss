@@ -1,0 +1,70 @@
+i.social-icons {
+  margin: 5px;
+  font-size: 1.1rem;
+  background: #0189bc;
+  padding: 10px;
+  border-radius: 50%;
+  height: 35px;
+  width: 35px;
+  text-align: center;
+}
+i.fa-facebook:hover {
+  text-decoration: none;
+  background: #3b5998;
+  color: #fff;
+  transition: all 0.3s ease-in;
+  outline: 0;
+}
+i.fa-instagram:hover {
+  text-decoration: none;
+  background: #d6249f;
+  background: radial-gradient(circle at 30% 107%, #fdf497 0, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285aeb 90%);
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.25);
+  color: #fff;
+  transition: all 0.3s ease-in;
+  outline: 0;
+}
+i.fa-whatsapp:hover {
+  text-decoration: none;
+  background: #01e675;
+  color: #fff;
+  transition: all 0.3s ease-in;
+  outline: 0;
+}
+.footer-head {
+  text-transform: uppercase;
+  font-size: 1.2rem;
+  font-weight: 900;
+  letter-spacing: 0.8px;
+}
+.footertop-links {
+  color: #fff;
+  text-decoration: none;
+  transition: all 1s ease;
+  cursor: pointer;
+}
+.footertop-links:hover {
+  color: #0189bc;
+  text-decoration: none;
+  transition: all 1s ease;
+  cursor: pointer;
+}
+
+.footer-main {
+  width: 100%;
+  border-top: 1px solid #ffffff4a;
+  .copyright {
+    font-size: 12px;
+    padding: 0px 10px;
+    margin: 0px 5px;
+    color: #929292;
+    > .powerd {
+      font-size: 12px;
+      color: #929292;
+    }
+  }
+  .footer-links {
+    font-size: 12px;
+    text-align: end;
+  }
+}

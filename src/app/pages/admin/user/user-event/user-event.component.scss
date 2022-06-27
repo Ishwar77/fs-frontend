@@ -1,0 +1,23 @@
+.app-usermanage {
+  // padding: 10px 100px;
+  > table {
+    width: 100%;
+  }
+}
+
+mat-form-field {
+  width: 100%;
+}
+.action-btn {
+  margin: 0px 10px;
+  columns: cadetblue;
+}
+.hover-info:hover {
+  // background-color:orange;
+  text-decoration: underline;
+  color: #673ab7;
+  cursor: pointer;
+}
+td.data-center {
+  text-align: center;
+}

@@ -1,0 +1,58 @@
+.header {
+  height: 250px;
+  min-height: 320px;
+  max-height: 320px;
+  padding: 24px;
+  background: url(https://i.ibb.co/Zg3ZYnf/dark-material-bg.jpg) no-repeat 0 45%;
+  background-size: cover;
+}
+.profile-image {
+  margin-right: 24px;
+  width: 96px;
+  min-width: 150px;
+  height: 150px;
+  line-height: 96px;
+  border-radius: 50%;
+}
+.name {
+  font-size: 34px;
+  color: #fff;
+}
+.page-layout {
+  min-height: 100%;
+  position: relative;
+  width: 100%;
+}
+.content {
+  flex: 1;
+
+  mat-tab-group {
+    height: 100%;
+
+    .mat-tab-body-wrapper {
+      flex-grow: 1;
+    }
+  }
+}
+
+.social-icons-profile {
+  font-size: 1.5rem;
+  color: #fff;
+  cursor: pointer;
+}
+.rating-list li {
+  float: right;
+  color: #ddd;
+  padding-right: 10px;
+}
+
+.rating-list li:hover,
+.rating-list li:hover ~ li,
+.rating-list li.selected {
+  color: #408ab4;
+}
+
+.rating-list {
+  display: inline-block;
+  list-style: none;
+}

@@ -1,0 +1,66 @@
+<div *ngIf="pageManager.status === 1; else showInfoContainer">
+  <app-loading-component [imageSize]="2"> </app-loading-component>
+</div>
+<ng-template #showInfoContainer>
+  <div *ngIf="pageManager.action === 2; else showEventInfo">
+    <app-no-content></app-no-content>
+  </div>
+  <ng-template #showEventInfo>
+    <div class="app-paymentmanage" *ngIf="pageManager.action === 1 && pageManager.status === 2">
+
+
+      <mat-form-field color="acent">
+        <mat-label>Search</mat-label>
+        <input matInput (keyup)="applyFilter($event)" placeholder="Contacts">
+      </mat-form-field>
+      <h1>The Table showing list of Feedbacks and Queries</h1>
+
+      <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" >
+
+        <!-- Position Column -->
+        <ng-container matColumnDef="si">
+          <th mat-header-cell *matHeaderCellDef > Sl No. </th>
+          <td class="data-center" mat-cell *matCellDef="let i=index"> {{i+1}} </td>
+        </ng-container>
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef > Name </th>
+          <td  mat-cell *matCellDef="let element">{{element.full_name | uppercase}} </td>
+        </ng-container>
+        <ng-container matColumnDef="email">
+          <th mat-header-cell *matHeaderCellDef > Email </th>
+          <td class="data-center" mat-cell *matCellDef="let element"> {{element.email}}</td>
+        </ng-container>
+        <ng-container matColumnDef="mobile">
+          <th mat-header-cell *matHeaderCellDef > Contact </th>
+          <td class="data-center" mat-cell *matCellDef="let element"> {{element.mobile_number}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="subject">
+          <th mat-header-cell *matHeaderCellDef > Subject </th>
+          <td mat-cell *matCellDef="let element"> {{element.subject }} </td>
+        </ng-container>
+        <ng-container matColumnDef="message">
+          <th mat-header-cell *matHeaderCellDef > Message </th>
+          <td  mat-cell *matCellDef="let element"> {{element.message}} </td>
+        </ng-container>
+        <!-- Action Column -->
+        <ng-container matColumnDef="action">
+          <th mat-header-cell *matHeaderCellDef > Action </th>
+          <td class="action-btn" mat-cell *matCellDef="let element">
+            <a class="action-edit" color="accent" (click)="email(element)"><i
+                class="fa fa-envelope-square" aria-hidden="true"></i></a>
+            <a class="action-delete"  color="warn" (click)="delete(element)"><i class="fa fa-trash"
+                aria-hidden="true"></i></a>
+          </td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns" ></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+      <mat-paginator #paginator *ngIf="dataSource" [length]="menus.length" [pageSize]="5" [pageSizeOptions]="[5,10,100]"
+        [showFirstLastButtons]="true" (page)="managePagination($event)">
+      </mat-paginator>
+    </div>
+  </ng-template>
+</ng-template>

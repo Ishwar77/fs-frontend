@@ -1,0 +1,87 @@
+<div class="app-eventadd">
+  <div class="logo">
+    <div class="form-title">
+      Batch Register
+    </div>
+  </div>
+  <div class="eventadd-form">
+    <form>
+
+      <div class="inline-form">
+        <mat-form-field appearance="outline" color="accent">
+          <mat-label>Start Time</mat-label>
+          <input type="time" tabindex="4" name="starttime" matInput [(ngModel)]="data.starttime" required>
+        </mat-form-field>
+      </div>
+
+      <div class="inline-form">
+        <mat-form-field appearance="outline" color="accent">
+          <mat-label>End Time</mat-label>
+          <input type="time" name="endtime" tabindex="6" matInput [(ngModel)]="data.endtime" required>
+        </mat-form-field>
+      </div>
+
+      <div class="inline-form" *ngIf="showview">
+        <mat-form-field appearance="outline" color="accent">
+          <mat-label>Duration</mat-label>
+          <mat-select required>
+            <mat-option *ngFor="let menu of menus" [value]="menu" (click)="frequencylist(menu)">
+              {{menu.frequency}}
+            </mat-option>
+          </mat-select>
+          <!-- <ng-template [ngIf]="menu && menu.frequency === 'WEEKLY'">
+            <mat-option *ngFor="let days of menus.order" [value]="days" (click)="listodDays(days)">
+              {{days}}
+            </mat-option>
+          </ng-template> -->
+        </mat-form-field>
+      </div>
+      <!-- <div class="inline-form" *ngIf="isWeek">
+        <mat-form-field appearance="outline" color="accent">
+          <mat-label>Choose Days</mat-label>
+          <mat-select required multiple>
+            <mat-option *ngFor="let days of listofDays" [value]="days" (click)="listofDaysClick(days)">
+              {{days}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div> -->
+
+      <div class="inline-form" *ngIf="id === 3">
+        <mat-form-field appearance="outline" color="accent">
+          <mat-label>Days</mat-label>
+          <mat-select [formControl]="days" multiple required>
+            <mat-option *ngFor="let day of daysList" [value]="day">
+              {{day}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <div class="inline-form">
+        <mat-label>Do you want to Have limit for the Sessions?</mat-label>
+        <mat-slide-toggle (change)="slide($event)">{{limittext}}</mat-slide-toggle>
+      </div>
+
+      <div class="inline-form" *ngIf="limitvalue === 1">
+        <mat-form-field appearance="outline" color="accent">
+          <mat-label>Batch Size</mat-label>
+          <input type="number" min="0" max="50" (mouseup)="onlyNumbers($event)" (mousedown)="onlyNumbers($event)"
+            (keyup)="onlyNumbers($event)" (keydown)="onlyNumbers($event)" name="batch" matInput autocomplete="off"
+            placeholder="No of Batches" [(ngModel)]="data.batchsize" required>
+        </mat-form-field>
+        <mat-form-field appearance="outline" color="accent">
+          <mat-label>Available Seats</mat-label>
+          <input type="number" min="0" (mouseup)="onlyNumbers($event)" (mousedown)="onlyNumbers($event)"
+            (keyup)="onlyNumbers($event)" (keydown)="onlyNumbers($event)" name="seats" matInput autocomplete="off"
+            placeholder="No of Seats" readonly [(ngModel)]="data.batchsize" required>
+        </mat-form-field>
+      </div>
+      <div class="inline-form btn-signup">
+        <button mat-raised-button color="accent" tabindex="9" (click)="addsubscription()">Add Batch</button>
+        <button mat-raised-button color="warn" (click)="reset()">Reset</button>
+      </div>
+
+    </form>
+  </div>
+</div>

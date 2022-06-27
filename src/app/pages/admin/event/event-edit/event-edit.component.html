@@ -1,0 +1,92 @@
+<div class="app-eventedit">
+  <div class="logo">
+    <div class="form-title">
+      Event Edit
+    </div>
+  </div>
+  <div class="eventedit-form">
+    <form>
+      <div class="inline-form">
+        <mat-form-field appearance="outline" color="accent">
+          <mat-label>Event Name</mat-label>
+          <input matInput name="name" [(ngModel)]="item.name" required>
+        </mat-form-field>
+        <mat-form-field appearance="outline" color="accent">
+          <mat-label>{{eventname}}</mat-label>
+          <mat-select placeholder="Description">
+            <mat-option *ngFor="let menu of menus" [value]="menu" (click)="menuptions(menu.event_master_id)">
+              {{menu.event_master_name}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <div class="inline-form">
+        <mat-form-field appearance="outline" color="accent">
+          <mat-label>Start Date</mat-label>
+          <input type="=" date name="startdate" matInput autocomplete="off" [(ngModel)]="item.startdate" required>
+        </mat-form-field>
+        <mat-form-field appearance="outline" color="accent">
+          <mat-label>End Date</mat-label>
+          <input type="=" date name="enddate" matInput autocomplete="off" [(ngModel)]="item.enddate" required>
+        </mat-form-field>
+      </div>
+
+      <!-- <div class="inline-form">
+          <mat-form-field appearance="outline" color="accent">
+              <mat-label>Start Time</mat-label>
+              <input name="time" name="starttime" matInput [(ngModel)]="item.starttime" required>
+            </mat-form-field>
+        <mat-form-field appearance="outline" color="accent">
+          <mat-label>End Time</mat-label>
+          <input name="endtime" matInput [(ngModel)]="item.endtime" required>
+        </mat-form-field>
+      </div> -->
+
+      <div class="inline-form">
+        <mat-form-field appearance="outline" color="accent">
+          <mat-label>Amount(₹)</mat-label>
+          <input name="price" matInput [(ngModel)]="item.price" required>
+        </mat-form-field>
+        <mat-form-field appearance="outline" color="accent">
+          <mat-label>Trial Period</mat-label>
+          <input name="period" matInput [(ngModel)]="item.period" required>
+        </mat-form-field>
+      </div>
+
+      <div class="inline-form">
+        <mat-form-field appearance="outline" color="accent">
+          <mat-label>{{trainername}}</mat-label>
+          <mat-select required>
+            <mat-option *ngFor="let train of trainers" [value]="train" (click)="trainerlist(train.user_id)">
+              {{train.diaplay_name}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <div class="image-section">
+          <input type="file" #Image name="file" id="file" class="inputfile" (change)="onFileChanged($event)" />
+          <label for="file"><i class="fa fa-upload upload-img" aria-hidden="true"></i>Choose a file</label>
+        </div>
+      </div>
+
+      <!-- <div class="inline-form ">
+        <mat-form-field appearance="outline" color="accent">
+          <mat-label>Meeting Link</mat-label>
+          <textarea matInput cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="1"
+            cdkAutosizeMaxRows="5" [(ngModel)]="item.meeting_links" [ngModelOptions]="{standalone: true}"></textarea>
+        </mat-form-field>
+      </div> -->
+
+      <div class="inline-form editor-inline">
+        <angular-editor [(ngModel)]="item.description" [ngModelOptions]="{standalone: true}" [config]="config">
+        </angular-editor>
+      </div>
+
+      <div class="inline-form btn-signup">
+        <button mat-raised-button color="accent" (click)="update()">Update Event</button>
+        <button mat-raised-button color="warn" [mat-dialog-close]="true">Cancel</button>
+      </div>
+    </form>
+  </div>
+</div>

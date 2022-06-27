@@ -1,0 +1,50 @@
+<div class="app-eventadd">
+  <div class="logo">
+    <div class="form-title">
+      Subscription Register
+    </div>
+  </div>
+  <div class="eventadd-form">
+    <form>
+      <div class="inline-form">
+        <mat-form-field appearance="outline" color="accent">
+          <mat-label>DAYS</mat-label>
+          <input type="number" min="1" (mouseup)="onlyNumbers($event)" (mousedown)="onlyNumbers($event)"
+          (keyup)="onlyNumbers($event)" (keydown)="onlyNumbers($event)" name="day" matInput autocomplete="off" placeholder="No of days" [(ngModel)]="data.days"
+            required>
+        </mat-form-field>
+      </div>
+
+      <div class="inline-form">
+        <mat-form-field appearance="outline" color="accent">
+          <mat-label>AMOUNT</mat-label>
+          <input type="number" min="1" (mouseup)="onlyNumbers($event)" (mousedown)="onlyNumbers($event)"
+          (keyup)="onlyNumbers($event)" (keydown)="onlyNumbers($event)" name="amount" matInput autocomplete="off" placeholder="Amount" [(ngModel)]="data.amount"
+            required>
+        </mat-form-field>
+
+      </div>
+
+      <div class="inline-form">
+        <mat-form-field appearance="outline" color="accent">
+          <mat-label>TAX</mat-label>
+          <input type="number" min="1" max="100" (mouseup)="onlyNumbers($event)" (mousedown)="onlyNumbers($event)"
+          (keyup)="onlyNumbers($event)" (keydown)="onlyNumbers($event)" name="tax" matInput autocomplete="off" placeholder="Tax" [(ngModel)]="data.tax" required>
+        </mat-form-field>
+      </div>
+
+      <div class="inline-form">
+        <mat-form-field appearance="outline" color="accent">
+          <mat-label>Batch Count</mat-label>
+          <input type="number" min="1" max="100" (mouseup)="onlyNumbers($event)" (mousedown)="onlyNumbers($event)"
+          (keyup)="onlyNumbers($event)" (keydown)="onlyNumbers($event)" name="size" matInput autocomplete="off" placeholder="Batch Count" [(ngModel)]="data.batchs" required>
+        </mat-form-field>
+      </div>
+
+      <div class="inline-form btn-signup">
+        <button mat-raised-button color="accent" tabindex="9" (click)="addsubscription()">Add Subscription</button>
+        <button mat-raised-button color="warn" (click)="reset()">Reset</button>
+      </div>
+    </form>
+  </div>
+</div>

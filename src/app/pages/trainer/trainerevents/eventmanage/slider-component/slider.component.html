@@ -1,0 +1,105 @@
+<div class="slider-panel-item" ngStyle.xs="width:350px" ngStyle.sm="width:350px" ngStyle.xs="width:100vw">
+    <div class="header-items">
+        <div class="header">
+            {{(  getPanelTitle()) | trim : 25 }}
+        </div>
+        <div class="actions">
+            <button *ngIf="model['viewMode'] !== 1" mat-raised-button style="background-color: #db5024;"
+                (click)="deleteevent()">
+                <span><i class="fa fa-trash"></i> </span>
+            </button>
+            <button mat-raised-button (click)="saveAction()" style="margin: 10px;">
+                <span class="material-icons">{{ getPanelTitle(false)}} </span>
+            </button>
+            <button mat-raised-button fxHide.md fxHide.lg (click)="closesilder()">
+                <span class="material-icons">cancel</span>
+            </button>
+        </div>
+    </div>
+    <div class="slider-content">
+        <form>
+            <div class="inline-form">
+                <mat-form-field appearance="outline" color="accent">
+                    <mat-label>Event Name</mat-label>
+                    <input matInput name="name" placeholder="Event Name" [(ngModel)]="model['name']" tabindex="1"
+                        required [ngModelOptions]="{standalone: true}" [disabled]="model['viewMode'] === 3">
+                </mat-form-field>
+            </div>
+            <div fxLayout="row" fxLayoutAlign="space-between center">
+                <div fxLayout="column">
+                    <div class="event-master">
+                        <mat-form-field appearance="outline" color="accent">
+                            <mat-label *ngIf="model['viewMode'] !== 3">Type</mat-label>
+                            <mat-select [(ngModel)]="model['type']" required [ngModelOptions]="{standalone: true}"
+                                [disabled]="model['viewMode'] === 3" placeholder="{{model['type']}}">
+                                <mat-option *ngFor="let menu of menus" [value]="menu">
+                                    {{menu.event_master_name}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div fxLayout="column">
+                    <div class="event-image">
+                        <div *ngIf="model['viewMode'] !== 3">
+                            <input type="file" tabindex="8" name="file" id="file" class="inputfile"
+                                (change)="onFileChanged($event)" />
+                            <label for="file" style="font-size: 15px;">Upload Image</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div fxLayout="row" fxLayoutAlign="space-between center">
+                <div fxLayout="column">
+                    <div class="inline-form event-master" *ngIf="model['viewMode'] !== 3">
+                        <mat-form-field appearance="outline" color="accent">
+                            <mat-label>Start Date</mat-label>
+                            <input type="date" name="startdate" matInput autocomplete="off"
+                                [(ngModel)]="model['startdate']" required [disabled]="model['viewMode'] === 3"
+                                [ngModelOptions]="{standalone: true}">
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div fxLayout="column">
+                    <div class="inline-form event-master" *ngIf="model['viewMode'] !== 3">
+                        <mat-form-field appearance="outline" color="accent">
+                            <mat-label>End Date</mat-label>
+                            <input type="date" name="enddate" matInput autocomplete="off" [(ngModel)]="model['enddate']"
+                                required [disabled]="model['viewMode'] === 3" [ngModelOptions]="{standalone: true}">
+                        </mat-form-field>
+                    </div>
+                </div>
+            </div>
+            <div class="inline-form" *ngIf="model['viewMode'] === 3">
+                <mat-form-field appearance="outline" color="accent">
+                    <mat-label>Start Date</mat-label>
+                    <input matInput name="dateT" [disabled]="model['viewMode'] === 3"
+                        (ngModelChange)="updatedate($event)" [ngModel]="model['startdate'] |date:'yyyy-MM-dd'"
+                        #dateT="ngModel" type="date" />
+                </mat-form-field>
+            </div>
+            <div class="inline-form" *ngIf="model['viewMode'] === 3">
+                <mat-form-field appearance="outline" color="accent">
+                    <mat-label>End Date</mat-label>
+                    <input matInput name="dateE" [disabled]="model['viewMode'] === 3"
+                        (ngModelChange)="updatedate($event)" [ngModel]="model['enddate'] |date:'yyyy-MM-dd'"
+                        #dateE="ngModel" type="date" />
+                </mat-form-field>
+            </div>
+            <!-- <mat-form-field appearance="outline" color="accent">
+                <mat-label>Meeting Link</mat-label>
+                <textarea matInput placeholder="Meeeting Link" [ngModelOptions]="{standalone: true}"
+                    [(ngModel)]="model['link']" [disabled]="model['viewMode'] === 3"></textarea>
+            </mat-form-field> -->
+            <div class="inline-form editor-inline" *ngIf="model['viewMode'] !== 3">
+                <angular-editor [(ngModel)]="model['description']" placeholder="Description"
+                    [ngModelOptions]="{standalone: true}" [config]="config" required
+                    [disabled]="model['viewMode'] === 3">
+                </angular-editor>
+            </div>
+            <div style="height: auto;border: 1px solid #f4f4f4;padding: 10px" *ngIf="model['viewMode'] === 3">
+                <span style="height: 130px;" [innerHTML]="model['description']"></span>
+            </div>
+        </form>
+    </div>
+</div>

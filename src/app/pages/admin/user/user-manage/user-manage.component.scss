@@ -1,0 +1,26 @@
+.app-usermanage {
+  // padding: 10px 100px;
+  > table {
+    width: 100%;
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    border: 1px solid black;
+  }
+}
+
+mat-form-field {
+  width: 100%;
+}
+.action-btn {
+  margin: 0px 10px;
+  columns: cadetblue;
+  display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.hover-info:hover {
+  // background-color:orange;
+  text-decoration: underline;
+  color: #673ab7;
+  cursor: pointer;
+}

@@ -1,0 +1,78 @@
+<div fxLayout="column">
+  <div fxLayout="row" fxLayout.xs="column" fxLayout.sm="column" fxLayoutAlign="space-evenly center"
+    style="background: #e4e4e4;">
+    <div fxLayout="column">
+      <div fxLayout="row" fxLayoutGap="15px" fxLayoutAlign="space-between center">
+        <div fxLayout="column">
+          <div fxLayout="row" fxLayout.xs="column" fxLayout.sm="column" fxLayoutGap="15px"
+            fxLayoutAlign="center center">
+            <div fxLayout="column">
+              <mat-form-field>
+                <input type="date" name="date" matInput autocomplete="off" [(ngModel)]="date">
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
+        <div fxLayout="column">
+          <button mat-raised-button color="accent" (click)="gettheusersbasedondate()">Submit</button>
+        </div>
+        <div fxLayout="column">
+          <button class="action-btn" mat-raised-button color="accent" (click)="ExportTOExcel()">
+            <span class="material-icons">
+              cloud_download
+            </span>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div fxLayout="column">
+      <mat-form-field>
+        <input matInput placeholder="Search" (keyup)="applyFilter($event)" autocomplete="off">
+      </mat-form-field>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="pageManager.status === 1; else showInfoContainer">
+  <app-loading-component [imageSize]="2"> </app-loading-component>
+</div>
+<ng-template #showInfoContainer>
+  <div *ngIf="pageManager.action === 2; else showEventInfo">
+    <app-no-content></app-no-content>
+  </div>
+  <ng-template #showEventInfo>
+    <div fxLayout="column" fxLayoutGap="20px">
+      <div fxLayout="column" fxLayoutAlign="center center">
+        <mat-table style="border-radius: 5px;width: 40%;" ngStyle.xs="width: 100%;" ngStyle.sm="width: 100%;"
+          [dataSource]="dataSource" class="mat-elevation-z8" matSort>
+
+          <ng-container matColumnDef="slno">
+            <mat-header-cell ngStyle.xs="font-size:10px" *matHeaderCellDef style="color: #4474a6;"> Sl.No
+            </mat-header-cell>
+            <mat-cell ngStyle.xs="font-size:10px" *matCellDef="let element;let i = index"> {{i+1}}
+            </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="username">
+            <mat-header-cell ngStyle.xs="font-size:10px" *matHeaderCellDef style="color: #4474a6;">
+              Full Name
+            </mat-header-cell>
+            <mat-cell ngStyle.xs="font-size:10px" *matCellDef="let element"> {{element.diaplay_name || ''}}
+            </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="date">
+            <mat-header-cell ngStyle.xs="font-size:10px" *matHeaderCellDef style="color: #4474a6;">
+              Date
+            </mat-header-cell>
+            <mat-cell ngStyle.xs="font-size:10px" *matCellDef="let element"> {{date ? date : ''}}</mat-cell>
+          </ng-container>
+
+          <mat-header-row style="border-radius: 5px;" *matHeaderRowDef="displayedColumns">
+          </mat-header-row>
+          <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+        </mat-table>
+      </div>
+    </div>
+  </ng-template>
+</ng-template>

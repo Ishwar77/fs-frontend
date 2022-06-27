@@ -1,0 +1,33 @@
+.app-usermanage {
+  // padding: 10px 100px;
+  > table {
+    width: 100%;
+  }
+}
+
+mat-form-field {
+  width: 100%;
+}
+.action-btn {
+  margin: 0px 10px;
+}
+.admin-img {
+  height: 50px;
+  min-width: 100px;
+  max-width: 100px;
+  padding: 3px 0px;
+}
+.action-sec {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.hover:hover {
+  // background-color:orange;
+  text-decoration: underline;
+  color: #673ab7;
+}
+
+td.data-center {
+  text-align: center;
+}

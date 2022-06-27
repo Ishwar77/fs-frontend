@@ -1,0 +1,35 @@
+<mat-drawer-container class="parent-listing-container" style="height: 533px;" autosize [hasBackdrop]="true">
+    <mat-drawer class="listing-slider-container" #drawer mode="over" position="end" (closedStart)="sliderCloseListener()">
+      <app-slider-layout-create *ngIf="sliderInput" [model]="sliderInput" (closeslider)="closingslider()">
+      </app-slider-layout-create>
+    </mat-drawer>
+  
+    <div class="app-layout-cards-list-view" fxLayout="column">
+      <div *ngIf="pageManager.status === 1; else showInfoContainer">
+        <app-loading-component [imageSize]="2"> </app-loading-component>
+      </div>
+      <ng-template #showInfoContainer>
+        <div *ngIf="pageManager.action === 2; else showEventInfo">
+          <div style="height: 410px;" *ngIf="pageManager.action === 2">
+            <span fxLayoutAlign="center center" style="color: black;">
+              There are no Events at the moment
+            </span>
+          </div>
+        </div>
+        <ng-template #showEventInfo>
+          <div fxLayout="row wrap" fxLayoutGap="15px" fxLayoutAlign="none" *ngIf="eventList && eventList.length">
+            <div fxLayout="row" *ngFor="let menu of eventList">
+              <app-cards (summaryClicked)="movetosummary($event, menu)" (cardClickEvent)="getClickedCard($event)"
+                [modelData]="menu">
+              </app-cards>
+            </div>
+          </div>
+        </ng-template>
+      </ng-template>
+    </div>
+  
+    <button mat-fab (click)="openCreateSlider()" class="fit-social-add-action-button">
+      <i class="material-icons">add </i>
+    </button>
+  </mat-drawer-container>
+  

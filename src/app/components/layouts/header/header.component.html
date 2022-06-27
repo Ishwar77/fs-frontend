@@ -1,0 +1,74 @@
+<div fxLayout="column">
+  <div fxLayout="row" style="background-color: #212121;" fxLayoutAlign="space-between center" fxLayoutGap.xs="2px"
+    fxLayoutGap.sm="2px" ngStyle.xs="margin-right:0px">
+    <div fxLayout="column" routerLink="home" class="header-image">
+      <img ngStyle.xs="height:50px" src="https://i.ibb.co/CV6W6q4/Fit-Social-White.png" width="auto" height="60px"
+        alt="">
+    </div>
+    <div fxLayout="column">
+      <div fxLayout="row" style="padding: 0px 28px;" fxLayoutGap.xs="15px" fxLayoutGap="30px">
+        <div fxLayout="column" class="menu-header" ngStyle.xs="font-size: 0.8rem;" *ngIf="!togglevalue"
+          routerLink="home">
+          Home
+        </div>
+        <div fxLayout="column" class="menu-header" ngStyle.xs="font-size: 0.8rem;" routerLink="events">
+          Events
+        </div>
+        <div fxLayout="column" class="menu-header" ngStyle.xs="font-size: 0.8rem;" routerLink="coach">
+          Trainers
+        </div>
+        <div fxLayout="column" class="menu-header" ngStyle.xs="font-size: 0.8rem;" *ngIf="!togglevalue"
+          (click)='onLogin()'>
+          <span class="material-icons">account_circle</span>
+        </div>
+        <div mat-icon-button [matMenuTriggerFor]="menu" fxLayout="column" class="menu-header">
+          <div fxLayout="row" fxLayoutGap="5px" *ngIf="togglevalue">
+            <div fxLayout="column" *ngIf="togglevalue && !url">
+              <span class="material-icons" ngStyle.xs="font-size: 22px;">
+                account_circle
+              </span>
+            </div>
+            <div fxLayout="column" *ngIf="url">
+              <img *ngIf="url" height="25px" width="25px" style="height: 25px;border-radius: 50%;
+              border: 1px solid #f4f4f4;" src="{{getImageUrl(url)}}">
+            </div>
+            <div *ngIf="username" fxLayout="column" fxHide.xs fxHide.sm>
+              {{username}}
+            </div>
+          </div>
+          <mat-menu #menu="matMenu" [overlapTrigger]="false">
+            <div fxLayout="column" fxLayoutGap="10px" *ngIf="togglevalue">
+              <div class="menu-header" style="color: #1a91bd;" mat-menu-item fxLayout="row" fxLayoutGap="10px"
+                fxLayoutAlign="start center" (click)="routetouser()">
+                <div fxLayout="column">
+                  <span class="material-icons">dashboard</span>
+                </div>
+                <div fxLayout="column">
+                  <span>Dashboard</span>
+                </div>
+              </div>
+              <div *ngIf="userrole == 6" class="menu-header" style="color: #1a91bd;" mat-menu-item fxLayout="row"
+                fxLayoutGap="10px" fxLayoutAlign="start center" routerLink="myevents">
+                <div fxLayout="column">
+                  <span class="material-icons">event_note</span>
+                </div>
+                <div fxLayout="column">
+                  <span>My Events</span>
+                </div>
+              </div>
+              <div class="menu-header" style="color: #1a91bd;" mat-menu-item fxLayout="row" fxLayoutAlign="start center"
+                fxLayoutGap="10px" (click)="onLogout()">
+                <div fxLayout="column">
+                  <span class="material-icons">login</span>
+                </div>
+                <div fxLayout="column">
+                  <span>Logout</span>
+                </div>
+              </div>
+            </div>
+          </mat-menu>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

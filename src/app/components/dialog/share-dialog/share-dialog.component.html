@@ -1,0 +1,42 @@
+<h1 mat-dialog-title style="border-bottom: 1px solid rgb(217 217 217);color:#02729b" fxLayoutAlign="center center">
+  Social Share</h1>
+<div mat-dialog-content fxLayout="column" fxLayoutAlign="center center" style="text-align: center;">
+  <div fxLayout="column">
+    <div fxLayout="column">
+      <div fxLayout="column" style="overflow: auto;" fxLayoutAlign="center center">
+        <div fxLayout="row wrap" fxLayoutGap="10px">
+          <div fxLayout="column" matTooltip="Facebook" [matTooltipPosition]="'above'">
+            <a href="{{facebook}}" target="_blank"><i class="fa fa-facebook fb"></i>
+            </a>
+          </div>
+          <div fxLayout="column" matTooltip="Twitter" [matTooltipPosition]="'above'">
+            <a href="{{twitter}}" target="_blank"><i class="fa fa-twitter twitter"></i>
+            </a>
+          </div>
+          <div fxLayout="column" matTooltip="LinkedIn" [matTooltipPosition]="'above'">
+            <a href="{{linkedin}}" target="_blank"><i class="fa fa-linkedin linedin" style="padding: 8px;"></i>
+            </a>
+          </div>
+          <div fxLayout="column" matTooltip="Mail" [matTooltipPosition]="'above'">
+            <a [href]="emailstring" target="_top"><i class="fa fa-envelope mail" style="padding: 8px;"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div fxLayout="column" style="margin: 15px 0px;width: 100%; ">
+    <div fxLayout="row" fxLayoutAlign="center start">
+      <div fxLayout="column" style="width: 80% !important; ">
+        <mat-form-field appearance="fill">
+          <mat-label>Copy Link Here</mat-label>
+          <input matInput name="url" [(ngModel)]="url" readonly>
+        </mat-form-field>
+      </div>
+      <div fxLayout="column">
+        <button mat-raised-button color="accent" style="border: none;outline: none;height: 50px !important; "
+          (click)="shareevent()" [mat-dialog-close]="true">Copy</button>
+      </div>
+    </div>
+  </div>
+</div>

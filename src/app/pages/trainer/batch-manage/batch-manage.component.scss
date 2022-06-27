@@ -1,0 +1,45 @@
+.app-usermanage {
+  > table {
+    width: 100%;
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    border: 1px solid black;
+  }
+}
+.select-option{
+  width: 200px;
+}
+mat-form-field {
+  width: 100%;
+}
+.action-btn {
+  margin: 0px 10px;
+}
+.admin-img {
+  height: 50px;
+  min-width: 100px;
+  max-width: 100px;
+  padding: 3px 0px;
+}
+.action-sec {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.hover-info:hover {
+  text-decoration: underline;
+  color: #673ab7;
+  cursor: pointer;
+}
+td,
+th {
+  border: 1px solid #dddddd;
+  text-align: center;
+  padding: 8px;
+  width: auto;
+}
+.mat-form-field-appearance-outline .mat-form-field-outline {
+
+  background: #fff;
+  border-radius: 10px;
+}

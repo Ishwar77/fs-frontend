@@ -1,0 +1,65 @@
+<div class="app-login">
+  <div class="headname">
+    <div class="userreg">Member / Trainer Login</div>
+  </div>
+  <div class="logo">
+    <img class="logo-img" src="https://i.ibb.co/HY4wR23/Fit-Social-White.jpg" alt="login-Logo">
+  </div>
+  <div class="login-form">
+    <form [formGroup]="userLoginForm" (ngSubmit)="userLoginForm.valid && Login()" novalidate>
+      <div class="inline-form">
+        <mat-form-field appearance="outline" color="accent">
+          <mat-label>Email</mat-label>
+          <input type="email" tabindex="1" formControlName="email" tabindex="1" matInput placeholder="Enter Your Email"
+            name="email" color="accent" [(ngModel)]="data.email" required>
+          <mat-error *ngIf="userLoginForm.controls['email'].errors?.required">This field is required.</mat-error>
+          <mat-error
+            *ngIf="userLoginForm.controls['email'].errors?.email && userLoginForm.controls['email'].errors?.pattern">
+            Enter valid Email.</mat-error>
+
+        </mat-form-field>
+      </div>
+
+      <div class="inline-form">
+        <mat-form-field appearance="outline" color="accent">
+          <mat-label>Password</mat-label>
+          <input type="password" tabindex="2" [type]="hide ? 'password':'text'" tabindex="2" id="password"
+            formControlName="password" #password matInput minLength="5" placeholder="Enter Your Password"
+            name="password" [(ngModel)]="data.password" color="accent" required>
+          <mat-icon matSuffix (click)="hide = !hide">
+            {{hide ? 'visibility' : 'visibility_off'}}
+          </mat-icon>
+          <mat-error *ngIf="userLoginForm.controls['password'].errors?.required">Must have Minimum 5 digits or letters.
+          </mat-error>
+          <mat-error *ngIf="userLoginForm.controls['password'].errors?.minLength ">Must have minimum 5 digits or
+            letters.</mat-error>
+          <mat-error *ngIf="userLoginForm.controls['password'].errors?.pattern">Combination of Alphabet, Special
+            characters and Number(Abc@123).
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div class="inline-forms">
+        <div class="section-1">
+          <div class="remeberme">
+            <mat-checkbox class="example-margin" [(ngModel)]="checked" [ngModelOptions]="{standalone: true}">Remember Me
+            </mat-checkbox>
+          </div>
+          <div class="forgot-pass">
+            <a class="forgot-password links" color="accent" (click)="forgot()">Forgot Password?</a>
+          </div>
+        </div>
+        <div class="section-2">
+          <div class="nomember">
+            <span>Don't have an account ? Signup as <a class="links" color="accent" (click)="register()">Member</a> / <a
+                class="links" color="accent" (click)="trainer()">Trainer</a></span>
+          </div>
+        </div>
+      </div>
+      <div class="inline-form btn-signup">
+        <button mat-raised-button color="accent" tabindex="3" [disabled]="!userLoginForm.valid"
+          tabindex="3">Login</button>
+        <button mat-raised-button color="warn" (click)="reset()">Reset</button>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,47 @@
+<div fxLayout="column" fxLayoutAlign="">
+  <div fxLayout="column" fxLayoutGap="10px">
+
+    <div fxLayout="column">
+      <mat-form-field appearance="outline" color="accent">
+        <mat-label>Banner Section</mat-label>
+        <input type="text" name="name" tabindex="1" *ngIf="!editable" [(ngModel)]="data.name" matInput
+          autocomplete="off" required>
+        <input type="text" name="name" tabindex="1" *ngIf="editable" [(ngModel)]="editAdv.obj.spot_name" matInput
+          autocomplete="off" required>
+      </mat-form-field>
+    </div>
+
+    <div fxLayout="column">
+      <mat-form-field appearance="outline" color="accent">
+        <mat-label>Days</mat-label>
+        <input type="text" name="days" tabindex="2" *ngIf="!editable" [(ngModel)]="data.days" placeholder="Ex:10"
+          matInput autocomplete="off" required>
+        <input type="text" name="days" tabindex="2" *ngIf="editable" [(ngModel)]="editAdv.obj.spot_days"
+          placeholder="Ex:10" matInput autocomplete="off" required>
+      </mat-form-field>
+    </div>
+
+    <div fxLayout="column">
+      <mat-form-field appearance="outline" color="accent">
+        <mat-label>Amount</mat-label>
+        <input type="text" name="amount" tabindex="3" *ngIf="!editable" [(ngModel)]="data.amount" placeholder="Amount"
+          matInput autocomplete="off" required>
+        <input type="text" name="amount" tabindex="3" *ngIf="editable" [(ngModel)]="editAdv.obj.spot_amount"
+          placeholder="Amount" matInput autocomplete="off" required>
+      </mat-form-field>
+    </div>
+
+    <div fxLayout="column">
+      <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="10px">
+        <div fxLayout="column">
+          <button mat-raised-button color="accent" *ngIf="!editable" (click)="AdvertiseAdd()">ADD</button>
+          <button mat-raised-button color="accent" *ngIf="editable" (click)="AdvertiseUpdate()">UPDATE</button>
+        </div>
+        <div fxLayout="column">
+          <button mat-raised-button color="warn" mat-dialog-close>CANCEL</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

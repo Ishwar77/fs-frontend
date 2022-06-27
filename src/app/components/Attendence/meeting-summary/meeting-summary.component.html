@@ -1,0 +1,42 @@
+<div fxLayout="column">
+  <div fxLayout="row" fxLayout.xs="column" fxLayout.sm="column" fxLayoutGap="20px" class="mainsection">
+    <div fxLayout="column" fxFlex>
+      <div fxLayout="row" class="summary-all" fxLayoutAlign="start center">
+        <div fxLayout="column" fxFlex="50%" class="summary-head">Meeting Topic</div>
+        <div fxLayout="column" fxLayoutAlign="start center" class="summary-info">Training Session</div>
+      </div>
+      <div fxLayout="row" class="summary-all" fxLayoutAlign="start center">
+        <div fxLayout="column" fxFlex="50%" class="summary-head">Event Name</div>
+        <div fxLayout="column" class="summary-info">{{eventname?eventname:'NA'}}</div>
+      </div>
+      <div fxLayout="row" class="summary-all" fxLayoutAlign="start center">
+        <div fxLayout="column" fxFlex="50%" class="summary-head">Session Url</div>
+        <div fxLayout="column" class="summary-info"><a href="{{link}}" target="_blank">Click Here
+          </a></div>
+      </div>
+      <div fxLayout="row" class="summary-all" fxLayoutAlign="start center">
+        <div fxLayout="column" fxFlex="50%" class="summary-head">Password</div>
+        <div fxLayout="column" fxLayoutAlign="start center" class="summary-info">{{password ? password : 'NA'}}</div>
+      </div>
+    </div>
+    <div fxLayout="column" fxFlex>
+      <div fxLayout="row" class="summary-all" fxLayoutAlign="start center">
+        <div fxLayout="column" fxFlex="50%" class="summary-head">Trainer Name</div>
+        <div fxLayout="column" fxLayoutAlign="start center" class="summary-info">
+          {{trainername?(trainername | uppercase):'NA'}}</div>
+      </div>
+      <div fxLayout="row" class="summary-all" fxLayoutAlign="start center">
+        <div fxLayout="column" fxFlex="50%" class="summary-head">Start Time</div>
+        <div fxLayout="column" fxLayoutAlign="start center" class="summary-info">{{batchdetails.start_time_new}}</div>
+      </div>
+      <div fxLayout="row" class="summary-all" fxLayoutAlign="start center">
+        <div fxLayout="column" fxFlex="50%" class="summary-head">End Time</div>
+        <div fxLayout="column" fxLayoutAlign="start center" class="summary-info">{{batchdetails.end_time_new}}</div>
+      </div>
+      <div fxLayout="row" class="summary-all" fxLayoutAlign="start center">
+        <div fxLayout="column" fxFlex="50%" class="summary-head">Session Ending In</div>
+        <div fxLayout="column" fxLayoutAlign="start center" class="summary-info">{{hour}}.{{min}} min</div>
+      </div>
+    </div>
+  </div>
+</div>

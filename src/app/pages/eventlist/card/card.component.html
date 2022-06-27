@@ -1,0 +1,95 @@
+<div *ngIf="modelData" fxLayout="column" fxLayoutGap="10px" class="fit-social-card">
+  <div fxLayout="column" class="fit-social-card-first" (click)="cardClicked(modelData)">
+    <div fxLayout="column" fxLayoutGap="10px" class="fit-social-card-imagename">
+      <div fxLayout="row" fxLayoutAlign="space-between start">
+        <div fxLayout="column">
+          <div fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="start center">
+            <div fxLayout="column">
+              <img src="{{modelData.Subscription.Event.cover_image || 'https://via.placeholder.com/150'}}"
+                class="fit-social-image">
+            </div>
+            <div fxLayout="column" fxLayoutGap="2px">
+              <div style="font-weight: 500;font-size:15px;" fxLayout="column" matTooltip="Event name"
+                [matTooltipPosition]="'above'"
+                routerLink="/event/{{modelData && modelData.Subscription.Event.isActive === 1 ? modelData.Subscription.Event.uuid:''}}">
+                {{modelData.Subscription.Event.event_name}}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div fxLayout="column" fxLayoutGap="10px" style="font-size:14px;color:#718096;padding-bottom: 5px;height: 71px;">
+      <div fxLayout="row" fxLayoutGap="30px" fxLayoutAlign="start start" matTooltip="Subscription days pack"
+        [matTooltipPosition]="'above'">
+        <div fxLayout="column">
+          <span *ngIf="modelData && modelData.expiry_date" class="material-icons"
+            style="font-size: 18px;color: #0189bd;">
+            subject
+          </span>
+        </div>
+        <div fxLayout="column">
+          <span *ngIf="modelData && modelData.Subscription && modelData.Subscription.days">
+            {{ modelData ? modelData.Subscription.days : ''}} days pack
+          </span>
+        </div>
+      </div>
+      <div fxLayout="row" fxLayoutGap="30px" fxLayoutAlign="start start" matTooltip="Created date"
+        [matTooltipPosition]="'above'">
+        <div fxLayout="column">
+          <span *ngIf="modelData && modelData.expiry_date" class="material-icons"
+            style="font-size: 18px;color: #0189bd;">
+            insert_invitation
+          </span>
+        </div>
+        <div fxLayout="column">
+          <span *ngIf="modelData && modelData.created_at">
+            {{ modelData ? (modelData.created_at | date: 'mediumDate') : ''}}
+          </span>
+        </div>
+      </div>
+      <div fxLayout="row" fxLayoutGap="30px" fxLayoutAlign="start start" matTooltip="Expiry date"
+        [matTooltipPosition]="'above'">
+        <div fxLayout="column">
+          <span *ngIf="modelData && modelData.expiry_date" class="material-icons"
+            style="font-size: 18px;color: #b63939;">
+            insert_invitation
+          </span>
+        </div>
+        <div fxLayout="column">
+          <span *ngIf="modelData && modelData.expiry_date">
+            {{ modelData ? (modelData.expiry_date | date: 'mediumDate') : ''}}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div fxLayout="column" class="fit-social-card-footer">
+    <div fxLayout="row" fxLayoutAlign="space-between start" fxLayoutGap="5px">
+      <div fxLayout="column" style="color: #0189bd;">
+        <span *ngIf="modelData && modelData.final_amount > 0" matTooltip="Amount" [matTooltipPosition]="'above'">₹
+          {{ modelData ? modelData.final_amount : 'FREE'}}</span>
+        <span *ngIf="modelData && modelData.final_amount == 0">Free Subscription</span>
+      </div>
+      <div *ngIf="modelData" fxLayout="column" matTooltip="Change Batch" [matTooltipPosition]="'before'"
+        style="color: #0189bd;">
+        <span class="material-icons" [matMenuTriggerFor]="menu" color="accent" style="cursor: pointer;"
+          (click)="getbatches.next(modelData)">
+          access_time
+        </span>
+        <mat-menu style="padding: 5px !important;" #menu="matMenu" [overlapTrigger]="false">
+          <div fxLayout="column" fxLayoutGap="30px" *ngFor="let menu of batchdata">
+            <div fxLayout="row"  style="padding: 5px !important;" fxLayoutGap="10px">
+              <div fxLayout="column">
+                {{menu.start_time_new}} - {{menu.end_time_new}}
+              </div>
+              <div fxLayout="column">
+                <span class="material-icons" style="color: #0189bd;cursor: pointer;font-size: 1rem !important;"
+                  (click)="batchtransferss(menu,modelData)">edit</span>
+              </div>
+            </div>
+          </div>
+        </mat-menu>
+      </div>
+    </div>
+  </div>
+</div>

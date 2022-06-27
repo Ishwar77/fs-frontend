@@ -1,0 +1,72 @@
+<div fxLayout="column" fxLayoutGap="15px" style="padding: 15px;">
+  <div fxLayout="column">
+    <div fxLayout="row" fxLayoutAlign="center center">
+      <div fxLayout="column">
+        <h1 fxLayoutAlign="center center" style="font-size: 1.2rem;
+          font-weight: 600;">Switch Batch</h1>
+      </div>
+    </div>
+  </div>
+  <div fxLayout="column">
+    <div fxLayout="row">
+      <div fxLayout="column" class="batch-head-info">
+        Current Day
+      </div>
+      <div fxLayout="column">
+        {{eventDetails.day_of_week}}
+      </div>
+    </div>
+  </div>
+  <div fxLayout="column" *ngIf="eventDetails && eventDetails.start_time_new && eventDetails.end_time_new">
+    <div fxLayout="row">
+      <div fxLayout="column" class="batch-head-info">
+        Current Batch
+      </div>
+      <div fxLayout="column">
+        {{eventDetails?eventDetails.start_time_new:'N/A'}}- {{eventDetails?eventDetails.end_time_new:'N/A'}}
+      </div>
+    </div>
+  </div>
+  <div fxLayout="column" class="batchtime">
+    <div fxLayout="column" style="padding:20px;">
+      <div fxLayout="column">
+        <mat-form-field>
+          <mat-label>Choose Batch Time</mat-label>
+          <mat-select required>
+            <mat-option [value]="batchList.start_time - batchList.end_time"
+              [disabled]="batchList.has_limit === 1 && batchList.available_seats === 0"
+              *ngFor="let batchList of batcheventDetails" (click)="sessionClick(batchList)">
+              {{batchList.label_batch}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div fxLayout="column" *ngIf="selectedBatchTime['frequency'] !== 1 && selectedBatchTime['frequency_config']">
+        <mat-form-field>
+          <mat-label>Choose Batch Day</mat-label>
+          <mat-select required>
+            <mat-option [value]="day" *ngFor="let day of selectedBatchTime['frequency_config_parsed']"
+              (click)="chooseDays(day)">
+              {{ day }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div fxLayout="column" *ngIf="selectedBatchTime['frequency'] == 1">
+        <h1>Daily Batch</h1>
+      </div>
+    </div>
+  </div>
+
+  <div fxLayout="column">
+    <div fxLayout="row" fxLayoutGap="15px" fxLayoutAlign="center center">
+      <div fxLayout="column">
+        <button [disabled]="!selectedBatchTime.batches_id" mat-raised-button color="accent"
+          (click)="updateBatchTime()">Update</button>
+      </div>
+      <div fxLayout="column">
+        <button mat-raised-button color="warn" [mat-dialog-close]="true">Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>

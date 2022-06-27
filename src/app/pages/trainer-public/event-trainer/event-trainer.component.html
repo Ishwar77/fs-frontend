@@ -1,0 +1,15 @@
+<div fxLayout="row wrap" fxLayoutGap="10px">
+    <div fxLayout="column" class="fit-social-card">
+        <div fxLayout="row" routerLink="/event/{{modeldata.uuid}}">
+            <img *ngIf="modeldata.cover_image" src="{{modeldata.cover_image}}" class="fit-social-image"
+                alt="Event Image">
+            <img *ngIf="!modeldata.cover_image" src="https://via.placeholder.com/150" class="fit-social-image"
+                alt="Event Image">
+        </div>
+        <div fxLayout="row" fxLayoutAlign="center center" style="height: 32px;">
+            <span style="font-size: 13px;
+                    font-weight: 500;
+                    letter-spacing: 0.5px;">{{modeldata.event_name}}</span>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,43 @@
+<div fxFlexFill fxLayout="column" fxLayoutAlign="space-between center">
+  <div *ngIf="!showMainBanner" fxLayout="column" class="headersections">
+    <app-header></app-header>
+  </div>
+  <!-- <div fxLayout="column">
+
+    <!-- <app-banner-slider></app-banner-slider> -->
+  </div>
+  <!-- hello<div fxLayout="column" class="container-cover-background" fxLayoutAlign="start center"
+    *ngIf="showMainBanner && selectedList"
+    [ngStyle]="{'background-image': getUrlScheme(selectedList && selectedList.cover_image? selectedList.cover_image:'')}"
+    ngStyle.sm="height:100%;background-size:cover;background-image: getUrlScheme(selectedList && selectedList.cover_image?selectedList.cover_image:'')"
+    ngStyle.xs="height:100%;background-size:cover;background-image: getUrlScheme(selectedList && selectedList.cover_image?selectedList.cover_image:'')"
+    fxLayoutGap.xs="20px" fxLayoutGap.sm="20px">
+    <div fxLayout="column" class="main-container" ngStyle.xs="height: 26vh !important;" ngStyle.sm="heigh
+      t: 25vh  !important;" fxLayoutGap="10px">
+      <div fxLayout="column">
+        <app-header></app-header>
+      </div>
+      <div fxLayout="column" fxLayoutGap="30px" fxLayoutAlign="center center" class="secondarysection">
+        <div fxLayout="column" routerLink="/event/{{selectedList && selectedList.uuid ? selectedList.uuid : ''}}">
+          <button fxHide.xs fxHide.sm mat-raised-button class="outlinesection" color="accent">
+            Know More
+          </button>
+          <button fxHide.lg fxHide.md fxHide.xl mat-raised-button class="inlinesection" color="accent">
+            Know More
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div fxLayout="column" *ngIf="showMainBanner" class="custom-slider-container">
+    <div fxLayout="row">
+      <div [class.active]="selectedList === item" [ngStyle]="{'background-image': getUrlScheme(item.cover_image)}"
+        fxLayout="column" class="slide-image-container" *ngFor="let item of menus" (click)="openImage(item)">
+        <div fxLayout="column" *ngIf="selectedList !== item" class="custom-text-division-container"
+          fxLayoutAlign="center center">
+        </div>
+        <div class="custom-division-container"></div>
+      </div>
+    </div>
+  </div>
+</div>-->

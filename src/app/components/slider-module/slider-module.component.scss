@@ -1,0 +1,28 @@
+.slider-wrapper-content {
+  transition-property: left, right;
+  transition-duration: 0.3s;
+  transition-timing-function: ease-in-out;
+  transition-delay: 0s;
+  margin: 0 auto;
+  &.hidden {
+    display: none !important;
+  }
+}
+.image-slider-container {
+  width: 100vw;
+  height: 505px;
+}
+.slider-image-dots {
+  border: solid #fff 1px;
+  height: 15px;
+  width: 15px;
+  border-radius: 100%;
+  margin: 0 15px;
+  &.active {
+    border: solid #ffffff 1px;
+    background-color: #9b9da7;
+  }
+  &:hover {
+    cursor: pointer;
+  }
+}

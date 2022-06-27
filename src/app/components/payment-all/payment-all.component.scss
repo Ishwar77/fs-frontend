@@ -1,0 +1,51 @@
+.fitsocial-payment-card {
+  border-radius: 5px;
+  background: #fff;
+  // height: 215px;
+  width: 265px;
+  padding: 10px;
+  margin-bottom: 15px;
+  transition: box-shadow 1s ease;
+  box-shadow: 0 1px 30px 0 rgba(0, 0, 0, 0.15);
+  &:hover {
+    box-shadow: 0px 0px 6px #0189bd;
+  }
+  &.active {
+    border: 1px solid #0189bd;
+  }
+}
+.payment-first-row {
+  border-bottom: 1px solid #f1eded96;
+  padding: 3px;
+}
+.payment-first-second {
+  border-bottom: 1px solid #f1eded96;
+  padding: 3px;
+
+}
+.second-info{
+  font-size: .7rem;
+}
+.fitsocial-date {
+  font-size: 1rem;
+  font-weight: 600;
+  width: 50px;
+  text-align: center;
+  text-transform: uppercase;
+  background: aliceblue;
+  padding: 5px 5px;
+}
+.fitsocial-payment-user {
+  font-size: 0.7rem;
+  > .payment-user-name {
+    font-size: 1rem;
+    font-weight: 500;
+    color: #1494e2;
+  }
+}
+
+.payment-user-name {
+  font-size: 1rem;
+  font-weight: 500;
+  color: #1494e2;
+}

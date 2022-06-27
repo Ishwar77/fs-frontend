@@ -1,0 +1,9 @@
+<ng-template [ngIf]="_model">
+  <div class="offer-card-container" (click)="cardClicked()"  fxLayout="column">
+      <div fxLayout="column" fxLayoutGap="15px" fxLayoutAlign="center center">
+          <div class="offer-value">{{ _model.value }} </div>
+          <div class="offer-name"> {{ _model.title }} </div>
+          <div class="offer-due"> {{ _model.due }} </div>
+      </div>
+  </div>
+</ng-template>

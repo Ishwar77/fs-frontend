@@ -1,0 +1,33 @@
+<div mat-dialog-content>
+  <div class="category-dialog">
+    <div class="user-head">Trainer Details</div>
+    <div class="user-info">
+      <span class="user-title">Name:</span>
+      <span class="user-data" matInput>{{item.name}}</span>
+    </div>
+    <div class="user-info">
+      <span class="user-title">Email:</span>
+      <span class="user-data" matInput>{{item.email}}</span>
+    </div>
+    <div class="user-info">
+      <span class="user-title">Mobile:</span>
+      <span class="user-data" matInput>{{item.mobile}}</span>
+    </div>
+    <div class="user-info">
+      <span class="user-title">Gender:</span>
+      <span class="user-data" matInput>{{item.gender}}</span>
+    </div>
+    <div class="user-info" *ngIf="item.dob">
+      <span class="user-title">DOB:</span>
+      <span class="user-data" matInput>{{item.dob | date:'dd/MM/yyyy'}}</span>
+    </div>
+    <div class="user-info">
+      <span class="user-title">Registered:</span>
+      <span class="user-data" matInput>{{item.registered | date:'dd/MM/yyyy'}}</span>
+    </div>
+  </div>
+
+</div>
+<div mat-dialog-actions class="data-btn">
+  <button mat-raised-button color="warn" [mat-dialog-close]="true">Close</button>
+</div>

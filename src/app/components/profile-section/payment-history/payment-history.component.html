@@ -1,0 +1,107 @@
+<div *ngIf="pageManager.status === 1; else showInfoContainer">
+  <app-loading-component [imageSize]="2"> </app-loading-component>
+</div>
+<ng-template #showInfoContainer>
+  <div *ngIf="pageManager.action === 2; else showEventInfo">
+    <h3 fxLayoutAlign="center center">There are no payments at the moment</h3>
+  </div>
+  <ng-template #showEventInfo>
+    <div fxLayout="column">
+      <div *ngIf="dataSource?.length > 0" fxLayout="column" fxLayoutAlign="center center">
+        <div fxLayout="row" fxLayoutGap="10px">
+          <div fxLayout="column">
+            <button class="action-btn" mat-raised-button (click)="ExportTOExcel()">
+              <span class="material-icons">
+                cloud_download
+              </span>
+            </button>
+          </div>
+          <div fxLayout="column">
+            <h1 fxHide.sm fxHide.xs>The Table showing list of Payment History</h1>
+            <h1 fxHide.lg fxHide.mf> Payment History</h1>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="dataSource?.length > 0" fxHide.sm fxHide.xs fxLayout="column"
+        style="padding-right: 10px;padding-left: 10px;">
+        <div fxLayout="column">
+          <div fxLayout="column" fxLayoutAlign="center center"
+            style="border-bottom-left-radius: 5px;border-bottom-right-radius: 5px;">
+            <table mat-table [dataSource]="dataSource" style="width:50%">
+              <ng-container matColumnDef="si">
+                <th mat-header-cell *matHeaderCellDef>Sl No </th>
+                <td class="data-center" mat-cell *matCellDef="let i=index"> {{i+1}} </td>
+              </ng-container>
+              <ng-container matColumnDef="orderid" *ngIf="userrole == 6">
+                <th mat-header-cell *matHeaderCellDef> Order ID </th>
+                <td mat-cell *matCellDef="let element"> {{element.order_id}}</td>
+              </ng-container>
+
+              <ng-container matColumnDef="name" *ngIf="userrole == 6">
+                <th mat-header-cell *matHeaderCellDef> Full Name </th>
+                <td mat-cell *matCellDef="let element"> {{element.diaplay_name | uppercase}} </td>
+              </ng-container>
+              <ng-container matColumnDef="event">
+                <th mat-header-cell *matHeaderCellDef> Event Name </th>
+                <td mat-cell *matCellDef="let element">
+                  <a routerLink="/event/{{element.event_uuid}}">{{element.event_name || ''}}</a>
+                </td>
+              </ng-container>
+              <ng-container matColumnDef="date">
+                <th mat-header-cell *matHeaderCellDef> Date</th>
+                <td class="data-center" mat-cell *matCellDef="let element">
+                  {{element.created_at | date:'dd/MM/yyyy'}}
+                </td>
+              </ng-container>
+              <ng-container matColumnDef="amount">
+                <th mat-header-cell *matHeaderCellDef> Amount</th>
+                <td class="data-center" mat-cell *matCellDef="let element">
+                  <span *ngIf="element.final_amount == 0;else showother">Free subscription</span>
+                  <ng-template #showother>
+                    <span>₹ {{element.final_amount}}</span>
+                  </ng-template>
+                </td>
+              </ng-container>
+              <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+              <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div fxLayout="column" fxHide.lg fxHide.md *ngFor="let element of dataSource">
+        <div fxLayout="column">
+          <div fxLayout="row" fxLayoutAlign="space-between center" style="background:rgb(224 230 235);
+          padding: 3px 20px; font-weight: 500;">
+            <div fxLayout="column">
+              {{element.created_at | date}}
+            </div>
+            <div fxLayout="column" style="color:#3db43d;" *ngIf="element.payment_status === 'PAID';else showothers">
+              {{element.payment_status}}
+            </div>
+            <ng-template #showothers>
+              <div fxLayout="column" style="color:#ed2d1f;">
+                {{element.payment_status}}
+              </div>
+            </ng-template>
+          </div>
+        </div>
+        <div fxLayout="column">
+          <div fxLayout="row" fxLayoutAlign="space-between center" style=" box-shadow: 0 8px 23px 0 rgba(0,0,0,.17);   background: #fff;
+              padding: 10px 20px;; font-weight: 500;">
+            <div fxLayout="column">
+              <span style="color: #0082b3;">{{element.event_name}}</span>
+              <span style="font-size: .5rem;color: #807e7e;">{{element.days}} Days( Expiry Date :
+                {{element.expiry_date | date}})</span>
+              <span *ngIf="userrole == 6" style="font-size: .5rem;color: #807e7e;">By :{{element.diaplay_name}}&nbsp;(
+                Order ID:
+                {{element.order_id}})</span>
+            </div>
+            <div fxLayout="column" style="font-size: 1.2rem;">
+              ₹ {{element.final_amount}}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+</ng-template>

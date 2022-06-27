@@ -1,0 +1,80 @@
+// .slider-wrapper {
+//   background-color: #ffff;
+//   border-radius: 25px;
+//   margin: 20px;
+//   padding: 20px;
+//   width: 60%;
+// }
+.main-container{
+  position: relative;
+}
+
+.slider-wrapper-content {
+  transition-property: left, right;
+  transition-duration: 0.3s;
+  transition-timing-function: ease-in-out;
+  transition-delay: 0s;
+  margin: 0 auto;
+  &.hidden {
+    display: none !important;
+  }
+}
+
+.slider-image-dots {
+  border: solid #ffffff  1px;
+  height: 20px;
+  width: 20px;
+  border-radius: 100%;
+  margin: 0 20px;
+  &.active {
+    border: solid #ffffff 1px;
+    background-color: #9b9da7;
+  }
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.image-slider-container {
+  border-radius: 50%;
+  height: 120px;
+  width: 120px;
+}
+.Maiora-Review-Image{
+width: 100%;
+}
+// .image-update {
+//   width: 120px;
+//   height: 120px;
+//   padding: 10px;
+//   box-shadow: 0 8px 23px 0 rgba(0, 0, 0, 0.17);
+//   border-radius: 50%;
+// }
+.image-slide-description {
+  font-size: 15px;
+  font-weight: 400;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: 0.45px;
+  text-align: center;
+  color: #8c8c8c;
+}
+
+.arrow-btn{
+  background: #ffff;
+  border-radius: 50%;
+  height: 20px;
+  width: 20px;
+  padding: 5px 5px;
+  text-align: center;
+  font-size: 1rem !important;
+  font-weight: 600 !important;
+}
+
+.material-icons{
+  font-size: 1rem !important;
+  font-weight: 600 !important;
+  text-align: center;
+  width: 100%;
+}

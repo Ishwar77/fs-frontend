@@ -1,0 +1,35 @@
+.reward-container {
+    width: 450px;
+    padding: 13px;
+    background: #fff;
+    .reward-header {
+        font-size: 13px;
+        text-transform: uppercase;
+        font-weight: 800;
+        color: #14cda8;
+    }
+    .reward-amount {
+        font-size: 36px;
+        font-weight: 800;
+        color: #3e4152;
+    }
+    .reward-description {
+        font-size: 12px;
+        line-height: 1.5em;
+        color: #7e818c;
+        text-align: center;
+    }
+}
+
+table {
+    width: 50%;
+}
+
+
+@media all and (max-width: 1024px) {
+    .no-points{
+        >p:nth-child(n+1) {
+            display: none;
+        }
+    }
+}

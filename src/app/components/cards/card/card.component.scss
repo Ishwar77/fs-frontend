@@ -1,0 +1,15 @@
+mat-card {
+  width: 265px;
+  max-width: 265px;
+  height: 250px;
+}
+.event-banner {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+.title-event {
+  font-size: 1rem;
+  text-align: center;
+  margin-bottom: 5px !important;
+}

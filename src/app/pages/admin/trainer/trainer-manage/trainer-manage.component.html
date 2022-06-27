@@ -1,0 +1,142 @@
+<div class="extra-form">
+  <div *ngIf="!toggle" fxLayout="row" fxLayoutGap="10px">
+    <button class="action-btn" mat-raised-button color="accent" (click)="userstoggle(1)">ACTIVE TRAINERS
+    </button>
+    <button fxLayout="column" class="action-btn" mat-raised-button color="warn" (click)="exportexcel(2)">
+      <span class="material-icons">
+        cloud_download
+      </span>
+    </button>
+  </div>
+  <div *ngIf="toggle" fxLayout="row" fxLayoutGap="10px">
+    <button class="action-btn" mat-raised-button color="accent" (click)="userstoggle(2)" *ngIf="toggle">PENDING TRAINERS
+    </button>
+    <button fxLayout="column" class="action-btn" mat-raised-button color="accent" (click)="exportexcel(1)">
+      <span class="material-icons">
+        cloud_download
+      </span>
+    </button>
+  </div>
+
+
+
+</div>
+<div *ngIf="pageManager.status === 1; else showInfoContainer">
+  <app-loading-component [imageSize]="2"> </app-loading-component>
+</div>
+<ng-template #showInfoContainer>
+  <div *ngIf="pageManager.action === 2; else showEventInfo">
+    <app-no-content></app-no-content>
+  </div>
+  <ng-template #showEventInfo>
+    <div class="app-usermanage" *ngIf="pageManager.action === 1 && pageManager.status === 2">
+
+      <mat-form-field color="acent">
+        <mat-label>Search</mat-label>
+        <input matInput (keyup)="applyFilter($event)" placeholder="Trainers">
+      </mat-form-field>
+      <h1 *ngIf="toggle">The Table showing list of Active Trainers</h1>
+
+      <table id="excel-table" mat-table [dataSource]="dataSource" class="mat-elevation-z8" *ngIf="toggle">
+        <ng-container matColumnDef="user_id">
+          <th mat-header-cell *matHeaderCellDef> ID </th>
+          <td class="data-center" mat-cell *matCellDef="let i=index"> {{i+1}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="diaplay_name">
+          <th mat-header-cell *matHeaderCellDef> Full Name </th>
+          <td mat-cell *matCellDef="let element"> {{element.diaplay_name | uppercase}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="gender">
+          <th mat-header-cell *matHeaderCellDef> Gender </th>
+          <td class="data-center" mat-cell *matCellDef="let element"> {{element.gender}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="email_id">
+          <th mat-header-cell *matHeaderCellDef> Email ID </th>
+          <td class="data-center" mat-cell *matCellDef="let element"> <a class="hover-info"
+              (click)="mailto(element)">{{element.email_id}}</a>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="mobile_number">
+          <th mat-header-cell *matHeaderCellDef> Mobile Number </th>
+          <td class="data-center" mat-cell *matCellDef="let element"> {{element.mobile_number}} </td>
+        </ng-container>
+
+        <!-- <ng-container matColumnDef="dob">
+          <th mat-header-cell *matHeaderCellDef > DOB </th>
+          <td class="data-center" mat-cell *matCellDef="let element"> {{element.dob | date:'dd/MM/yyyy'}} </td>
+        </ng-container> -->
+
+        <ng-container matColumnDef="created_at">
+          <th mat-header-cell *matHeaderCellDef> Registered </th>
+          <td class="data-center" mat-cell *matCellDef="let element"> {{element.created_at | date:'dd/MM/yyyy'}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="Action">
+          <th mat-header-cell *matHeaderCellDef> Action </th>
+          <td class="data-center" mat-cell *matCellDef="let element">
+            <button *ngIf="element.user_role_id !== 1" class="action-btn" mat-raised-button color="warn"
+              (click)="userstatus(element,1)"><i class="fa fa-lock" aria-hidden="true"></i></button>
+          </td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+      </table>
+      <h1 *ngIf="!toggle">The Table showing list of Pending Trainers</h1>
+
+      <table id="excel-table" mat-table [dataSource]="inactivedatasource" class="mat-elevation-z8" *ngIf="!toggle">
+        <ng-container matColumnDef="user_id">
+          <th mat-header-cell *matHeaderCellDef> ID </th>
+          <td class="data-center" mat-cell *matCellDef="let i=index"> {{i+1}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="diaplay_name">
+          <th mat-header-cell *matHeaderCellDef> Full Name </th>
+          <td class="data-center" mat-cell *matCellDef="let element"> {{element.diaplay_name | uppercase}} </td>
+        </ng-container>
+        <ng-container matColumnDef="gender">
+          <th mat-header-cell *matHeaderCellDef> Gender </th>
+          <td class="data-center" mat-cell *matCellDef="let element"> {{element.gender}} </td>
+        </ng-container>
+        <ng-container matColumnDef="email_id">
+          <th mat-header-cell *matHeaderCellDef> Email ID </th>
+          <td class="data-center" mat-cell *matCellDef="let element"> <a class="hover-info"
+              (click)="mailto(element)">{{element.email_id}}</a>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="mobile_number">
+          <th mat-header-cell *matHeaderCellDef> Mobile Number </th>
+          <td class="data-center" mat-cell *matCellDef="let element"> {{element.mobile_number}} </td>
+        </ng-container>
+
+        <!-- <ng-container matColumnDef="dob">
+          <th mat-header-cell *matHeaderCellDef > DOB </th>
+          <td class="data-center" mat-cell *matCellDef="let element"> {{element.dob | date:'dd/MM/yyyy'}} </td>
+        </ng-container> -->
+
+        <ng-container matColumnDef="created_at">
+          <th mat-header-cell *matHeaderCellDef> Registered </th>
+          <td class="data-center" mat-cell *matCellDef="let element"> {{element.created_at | date:'dd/MM/yyyy'}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="Action">
+          <th mat-header-cell *matHeaderCellDef> Action </th>
+          <td class="data-center" mat-cell *matCellDef="let element">
+            <button class="action-btn" mat-raised-button color="accent" (click)="userstatus(element,0)">Accept</button>
+          </td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+      </table>
+      <mat-paginator #paginator *ngIf="dataSource" [length]="menus.length" [pageSize]="5" [pageSizeOptions]="[5,10,100]"
+        [showFirstLastButtons]="true" (page)="managePagination($event)">
+      </mat-paginator>
+    </div>
+  </ng-template>
+</ng-template>

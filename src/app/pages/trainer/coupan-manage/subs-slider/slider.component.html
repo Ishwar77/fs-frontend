@@ -1,0 +1,79 @@
+<div class="slider-panel-item" ngStyle.xs="width:350px" ngStyle.sm="width:350px">
+    <div class="header-items">
+        <div class="header">
+            {{(  getPanelTitle()) | trim : 25 }}
+        </div>
+        <div class="actions">
+            <button *ngIf="model['viewMode'] !== 1" mat-raised-button style="background-color: #db5024;"
+                (click)="deleteevent()">
+                <span><i class="fa fa-trash"></i> </span>
+            </button>
+            <button mat-raised-button (click)="saveAction()" style="margin: 10px;">
+                <span class="material-icons">{{ getPanelTitle(false)}} </span>
+            </button>
+            <button mat-raised-button fxHide.md fxHide.lg (click)="closesilder()">
+                <span class="material-icons">cancel</span>
+            </button>
+        </div>
+    </div>
+    <div class="slider-content">
+        <form>
+            <div class="inline-form">
+                <mat-form-field appearance="outline" color="accent">
+                    <mat-label>Title</mat-label>
+                    <input type="text" matInput name="days" placeholder="Coupon Title" [(ngModel)]="model['title']"
+                        tabindex="1" required [ngModelOptions]="{standalone: true}"
+                        [disabled]="model['viewMode'] === 3">
+                </mat-form-field>
+            </div>
+            <div class="inline-form">
+                <mat-form-field appearance="outline" color="accent">
+                    <mat-label>Discount Percent</mat-label>
+                    <input type="number" min=0 matInput name="amount" placeholder="Discount percent"
+                        [(ngModel)]="model['discount_percent']" tabindex="1" required
+                        [ngModelOptions]="{standalone: true}" [disabled]="model['viewMode'] === 3">
+                </mat-form-field>
+            </div>
+            <div class="inline-form">
+                <mat-form-field appearance="outline" color="accent">
+                    <mat-label>Discount Amount</mat-label>
+                    <input type="number" min=0 matInput name="tax" placeholder="Discount amount"
+                        [(ngModel)]="model['max_discount_amount']" tabindex="1" required
+                        [ngModelOptions]="{standalone: true}" [disabled]="model['viewMode'] === 3">
+                </mat-form-field>
+            </div>
+            <div class="inline-form">
+                <mat-form-field appearance="outline" color="accent">
+                    <mat-label>Max Usage Count</mat-label>
+                    <input type="number" min=0 matInput name="tax" placeholder="count"
+                        [(ngModel)]="model['max_usage_count']" tabindex="1" required
+                        [ngModelOptions]="{standalone: true}" [disabled]="model['viewMode'] === 3">
+                </mat-form-field>
+            </div>
+            <div class="inline-form" *ngIf="model['viewMode'] !== 3">
+                <mat-form-field appearance="outline" color="accent">
+                    <mat-label>Expiry Date</mat-label>
+                    <input type="date" matInput name="tax" placeholder="Expiry date" [(ngModel)]="model['expiry']"
+                        tabindex="1" required [ngModelOptions]="{standalone: true}"
+                        [disabled]="model['viewMode'] === 3">
+                </mat-form-field>
+            </div>
+            <div class="inline-form" *ngIf="model['viewMode'] === 3">
+                <mat-form-field appearance="outline" color="accent">
+                    <mat-label>Expiry Date</mat-label>
+                    <input matInput name="dateT" [disabled]="model['viewMode'] === 3"
+                        (ngModelChange)="updatedate($event)" [ngModel]="model['expiry'] |date:'yyyy-MM-dd'"
+                        #dateT="ngModel" type="date" />
+                </mat-form-field>
+            </div>
+            <div class="inline-form" *ngIf="model['viewMode'] !== 3">
+                <mat-radio-group aria-labelledby="example-radio-group-label" class="example-radio-group"
+                    [(ngModel)]="favoriteSeason" [ngModelOptions]="{standalone: true}">
+                    <mat-radio-button class="example-radio-button" *ngFor="let season of seasons" [value]="season">
+                        {{season}}
+                    </mat-radio-button>
+                </mat-radio-group>
+            </div>
+        </form>
+    </div>
+</div>

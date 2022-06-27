@@ -1,0 +1,82 @@
+<div *ngIf="menus" fxLayout="column" fxLayoutGap="10px" class="fit-social-card">
+  <div fxLayout="column" class="fit-social-card-first">
+    <div fxLayout="column" fxLayoutGap="10px" class="fit-social-card-imagename">
+      <div fxLayout="row" fxLayoutAlign="space-between start">
+        <div fxLayout="column">
+          <div fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="start center">
+            <div fxLayout="column">
+              <img src="{{menus.profile_picture_url || 'https://via.placeholder.com/150'}}" class="fit-social-image">
+            </div>
+            <div fxLayout="column" fxLayoutGap="2px">
+              <div style="font-weight: 500;font-size:15px;" fxLayout="column" matTooltip="Member name"
+                [matTooltipPosition]="'above'">
+                {{menus.diaplay_name | uppercase}}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div fxLayout="column" class="fit-social-card-descriptions" matTooltip="Contact" [matTooltipPosition]="'above'">
+      <div fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="start start">
+        <div fxLayout="column">
+          <span *ngIf="menus.mobile_number" class="material-icons" style="font-size: 18px;color: #0189bd;">
+            call
+          </span>
+        </div>
+        <div fxLayout="column">
+          <div *ngIf="menus.mobile_number">{{ menus ? (menus.mobile_number) : ''}}</div>
+        </div>
+      </div>
+    </div>
+    <div fxLayout="column" class="fit-social-card-descriptions" matTooltip="email" [matTooltipPosition]="'above'">
+      <div fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="start start">
+        <div fxLayout="column">
+          <span *ngIf="menus.email_id" class="material-icons" style="font-size: 18px;color: #0189bd;">
+            email
+          </span>
+        </div>
+        <div fxLayout="column">
+          <div *ngIf="menus.email_id" style="font-size: 11px;"> <a
+              href="mailto:{{menus.email_id}}">{{ menus ? (menus.email_id) : ''}}</a></div>
+        </div>
+      </div>
+    </div>
+    <div fxLayout="column" class="fit-social-card-descriptions" matTooltip="Renew Date" [matTooltipPosition]="'above'">
+      <div fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="start start">
+        <div fxLayout="column">
+          <span *ngIf="menus.expiry_date" class="material-icons" style="font-size: 18px;color: #b63939;">
+            insert_invitation
+          </span>
+        </div>
+        <div fxLayout="column">
+          <div *ngIf="menus.expiry_date">{{ menus ? (menus.expiry_date | date: 'mediumDate') : ''}}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div fxLayout="column" class="fit-social-card-footer">
+    <div fxLayout="row" fxLayoutAlign="space-between start">
+      <div fxLayout="column" matTooltip="Amount Paid" [matTooltipPosition]="'above'" style="color: #0189bd;">
+        <span *ngIf="menus.final_amount"> ₹ {{menus.final_amount}}</span>
+      </div>
+      <div fxLayout="column">
+        <div fxLayout="row" fxLayoutGap="5px">
+          <div fxLayout="column">
+              <span *ngIf="!menus.final_amount && menus.status" style="color: #08af24;">
+              Free Subscription
+            </span>
+            <span *ngIf="menus.status === 'PAID'" style="color: #08af24;" matTooltip="Payment Status"
+              [matTooltipPosition]="'above'">
+              {{menus.status}}
+            </span>
+            <span *ngIf="menus.status === 'Pending'" style="color: #b63939;" matTooltip="Payment Status"
+              [matTooltipPosition]="'above'">
+              {{menus.status}}
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

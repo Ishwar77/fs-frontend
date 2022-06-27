@@ -1,0 +1,154 @@
+.app-event-card {
+  margin: 10px 10px;
+  transition: box-shadow 0.4s ease-in;
+  > .event-listing {
+    > mat-card {
+      > img {
+        transition: filter 0.4s ease-in;
+      }
+    }
+  }
+
+  &:hover,
+  &:active {
+    box-shadow: 2px 1px 12px grey;
+    > .event-listing {
+      > mat-card {
+        > img {
+          filter: contrast(55%);
+        }
+      }
+    }
+  }
+
+  > .event-listing-img {
+    > img {
+      width: 100%;
+    }
+  }
+  > .event-content {
+    > .event-desc {
+      > .event-title {
+        font-size: 20px;
+        text-transform: uppercase;
+        font-weight: bold;
+        color: #0189bd;
+        text-align: center;
+        padding: 10px 0px;
+      }
+      > .event-info {
+        font-size: 12px;
+        text-align: justify;
+        padding: 0px 10px;
+      }
+    }
+  }
+}
+
+mat-card {
+  width: 220px;
+  max-width: 240px;
+  height: 250px;
+}
+
+mat-card-header-text {
+  margin: 0 !important;
+}
+mat-card-header {
+  justify-content: center !important;
+  color: #0189bd;
+}
+mat-card-subtitle {
+  height: 45px;
+  max-height: 45px;
+  -webkit-line-clamp: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 1.625;
+}
+
+.price-sec {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  margin: 12px 0px;
+}
+mat-card-subtitle {
+  text-align: justify;
+}
+img {
+  max-height: 175px;
+  height: 175px;
+}
+.price-amount {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.offer-amount {
+  text-decoration: line-through;
+}
+
+.event-listing {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.event-page {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  &.inLineMode {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    &.paddingLeft {
+      padding-left: 60px;
+    }
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .event-page {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+  }
+  .paddingLeft {
+    padding: 0 !important;
+    justify-content: center !important;
+  }
+}
+.title-event {
+  font-size: 10px;
+  font-family: inherit;
+}
+.secondary .secondary-content {
+  font-size: inherit;
+  font-style: normal;
+  color: var(--gray-dark);
+}
+
+.parent-listing-container {
+  height: 100%;
+  background-color: #f1f5f8;
+  height: calc(100vh - 25px);
+}
+
+.listing-slider-container {
+  height: auto;
+}
+
+.app-layout-cards-list-view {
+  padding: 20px;
+  height: 540px;
+  overflow: auto;
+}

@@ -1,0 +1,93 @@
+<div fxLayout="column" style="padding: 10px 15px;margin-top: 10px;">
+  <div fxLayout="row" fxLayoutGap="20px" fxLayoutAlign="flex-start" class="event-summary-container">
+
+    <div fxLayout="column" (click)="batchview(1)">
+      <div (click)="routerBack()" fxLayout="row" fxLayoutAlign="start center" class="event-go-back">
+        <div fxLayout="column">
+          <span class="material-icons" [matTooltip]="'Back'">
+            keyboard_arrow_left
+          </span>
+        </div>
+        <div fxLayout="column" fxHide.xs fxHide.sm>
+          Go Back
+        </div>
+      </div>
+    </div>
+    <div fxLayout="column" (click)="batchview(2)">
+      <div fxLayout="row" routerLinkActive="active" [routerLink]="[selectedEventId,'subscription']" fxLayoutGap="5px"
+        fxLayoutAlign="start center" class="event-summary-headers" style="cursor:pointer;">
+        <div fxLayout="column">
+          <span class="material-icons" style="font-size:16px" [matTooltip]="'Subscriptions'">
+            subscriptions
+          </span>
+        </div>
+        <div fxLayout="column" fxHide.xs fxHide.sm>
+          Subscriptions
+        </div>
+      </div>
+    </div>
+    <div fxLayout="column" (click)="batchview(3)" *ngIf="showbatch">
+      <div fxLayout="row" routerLinkActive="active" [routerLink]="[selectedEventId,'batches']" fxLayoutGap="5px"
+        fxLayoutAlign="start center" class="event-summary-headers" style="cursor:pointer;">
+        <div fxLayout="column">
+          <span class="material-icons" style="font-size: 16px;" [matTooltip]="'Batches'">
+            batch_prediction
+          </span>
+        </div>
+        <div fxLayout="column" fxHide.xs fxHide.sm>
+          Batches
+        </div>
+      </div>
+    </div>
+    <div fxLayout="column" (click)="batchview(4)">
+      <div fxLayout="row" routerLinkActive="active" [routerLink]="[selectedEventId,'coupans']" fxLayoutGap="5px"
+        fxLayoutAlign="start center" class="event-summary-headers" style="cursor:pointer;">
+        <div fxLayout="column">
+          <span class="material-icons" style="font-size:16px" [matTooltip]="'Coupans'">
+            countertops
+          </span>
+        </div>
+        <div fxLayout="column" fxHide.xs fxHide.sm>
+          Coupans
+        </div>
+      </div>
+    </div>
+    <div fxLayout="column" (click)="batchview(5)" fxLayoutGap="10px">
+      <div fxLayout="row" routerLinkActive="active" [routerLink]="[selectedEventId,'users']" fxLayoutGap="5px"
+        fxLayoutAlign="start center" class="event-summary-headers" style="cursor:pointer;">
+        <div fxLayout="column">
+          <span class="material-icons" style="font-size:18px" [matTooltip]="'Users'">
+            people_outline
+          </span>
+        </div>
+        <div fxLayout="column" fxHide.xs fxHide.sm>
+          Users
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="showview" fxLayout="column" fxHide.xs class="sub-name">
+      <div fxLayout="row" fxLayoutGap="5px">
+        <span *ngIf="!sname">ALL BATCHES</span>
+        <span *ngIf="sname">{{sname}} Days Pack</span>
+      </div>
+    </div>
+    <div *ngIf="showview" fxLayout="column" fxLayoutGap="10px">
+      <div fxLayout="row" fxLayoutGap="5px" fxLayoutAlign="start center" class="event-summary-headers">
+        <div fxLayout="column" [matMenuTriggerFor]="beforeMenu">
+          <span class="material-icons" style="font-size:18px" [matTooltip]="'Batch Filter'">
+            filter_alt
+          </span>
+        </div>
+        <mat-menu #beforeMenu="matMenu" xPosition="before">
+          <button mat-menu-item *ngFor="let item of items">
+            <span (click)="selectedsubscription(item)">{{item.days}} Days Pack</span>
+          </button>
+        </mat-menu>
+      </div>
+    </div>
+  </div>
+</div>
+<div fxLayout="column">
+  <router-outlet></router-outlet>
+</div>

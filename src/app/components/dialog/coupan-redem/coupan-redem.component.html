@@ -1,0 +1,63 @@
+<div fxLayout="column" fxLayoutAlign="">
+  <div fxLayout="column" fxLayoutGap="10px">
+
+    <div fxLayout="column">
+      <mat-form-field appearance="outline" color="accent">
+        <mat-label>Event Name</mat-label>
+        <input type="text" name="startdate" tabindex="1" matInput autocomplete="off" required
+          [(ngModel)]="item.menus.Event.event_name" readonly>
+      </mat-form-field>
+    </div>
+
+    <div fxLayout="column">
+      <mat-form-field appearance="outline" color="accent">
+        <mat-label>Coupon Name</mat-label>
+        <input type="text" name="couponname" tabindex="1" placeholder="Ex:SEP100" matInput autocomplete="off" required
+          [(ngModel)]="data.title">
+      </mat-form-field>
+    </div>
+
+    <div fxLayout="column">
+      <mat-form-field appearance="outline" color="accent">
+        <mat-label>DISCOUNT VALUE(%)</mat-label>
+        <input type="number" min="1" max="100" name="discount" matInput autocomplete="off" placeholder="DISCOUNT VALUE"
+          [(ngModel)]="data.discount_percent" required>
+      </mat-form-field>
+    </div>
+
+    <div fxLayout="column">
+      <mat-form-field appearance="outline" color="accent">
+        <mat-label>Max discount amount</mat-label>
+        <input type="number" name="discount" matInput autocomplete="off" placeholder="Amount"
+          [(ngModel)]="data.max_discount_amount" required>
+      </mat-form-field>
+    </div>
+
+    <!-- <div fxLayout="column">
+      <mat-form-field appearance="outline" color="accent">
+        <mat-label>MAXIMUM USAGE COUNT</mat-label>
+        <input type="text" name="disvalue" tabindex="1" placeholder="Ex:10(%age)" matInput autocomplete="off" required
+          [(ngModel)]="data.max_usage_count">
+      </mat-form-field>
+    </div> -->
+
+    <div fxLayout="column">
+      <mat-form-field appearance="outline" color="accent">
+        <mat-label>Expiry Date</mat-label>
+        <input type="date" name="expiry" tabindex="2" placeholder="Ex: 100" matInput autocomplete="off" required
+          [(ngModel)]="data.expiry">
+      </mat-form-field>
+    </div>
+
+    <div fxLayout="column">
+      <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="10px">
+        <div fxLayout="column">
+          <button mat-raised-button color="accent" (click)="privatecoupon()">Accept</button>
+        </div>
+        <div fxLayout="column">
+          <button mat-raised-button color="warn" [mat-dialog-close]="true">cancel</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

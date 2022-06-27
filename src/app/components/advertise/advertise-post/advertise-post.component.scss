@@ -1,0 +1,46 @@
+
+.inputfile {
+  width: 0.1px;
+  height: 0.1px;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  z-index: -1;
+}
+
+.inputfile + label {
+  font-size: 1.25em;
+  font-weight: 700;
+  color: #2979ff;
+  /* background-color: #e1afaf; */
+  display: inline-block;
+  border: 1px solid;
+  padding: 10px 25px;
+}
+
+// .inputfile:focus + label,
+// .inputfile + label:hover {
+//   background-color: #000;
+//   color: #fff;
+// }
+.upload-img {
+  color: #000;
+  margin: 0px 10px;
+}
+.upload-img:hover {
+  color: #fff;
+}
+
+.inputfile + label {
+  cursor: pointer; /* "hand" cursor */
+}
+
+.inputfile:focus + label {
+  outline: 1px dotted #000;
+  outline: -webkit-focus-ring-color auto 5px;
+}
+
+.image-select:hover, .upload-img:hover {
+  background-color: #000;
+  color: #fff;
+}

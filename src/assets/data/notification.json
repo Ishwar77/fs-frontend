@@ -1,0 +1,45 @@
+[
+ {
+    "name": "Praveen Kumar",
+    "Imgurl": "https://www.eharmony.com/blog/wp-content/uploads/2017/07/short-men-and-dating-e1499470604767.jpg",
+    "Description": "Event Includes all type of excesise ",
+    "event_Name": "Kids Workout Session",
+    "startime": "11:00 PM",
+    "endtime": "12:00 PM",
+    "postTime":"11 Hours Ago"
+  },
+  {
+    "name": "Sunil ",
+    "Imgurl": "https://us.123rf.com/450wm/luckybusiness/luckybusiness1609/luckybusiness160900586/62820248-elegant-male-model-look-in-distance-side-profile-image.jpg?ver=6",
+    "Description": "Event Includes all type of excesise ",
+    "event_Name": "Kids Workout Session",
+    "startime": "11:00 PM",
+    "endtime": "12:00 PM",
+    "postTime":"11 Hours Ago"
+  },
+  {
+    "name": "Dhanush Kumar",
+    "Imgurl": "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSYcl-BE5N-n8b3DHzX-8uAqMwKJcrCRrG_Zg&usqp=CAU",
+    "Description": "Fitsocial Fitness Activity as Event for all",
+    "event_Name": "Fitsocial Fitness Activity",
+    "startime": "06:00 PM",
+    "endtime": "07:00 PM",
+    "postTime":"5 Hours Ago"
+  },
+  {
+    "name": "Ajay JP",
+    "Imgurl": "https://cdn.pixabay.com/photo/2016/03/09/15/10/man-1246508__340.jpg",
+    "Description": "Event Includes all type of excesise ",
+    "event_Name": "Meditation Session",
+    "startime": "05:00 PM",
+    "endtime": "06:00 PM",
+    "postTime":"11 Hours Ago"
+  },
+  {
+    "name": "Harsha Kumar",
+    "Imgurl": "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcR3YbaqxuMYrNcSKgubbBpVQ1oInLahxstezw&usqp=CAU",
+    "Description": "Public Fitness Events for all public users",
+    "event_Name": "Fitness Activity",
+    "postTime":"1 Hours Ago"
+  }
+]

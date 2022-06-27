@@ -1,0 +1,59 @@
+<div fxLayout="column">
+  <div fxLayout="row" style="padding:10px;border-bottom: 1px solid rgb(217 217 217);" fxLayoutAlign="center start">
+    <div fxLayout="column">
+      <h1 mat-dialog-title style="color:#02729b" fxLayoutAlign="center center">
+        Meeting Infomation</h1>
+    </div>
+    <!-- <div fxLayout="column" >
+      <span class="material-icons" style=" color: #d80000;" [mat-dialog-close]="true">cancel</span>
+    </div> -->
+  </div>
+</div>
+<div mat-dialog-content fxLayout="column" fxLayoutAlign="center center" style="text-align: center;">
+  <div fxLayout="column" style="margin: 15px 0px;width: 100%; ">
+    <div fxLayout="row" fxLayoutAlign="center start">
+      <div fxLayout="column" style="width: 100%;">
+        <mat-form-field>
+          <mat-label>Meeting Link</mat-label>
+          <input *ngIf="userrole == 6" matInput name="url" [(ngModel)]="link">
+          <input *ngIf="userrole == 3 && preview.data.link" matInput name="url" [(ngModel)]="preview.data.link"
+            readonly>
+          <mat-icon matSuffix style="cursor :pointer; color:#02729b;" (click)="copyinputmessage()">file_copy
+          </mat-icon>
+        </mat-form-field>
+      </div>
+    </div>
+  </div>
+  <div fxLayout="column" style="width: 100%;">
+    <mat-form-field *ngIf="userrole == 6">
+      <mat-label>Password</mat-label>
+      <input type="password" [type]="hide ? 'password':'text'" matInput name="url" [(ngModel)]="password">
+      <mat-icon style="cursor:pointer;color:#02729b;" matSuffix (click)="hide = !hide">
+        {{hide ? 'visibility' : 'visibility_off'}}
+      </mat-icon>
+    </mat-form-field>
+    <mat-form-field *ngIf="userrole == 3 && preview.data.password">
+      <mat-label>Password</mat-label>
+      <input type="password" [type]="hide ? 'password':'text'" matInput name="url" [(ngModel)]="preview.data.password"
+        readonly>
+      <mat-icon style="cursor:pointer;color:#02729b;" matSuffix (click)="hide = !hide">
+        {{hide ? 'visibility' : 'visibility_off'}}
+      </mat-icon>
+    </mat-form-field>
+  </div>
+  <div fxLayout="column" style="width: 100%;">
+    <div fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="center center">
+      <div fxLayout="column">
+        <button *ngIf="userrole == 6" [disabled]="!link" mat-raised-button color="accent" (click)="update()"
+          class="save">Start</button>
+        <button *ngIf="userrole == 3" [disabled]="!preview.data.link" mat-raised-button color="accent" class="save"
+          (click)="update()">Join</button>
+      </div>
+      <div fxLayout="column">
+        <button *ngIf="userrole == 6" mat-raised-button color="warn" class="save" (click)="reset()">Reset</button>
+        <button *ngIf="userrole == 3" mat-raised-button color="warn" class="save"
+          [mat-dialog-close]="true">Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>

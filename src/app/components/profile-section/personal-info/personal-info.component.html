@@ -1,0 +1,71 @@
+<div fxLayout="column" fxFlexFill>
+  <div fxLayout="column" fxLayoutAlign="center center" style="background-color: rgba(1, 137, 189, 0.15);
+  padding: 10px;color: rgb(1, 137, 189);font-size: 1.4rem;font-weight: 500;">
+    Personal Information
+  </div>
+  <div fxLayout="column">
+    <div fxLayout="row" fxLayout.xs="column" fxLayout.sm="column" style="padding: 15px;">
+      <div fxLayout="column" style="width: 100%;">
+        <div fxLayout="column">
+          <div class="user-profile" fxLayout="row" fxLayoutAlign="start center" fxLayoutAlign.xs="start center"
+            fxLayoutAlign.sm="start center">
+            <div class="name-heads" ngStyle.xs="min-width:0 !important" ngStyle.sm="min-width:0 !important">
+              Full Name
+            </div>
+            <div class="name-detailss">
+              <mat-form-field class="example-full-width" color="accent">
+                <input type="text" matInput [(ngModel)]="item.menus.diaplay_name" maxlength="24">
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
+        <div fxLayout="column">
+          <div class="user-profile" fxLayout="row" fxLayoutAlign="start center" fxLayoutAlign.xs="start center"
+            fxLayoutAlign.sm="start center">
+            <div class="name-heads" ngStyle.xs="min-width:0 !important" ngStyle.sm="min-width:0 !important">
+              Mobile Number
+            </div>
+            <div class="name-detailss">
+              <mat-form-field class="example-full-width" color="accent">
+                <input type="tel" matInput [(ngModel)]="item.menus.mobile_number" minlength="10" maxlength="10">
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
+        <div *ngIf="userrole == 3" fxLayout="column">
+          <div class="user-profile" fxLayout="row" fxLayoutAlign="start center" fxLayoutAlign.xs="start center"
+            fxLayoutAlign.sm="start center">
+            <div class="name-heads" ngStyle.xs="min-width:0 !important" ngStyle.sm="min-width:0 !important">
+              <span>Designation</span>
+            </div>
+            <div class="name-detailss">
+              <mat-form-field class="example-full-width" color="accent">
+                <input type="text" matInput [(ngModel)]="item.menus.designation" maxlength="15">
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
+        <div *ngIf="userrole == 6" fxLayout="column">
+          <div class="user-profile" fxLayout="row" fxLayoutAlign="start center" fxLayoutAlign.xs="start center"
+            fxLayoutAlign.sm="start center">
+            <div class="name-heads" ngStyle.xs="min-width:0 !important" ngStyle.sm="min-width:0 !important">
+              Page Name
+            </div>
+            <div class="name-detailss">
+              <mat-form-field class="example-full-width" color="accent">
+                <input type="text" matInput [(ngModel)]="item.menus.pageName">
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div fxLayout="column">
+      <div class="user-profile-info" fxLayout="row" fxLayoutGap="20px" fxLayoutAlign="center center">
+        <button mat-raised-button color="accent" (click)="save()"> SAVE</button>
+        <button mat-raised-button color="warn" [mat-dialog-close]="true"> CANCEL</button>
+      </div>
+    </div>
+  </div>
+</div>

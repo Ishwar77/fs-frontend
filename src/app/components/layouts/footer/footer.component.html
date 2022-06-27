@@ -1,0 +1,109 @@
+<div fxFlexFill fxLayout="column" style="padding:20px;background-color: #000;color: #fff;">
+  <div fxLayout="row" fxLayout.xs="column" fxLayout.sm="column" fxLayoutGap="10px" fxLayoutGap.xs="20px"
+    fxLayoutGap.xs="20px" fxLayoutAlign="start center" fxLayoutAlign.xs="center center"
+    fxLayoutAlign.sm="center center">
+    <div fxLayout="column" ngStyle.sm="border-bottom:1px solid #fff;" ngStyle.xs="border-bottom:1px solid #fff;"
+      fxLayoutGap="10px" fxLayoutAlign.xs="center center" fxLayoutAlign.sm="center center" fxLayoutAlign="center start"
+      fxFlex="40%" fxFlex.xs="100%" fxFlex.sm="100%">
+      <div fxLayout="column">
+        <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="10px">
+          <div fxLayout="column" routerLink="home">
+            <img height="60px" src="https://i.ibb.co/kh5fv2Q/fit-logo-2.png" alt="Fit-Social-Logo" />
+          </div>
+          <div fxLayout="column" style="font-size: 1.6rem;font-weight: 500;">
+            The Fit Social
+          </div>
+        </div>
+      </div>
+      <div fxLayout="column" style="text-align: justify;font-size: 0.9rem;"
+        ngStyle.sm="margin-bottom: 10px;text-align: center;font-size: 0.8rem;"
+        ngStyle.xs="margin-bottom: 10px;text-align: center;font-size: 0.8rem;">
+        At Fit Socials, we make workouts accessible to everyone by maily focussing on non equipment 
+        exercises and providing the classes on a daily basis. We mainly focus on without equipment 
+        exercises which helps to ease your body actions or movements Now with Fit Socials you 
+        can watch the training by professional coach and be the part of fitness sessions from home.
+      </div>
+    </div>
+    <div ngStyle.sm="position:relative;top:0" ngStyle.xs="position:relative;top:0" ngStyle.xs="margin-bottom:20px"
+      ngStyle.sm="margin-bottom:20px" style="position: relative;top: 10px" fxLayout="column" fxLayoutGap="20px"
+      fxFlex.xs="100%" fxFlex.sm="100%" fxFlex="40%">
+      <div fxLayout="column" class="footer-head" fxLayoutAlign="center center" ngStyle.xs="text-decoration:underline;">
+        Quick Links</div>
+      <div fxLayout="column" fxLayoutGap="15px" fxLayoutAlign="start center">
+        <!-- <div fxLayout="column">
+          <a class="footertop-links" routerLink="events">Events</a>
+        </div> -->
+        <div fxLayout="column" *ngIf="toggle">
+          <a class="footertop-links" routerLink="coach">Trainers</a>
+        </div>
+        <div fxLayout="column">
+          <a class="footertop-links " routerLink="AboutUs" rel="noopener">About Us</a>
+        </div>
+        <div fxLayout="column">
+          <a class="footertop-links " routerLink="ContactUs" rel="noopener">Contact Us</a>
+        </div>
+        <div fxLayout="column">
+          <a class="footertop-links " routerLink="Privacy" rel="noopener">Privacy Policies</a>
+        </div>
+        <div fxLayout="column">
+          <a class="footertop-links " routerLink="Refund" rel="noopener">Refund Policies</a>
+        </div>
+        <div fxLayout="column" *ngIf="!toggle">
+          <a class="footertop-links" style="cursor: pointer;" (click)="login()">Login</a>
+        </div>
+        <!-- <div fxLayout="column" *ngIf="!toggle">
+          <a class="footertop-links" style="cursor: pointer;" (click)="register()">Registration</a>
+        </div> -->
+      </div>
+    </div>
+    <div fxLayout="column" ngStyle.sm="position:relative;bottom:0" ngStyle.xs="position:relative;bottom:0"
+      style="position: relative;bottom: 28px" fxLayoutGap="20px" fxFlex="20%" fxFlex.xs="100%" fxFlex.sm="100%"
+      fxLayoutAlign="center center">
+      <div class="footer-head" fxLayoutAlign="center center" ngStyle.xs="text-decoration:underline;">Follow Us</div>
+      <div fxLayout="row">
+        <div fxLayout="column" fxLayoutAlign="center center">
+          <a class="footertop-links " href="https://www.facebook.com/The-FIT-Socials-112123977121989/" target="_blank"
+            rel="noopener">
+            <i class="fa fa-facebook social-icons"></i>
+          </a>
+        </div>
+        <div fxLayout="column" fxLayoutAlign="center center">
+          <a class="footertop-links " href="https://instagram.com/fit_socials?igshid=vtbhonr7nuev" target="_blank"
+            rel="noopener">
+            <i class="fa fa-instagram social-icons"></i>
+          </a>
+        </div>
+        <div fxLayout="column" fxLayoutAlign="center center">
+          <a class="footertop-links" href="https://web.whatsapp.com/" target="_blank" rel="noopener">
+            <i class="fa fa-whatsapp social-icons"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<mat-toolbar>
+  <mat-toolbar-row style="background: #000;color: #fff;">
+    <div class="footer-main" fxLayout="row" fxLayout.xs="column" fxLayout.sm="column"
+      fxLayoutAlign="space-between center">
+      <div fxLayout="column" fxLayoutAlign="start center" fxLayoutAlign.xs="center center">
+        <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="10px" fxLayoutGap.xs="0px" class="copyright">
+          <div fxLayout="column">
+            Copyright © {{date}} Fit Social. All rights reserved.&nbsp;|&nbsp;
+          </div>
+          <div fxLayout="column" class="powerd">
+            <div fxLayout="row" fxLayoutAlign.xs="center center">
+              Powered by &nbsp;<a style="color: #0189bc !important;" href="https://www.maiora.co" target="_blank"
+                rel="noopener">Maiora</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div fxLayout="column" fxLayoutAlign="end center">
+        <a class="footer-links footer-dash" style="color: #0189bc !important;" routerLink="/termsandconditions"
+          rel="noopener">Terms &
+          conditions</a>
+      </div>
+    </div>
+  </mat-toolbar-row>
+</mat-toolbar>

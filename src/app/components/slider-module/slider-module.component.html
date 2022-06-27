@@ -1,0 +1,18 @@
+<div fxLayout="column" style="position: relative;" fxLayoutAlign="center center">
+  <div fxLayout="column">
+    <div *ngFor="let item of _sliderImage" class="slider-wrapper-content" fxLayout="column"
+      [class.hidden]="!item.isActive">
+      <div fxLayout="column">
+        <img ngStyle.xs="width: 100%;height: 200px;" class="image-slider-container" [src]="item.cover_image"
+          [alt]="item.cover_image">
+      </div>
+    </div>
+  </div>
+  <div fxLayout="column" style="position: absolute;bottom: 10px;">
+    <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="5px">
+      <div *ngFor="let slider of _sliderImage; let i = index" class="slider-image-dots" [class.active]="slider.isActive"
+        (click)="slideTo(i, true)">
+      </div>
+    </div>
+  </div>
+</div>

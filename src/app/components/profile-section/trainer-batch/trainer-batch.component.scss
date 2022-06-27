@@ -1,0 +1,135 @@
+.fit-social-card {
+  border-radius: 5px;
+  background: #fff;
+  height: auto;
+  width: 265px;
+  padding: 10px;
+  margin-bottom: 15px;
+  transition: box-shadow 1s ease;
+  box-shadow: 0 1px 30px 0 rgba(0, 0, 0, 0.15);
+  &:hover {
+    box-shadow: 0px 0px 6px #0189bd;
+  }
+  &.active {
+    border: 1px solid #0189bd;
+  }
+}
+
+.info-card {
+  width: 16%;
+  background-color: #fff;
+  height: 200px;
+  border-radius: 12px;
+  padding: 15px 20px;
+  text-align: center;
+  box-shadow: 0 1px 30px 0 rgba(0, 0, 0, 0.15);
+  margin-bottom: 15px;
+  cursor: pointer;
+}
+
+h5 {
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+.fit-social-image {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  -o-object-fit: cover;
+  object-fit: cover;
+}
+
+.circle {
+  background: green;
+  height: 15px;
+  width: 15px;
+  border-radius: 50%;
+}
+.fitsocial-sub-info {
+  font-size: 0.6rem;
+}
+.fitsocial-content-head {
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: #22a4d1;
+}
+.counts-show {
+  font-size: 2rem;
+
+  text-align: center;
+  cursor: pointer;
+  & i.close1 {
+    color: red;
+  }
+  & i.check {
+    color: #0189bd;
+  }
+}
+.reward-container {
+  width: 450px;
+  padding: 13px;
+  background: #fff;
+  .reward-header {
+    font-size: 13px;
+    text-transform: uppercase;
+    font-weight: 800;
+    color: #14cda8;
+  }
+  .reward-amount {
+    font-size: 36px;
+    font-weight: 800;
+    color: #3e4152;
+  }
+  .reward-description {
+    font-size: 12px;
+    line-height: 1.5em;
+    color: #7e818c;
+    text-align: center;
+  }
+}
+
+table {
+  width: 100%;
+}
+
+@media all and (max-width: 1024px) {
+  .no-points {
+    > p:nth-child(n + 1) {
+      display: none;
+    }
+  }
+}
+
+.event-summary-container {
+  background: #fff;
+  padding: 10px;
+  border-radius: 5px;
+  height: 50px;
+  .event-go-back {
+    padding: 5px;
+    cursor: pointer;
+    outline: 0;
+    color: #000;
+    font-weight: 500;
+    font-size: 11px;
+  }
+  .event-summary-headers {
+    cursor: default;
+    border-radius: 25px;
+    padding: 5px 8px 6px 8px;
+    outline: 0;
+    color: #000;
+    font-weight: 500;
+    font-size: 11px;
+    &:hover {
+      background: #2b79fe;
+      color: #fff;
+      border-radius: 25px;
+    }
+    &.active {
+      background: #2b79fe;
+      color: #fff;
+      border-radius: 25px;
+    }
+  }
+}

@@ -1,0 +1,27 @@
+<div fxLayout="column" fxLayoutGap="10px" class="fit-social-card" (click)="cardclicked(amount)">
+  <div fxLayout="column" class="fit-social-card-first">
+    <div fxLayout="column" fxLayoutGap="10px" class="fit-social-card-imagename">
+      <div fxLayout="row" fxLayoutAlign="space-between start">
+        <div fxLayout="column">
+          <div fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="start center">
+            <div fxLayout="column" fxLayoutGap="2px">
+              <div style="font-weight: 500;font-size:15px;" fxLayout="column">
+                Amount : ₹ {{amount.amount}}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div fxLayout="column" class="fit-social-card-descriptions">
+      <span>Tax : {{amount.tax}} %</span>
+    </div>
+  </div>
+  <div fxLayout="column" class="fit-social-card-footer">
+    <div fxLayout="row" fxLayoutAlign="space-between start">
+      <div fxLayout="column"  style="color: #0189bd;">
+        <span>{{amount.days}} Days Pack</span>
+      </div>
+    </div>
+  </div>
+</div>

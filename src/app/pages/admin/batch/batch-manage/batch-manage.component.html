@@ -1,0 +1,85 @@
+<div class="extra-form">
+  <button class="action-btn" mat-raised-button color="accent" (click)="addbatch()">ADD Batch</button>
+  <button fxLayout="column" class="action-btn" mat-raised-button color="accent" (click)="ExportTOExcel()">
+    <span class="material-icons">
+      cloud_download
+    </span>
+  </button>
+</div>
+
+<div *ngIf="pageManager.status === 1; else showInfoContainer">
+  <app-loading-component [imageSize]="2"> </app-loading-component>
+</div>
+<ng-template #showInfoContainer>
+  <div *ngIf="pageManager.action === 2; else showEventInfo">
+    <app-no-content></app-no-content>
+  </div>
+
+
+  <ng-template #showEventInfo>
+    <div class="app-usermanage" *ngIf="pageManager.action === 1 && pageManager.status === 2">
+
+      <mat-form-field color="acent">
+        <mat-label>Search</mat-label>
+        <input matInput (keyup)="applyFilter($event)" placeholder="Batch">
+      </mat-form-field>
+
+      <h1>The Table showing List of Batches for "{{eventname}}"</h1>
+
+      <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+        <ng-container matColumnDef="si">
+          <th mat-header-cell *matHeaderCellDef> ID </th>
+          <td class="data-center" mat-cell *matCellDef="let element"> {{element.batches_id}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="start">
+          <th mat-header-cell *matHeaderCellDef> Start Time </th>
+          <td class="data-center" mat-cell *matCellDef="let element">
+            {{element.start_time}}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="end">
+          <th mat-header-cell *matHeaderCellDef> End Time </th>
+          <td class="data-center" mat-cell *matCellDef="let element">{{element.end_time}}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="size">
+          <th mat-header-cell *matHeaderCellDef> Size </th>
+          <td class="data-center" mat-cell *matCellDef="let element"> {{element.batch_size || '-'}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="date">
+          <th mat-header-cell *matHeaderCellDef> Created Date </th>
+          <td class="data-center" mat-cell *matCellDef="let element"> {{element.created_at | date:'dd/MM/yyyy' }} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="frequency">
+          <th mat-header-cell *matHeaderCellDef> Frequency </th>
+          <td class="data-center" mat-cell *matCellDef="let element">
+            <h1 *ngIf="element.frequency === 1">DAILY</h1>
+            <h1 *ngIf="element.frequency === 2">MONTHLY</h1>
+            <h1 *ngIf="element.frequency === 3">WEEKLY</h1>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="action">
+          <th mat-header-cell *matHeaderCellDef> Action </th>
+          <td class="data-center" mat-cell *matCellDef="let element" class="action-link">
+            <div class="action-sec">
+              <a class="action-edit" color="accent" (click)="eventsubs(element)"><i class="fa fa-pencil-square"
+                  aria-hidden="true"></i></a>
+              <a class="action-delete" color="warn" (click)="deletsubs(element)"><i class="fa fa-trash"
+                  aria-hidden="true"></i></a>
+            </div>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+    </div>
+  </ng-template>
+</ng-template>

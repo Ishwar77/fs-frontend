@@ -1,0 +1,29 @@
+.banner-container{
+ // padding:8px;
+  border-radius: 2px;
+  border: 1px solid #ebe6e6;
+  background-color: #fff;
+  width: 350px;
+  margin-bottom: 10px;
+  .banner-type{
+    background-color: red;
+    color: #fff;
+    position: absolute;
+    left: 293px;
+    font-size: 0.6rem;
+    padding: 0px 5px;
+
+  }
+  .banner-content{
+    padding: 8px;
+
+    .banner-title{
+      font-weight: 500;
+      color: #04abe9;
+    }
+    .banner-description{
+      text-align: justify;
+    }
+
+  }
+}

@@ -1,0 +1,116 @@
+<div class="app-register">
+  <div class="headname">
+    <div class="userreg">MEMBER REGISTRATION</div>
+  </div>
+  <div class="logo">
+    <img class="logo-img" src="https://i.ibb.co/HY4wR23/Fit-Social-White.jpg" alt="Register-Logo">
+  </div>
+  <div class="register-form">
+    <form [formGroup]="userRegisterForm" (ngSubmit)="userRegisterForm.valid && signup()" novalidate>
+      <div class="inline-form">
+        <mat-form-field appearance="outline" color="accent">
+          <mat-label>Display Name</mat-label>
+          <input matInput formControlName="fullName" id="fullName" name="name" placeholder="Enter Your Display Name"
+            [(ngModel)]="data.name" tabindex="1">
+          <mat-error *ngIf="userRegisterForm.controls['fullName'].errors?.required">This field is required.</mat-error>
+          <mat-error *ngIf="userRegisterForm.controls['fullName'].errors?.pattern">Please enter only letters.
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="outline" color="accent">
+          <mat-label>Email</mat-label>
+          <input type="email" formControlName="email" id="email" name="email" tabindex="4" matInput
+            placeholder="Enter Your Email" [(ngModel)]="data.email" autocomplete="off">
+          <mat-error *ngIf="userRegisterForm.controls['email'].errors?.required">This field is required.</mat-error>
+          <mat-error *ngIf="userRegisterForm.controls['email'].errors?.email">Email Valid Invaild.</mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="inline-form">
+        <mat-form-field appearance="outline" color="accent">
+          <mat-label>Password</mat-label>
+          <input type="password" [type]="hide ? 'password':'text'" id="password" formControlName="password"
+            id="password" tabindex="6" name="password" matInput [(ngModel)]="data.password" autocomplete="off"
+            placeholder="Enter Your Password">
+          <mat-icon matSuffix (click)="hide = !hide">
+            {{hide ? 'visibility' : 'visibility_off'}}
+          </mat-icon>
+          <mat-error *ngIf="userRegisterForm.controls['password'].errors?.required">Must have Minimum 5 digits or
+            letters.</mat-error>
+          <mat-error *ngIf="userRegisterForm.controls['password'].errors?.minLength ">Must have minimum 5 digits or
+            letters.</mat-error>
+          <mat-error *ngIf="userRegisterForm.controls['password'].errors?.pattern">Combination of Alphabet, Special
+            characters and Number(Abc@123).
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" color="accent">
+          <mat-label>Confirm Password</mat-label>
+          <input type="password" [type]="chide ? 'password':'text'" name="cpassword" formControlName="cpassword"
+            id="cpassword" tabindex="7" matInput [(ngModel)]="data.cpassword" placeholder="Enter Your Confirm Password">
+          <mat-icon matSuffix (click)="chide = !chide">
+            {{chide ? 'visibility' : 'visibility_off'}}
+          </mat-icon>
+          <mat-error *ngIf="userRegisterForm.controls['cpassword'].errors?.required">Must have Minimum 5 digits or
+            letters.</mat-error>
+          <mat-error *ngIf="userRegisterForm.controls['cpassword'].errors?.minLength ">Must have minimum 5 digits or
+            letters.</mat-error>
+          <mat-error *ngIf="userRegisterForm.controls['cpassword'].errors?.pattern">Combination of Alphabet, Special
+            characters and Number(Abc@123).
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="inline-form">
+        <mat-form-field appearance="outline" color="accent">
+          <mat-label>Mobile Number</mat-label>
+          <input type="number" min="0" formControlName="mobile" id="mobile" tabindex="5" name="mobile" matInput
+            placeholder="Enter Your Mobile Number" [(ngModel)]="data.mobile">
+          <mat-error *ngIf="userRegisterForm.controls['mobile'].errors?.required">This field is required.</mat-error>
+          <mat-error
+            *ngIf="userRegisterForm.controls['mobile'].errors?.minLength && userRegisterForm.controls['mobile'].errors?.maxLength ">
+            Mobile number should have 10 digits.</mat-error>
+          <mat-error *ngIf="userRegisterForm.controls['mobile'].errors?.pattern">Must contain 10 digits and only
+            numbers. </mat-error>
+        </mat-form-field>
+
+        <div class="radio-group">
+          <mat-radio-group formControlName="gender" required>
+            <mat-radio-button tabindex="3" color="accent" class="example-radio-button"
+              *ngFor="let genderSelects of genderSelect" [value]="genderSelects"
+              (click)="genderselection(genderSelects)">
+              {{genderSelects}}
+            </mat-radio-button>
+            <mat-error *ngIf=" userRegisterForm.errors?.ngModel.required">Please select any gender !!!.</mat-error>
+          </mat-radio-group>
+        </div>
+      </div>
+
+      <div class="inline-form">
+        <mat-form-field appearance="outline" color="accent">
+          <mat-label>Referral Code(If any)</mat-label>
+          <input matInput formControlName="referral" id="referral" name="referral"
+            placeholder="Enter Your Referral Code" [(ngModel)]="data.referral_code" tabindex="1">
+        </mat-form-field>
+      </div>
+
+      <div class="inline-forms" fxLayoutAlign="center center">
+        <div class="section-2">
+          <div class="nomember">
+            <span>Already have an account ? <a class="links" color="accent" (click)="login()">Signin</a></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="inline-form btn-signup">
+        <button type="submit" mat-raised-button color="accent" tabindex="8"
+          [disabled]="!userRegisterForm.valid && disableRegisterBtn">SIGN
+          UP</button>
+        <button mat-raised-button color="warn" (click)="reset()">Reset</button>
+      </div>
+      <div class="nomember">
+        <span>By Signup, you agree to the <a class="links" color="accent" (click)="termsrouting()">Terms and
+            Conditions</a>.</span>
+      </div>
+    </form>
+  </div>
+</div>

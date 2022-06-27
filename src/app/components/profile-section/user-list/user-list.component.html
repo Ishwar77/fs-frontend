@@ -1,0 +1,158 @@
+<div fxLayout="column">
+  <div fxLayout="row" fxLayoutGap="20px" fxLayoutAlign="space-between center" class="event-summary-container">
+    <div fxLayout="column">
+      <button class="action-btn" mat-raised-button (click)="ExportTOExcel()">
+        <span class="material-icons">
+          cloud_download
+        </span>
+      </button>
+    </div>
+    <div fxLayout="column" fxHide.xs class="sub-name">
+      <div fxLayout="row" fxLayoutGap="5px">
+        <span>{{name}}</span>
+      </div>
+    </div>
+    <div fxLayout="column" fxLayoutGap="10px">
+      <div fxLayout="row" fxLayoutGap="5px" fxLayoutAlign="start center" class="event-summary-headers">
+        <div fxLayout="column" [matMenuTriggerFor]="beforeMenu">
+          <span class="material-icons" style="font-size:18px" [matTooltip]="'Batch Filter'">
+            filter_alt
+          </span>
+        </div>
+        <mat-menu style="padding: 0 !important;" #beforeMenu="matMenu" xPosition="before">
+          <div fxLayout="column" fxLayoutGap="10px">
+            <div style="color: #1a91bd;border: none;outline: none;margin: 0;" mat-menu-item fxLayout="row"
+              fxLayoutGap="10px" fxLayoutAlign="start center">
+              <div fxLayout="column" (click)="getusers(1)">
+                <span>Active Users</span>
+              </div>
+            </div>
+            <div style="color: #1a91bd;border: none;outline: none;margin: 0;" mat-menu-item fxLayout="row"
+              fxLayoutGap="10px" fxLayoutAlign="start center">
+              <div fxLayout="column" (click)="getusers(2)">
+                <span>Inactive Users</span>
+              </div>
+            </div>
+          </div>
+        </mat-menu>
+      </div>
+    </div>
+  </div>
+</div>
+<div *ngIf="pageManager.status === 1; else showInfoContainer">
+  <app-loading-component [imageSize]="2"> </app-loading-component>
+</div>
+<ng-template #showInfoContainer>
+  <div *ngIf="pageManager.action === 2; else showEventInfo">
+    <span fxLayoutAlign="center center" style="color: black;">
+      There are no Users at the moment
+    </span>
+  </div>
+  <ng-template #showEventInfo>
+    <div fxLayout="column" style="height:calc(100vh - 110px);overflow: auto;">
+      <div fxLayout="row wrap" fxLayoutAlign.xs="center center" fxLayoutAlign.sm="center center" style="padding:20px"
+        fxLayoutGap="20px">
+        <div fxLayout="row" *ngFor="let UserList of menus">
+          <div fxLayout="column" class="fit-social-card" fxLayoutGap="10px">
+            <div fxLayout="column">
+              <div fxLayout="row" style="border-bottom: 1px solid #f4f4f4;
+  padding-bottom: 5px;" fxLayoutGap="10px" fxLayoutAlign="start center">
+                <div fxLayout="column">
+                  <img *ngIf="UserList.profile_picture_url" src="{{UserList.profile_picture_url}}"
+                    class="fit-social-image">
+                  <img *ngIf="!UserList.profile_picture_url"
+                    src="https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909__480.png"
+                    class="fit-social-image">
+                </div>
+                <div fxLayout="column">
+                  <div fxLayout="column" class="fitsocial-content-head" matTooltip="Member name"
+                    [matTooltipPosition]="'above'">
+                    {{UserList.diaplay_name}}
+                  </div>
+                  <div fxLayout="column">
+                    <div fxLayout="row" class="fitsocial-sub-info" fxLayoutGap="10px" fxLayoutAlign="start center"
+                      matTooltip="Email ID" [matTooltipPosition]="'above'">
+                      <div fxLayout="column">
+                        <i class="fa fa-envelope"></i>
+                      </div>
+                      <div fxLayout="column">
+                        <a href="mailto:{{UserList.email_id}}">{{UserList.email_id}}</a>
+                      </div>
+                    </div>
+                  </div>
+                  <div fxLayout="column">
+                    <div fxLayout="row" class="fitsocial-sub-info" fxLayoutGap="10px" fxLayoutAlign="start center"
+                      matTooltip="Contact" [matTooltipPosition]="'above'">
+                      <div fxLayout="column">
+                        <i class="fa fa-phone-square"></i>
+                      </div>
+                      <div fxLayout="column">
+                        {{UserList.mobile_number}}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div fxLayout="column" fxLayoutGap="10px" style="border-bottom: 1px solid #f4f4f4;
+  padding-bottom: 5px;">
+              <div fxLayout="column">
+                <div fxLayout="column" class="fitsocial-content-head" routerLink="/event/{{UserList.event_uuid}}">
+                  {{UserList.event_name}}
+                </div>
+              </div>
+              <div fxLayout="column">
+                <div fxLayout="column" class="fitsocial-content-head">
+                  Subscription : {{UserList.days}} Days pack
+                </div>
+              </div>
+
+              <div fxLayout="column">
+                <div fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="start center">
+                  <div fxLayout="column">
+                    <div fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="start center" matTooltip="Registered date"
+                      [matTooltipPosition]="'above'">
+                      <div fxLayout="column">
+                        <i style="color:#0189bd" class="fa fa-calendar-plus-o"></i>
+                      </div>
+                      <div fxLayout="column">
+                        {{UserList.created_at | date:"dd/MM/yyyy"}}
+                      </div>
+                    </div>
+                  </div>
+                  <div fxLayout="column">
+                    <div fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="start center" matTooltip="Expiry date"
+                      [matTooltipPosition]="'above'">
+                      <div fxLayout="column">
+                        <i style="color:red" class="fa fa-calendar-times-o"></i>
+                      </div>
+                      <div fxLayout="column">
+                        {{UserList.expiry_date | date:"dd/MM/yyyy"}}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div fxLayout="column">
+              <div fxLayout="row" fxLayoutAlign="space-between center">
+                <div fxLayout="column">
+                  <div fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="start center" matTooltip="Amount paid"
+                    [matTooltipPosition]="'above'">
+                    <div fxLayout="column">
+                      <i class="fa fa-inr"></i>
+                    </div>
+                    <div fxLayout="column" style="font-size: 1.2rem; font-weight: 500;">
+                      {{UserList.final_amount}}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+</ng-template>

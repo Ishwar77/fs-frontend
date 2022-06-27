@@ -1,0 +1,33 @@
+<mat-drawer-container class="parent-listing-container" style="background-color: #F1F5F8;height: 440px;" autosize
+  [hasBackdrop]="true">
+  <mat-drawer class="listing-slider-container" #drawer mode="over" position="end">
+    <app-subs-slider-layout-create *ngIf="sliderInput" [model]="sliderInput" (closeslider)="closingslider()">
+    </app-subs-slider-layout-create>
+  </mat-drawer>
+  <div fxLayout="column" style="height:calc(100vh - 110px);overflow: auto;">
+    <div *ngIf="pageManager.status === 1; else showInfoContainer">
+      <app-loading-component [imageSize]="2"> </app-loading-component>
+    </div>
+    <ng-template #showInfoContainer>
+      <div *ngIf="pageManager.action === 2; else showEventInfo">
+        <div style="height: 410px;" *ngIf="pageManager.action === 2">
+          <span fxLayoutAlign="center center" style="color: black;">
+            There are no Batches at the moment
+          </span>
+        </div>
+      </div>
+      <ng-template #showEventInfo>
+        <div fxLayout="row wrap" style="padding:20px" fxLayoutGap="20px">
+          <div fxLayout="row" *ngFor="let item of subs">
+            <app-small-widget-card (emitClickedData)="getClickedCard(item)" (batchinfoclicked)="getbatchcard(item)"
+              [model]="item" (meetinginfoclicked)="opendialog($event)" (attendanceclicked)="attendanceclicked($event)">
+            </app-small-widget-card>
+          </div>
+        </div>
+      </ng-template>
+    </ng-template>
+  </div>
+  <button mat-fab class="fit-social-add-action-button" (click)="openCreateSlider()">
+    <i class="material-icons">add </i>
+  </button>
+</mat-drawer-container>
